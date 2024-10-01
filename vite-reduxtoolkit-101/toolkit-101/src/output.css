@@ -554,21 +554,29 @@ video {
   display: none;
 }
 
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+.bg-game-board {
+  background-image: url('/path/to/your/image.jpg');
 }
 
-.font-bold {
-  font-weight: 700;
+.bg-cover {
+  background-size: cover;
 }
 
-.underline {
-  text-decoration-line: underline;
+.bg-center {
+  background-position: center;
 }
 
-body{
-  height: 97vh;
+html, body{
+  height: 100vh;
   width: 100vw;
-  border: 1px solid gray;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(94 191 195);
+}
+
+.bg{
+  background-size: 30%;
+  background-image: url('../public/bg.png');
 }
