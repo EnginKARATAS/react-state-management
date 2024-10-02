@@ -1,11 +1,10 @@
+import ManaBox from "./features/ManaBox/ManaBox";
+  
 export default function GameBoard() {
   return (
     <div className="board">
-      <img
- 
-        height="100"
-        alt="game board"
-      />
+      <ManaBox />
+    
     </div>
   );
 }

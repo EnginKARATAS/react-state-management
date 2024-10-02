@@ -3,7 +3,7 @@ function App() {
   return (
     <>
       <div className="bg">
-        <GameBoard />
+        <GameBoard className="board"/>
       </div>
     </>
   );
