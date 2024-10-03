@@ -1,5 +1,5 @@
 body {
-  background-image: url("../public/bg.png");
+  background-image: url("../public/bg-dark.png");
   background-color: rgb(0, 217, 224);
   height: 930px;
   width: 1850px;
@@ -9,13 +9,16 @@ body {
 }
 
 .board {
-  box-shadow: rgba(227, 0, 0, 0.75) 3px 3px 44px 38px, rgba(213, 211, 34, 0.75) 3px 3px 39px 41px, rgba(0, 0, 0, 1) 0px 0px 0px 1px;
+  box-shadow: 
+    rgba(0, 0, 20, 0.75) 3px 3px 44px 38px, 
+    rgba(0, 10, 50, 0.75) 3px 3px 39px 41px, 
+    rgba(0, 0, 0, 1) 0px 0px 0px 1px;
   background-image: url("../public/hearthstone-board-2.png");
   position: fixed;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 850px;
+  height: 849px;
   width: 1420px;
   margin-left: 180px;
-  margin-top: 33px;
+  margin-top: 40px;
 }

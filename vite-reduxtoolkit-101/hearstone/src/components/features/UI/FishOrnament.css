@@ -6,8 +6,8 @@
 }
 
 .left-fish {
-    transform: rotateX(180deg) rotate(43deg);
-    width: 450px;
-    top: -183px;
-    left: 0px;
+    transform: rotateY(180deg) rotate(341deg) rotate(-35deg);
+    width: 557px;
+    top: -511px;
+    left: -165px;
 }
