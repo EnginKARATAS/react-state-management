@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 body {
   background-image: url("../public/bg.png");
@@ -8,6 +6,7 @@ body {
   height: 930px;
   width: 1850px;
   margin: 0 auto;
+  overflow-y: hidden;
 }
 
 .board {

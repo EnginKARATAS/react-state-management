@@ -1,6 +1,5 @@
-.mana-box {
+.mana-container {
   position: absolute;
   top: 88%;
   left: 50%;
-  transform: translate(-50%, -50%);
 }
