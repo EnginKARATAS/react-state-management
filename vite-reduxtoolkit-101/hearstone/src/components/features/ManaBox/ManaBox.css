@@ -1,12 +1,12 @@
 .mana-container {
   position: absolute;
-  top: 88%;
-  left: 50%;
+  top: 46.55pc;
+  left: 54.8pc;
 }
 
- 
-
-img {
+.mana-cyrstal {
   width: 18px;
   height: 18px;
+  padding-top: 1px;
+
 }

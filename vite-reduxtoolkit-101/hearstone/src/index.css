@@ -5,6 +5,7 @@ body {
   width: 1850px;
   margin: 0 auto;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .board {
