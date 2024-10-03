@@ -6,21 +6,17 @@
 
 .logo {
   height: 96px;
-  /* 6em converted to px assuming base font size is 16px */
   padding: 24px;
-  /* 1.5em converted to px assuming base font size is 16px */
   will-change: filter;
   transition: filter 300ms;
 }
 
 .logo:hover {
   filter: drop-shadow(0 0 32px #646cffaa);
-  /* 2em converted to px assuming base font size is 16px */
 }
 
 .logo.react:hover {
   filter: drop-shadow(0 0 32px #61dafbaa);
-  /* 2em converted to px assuming base font size is 16px */
 }
 
 @keyframes logo-spin {
@@ -41,7 +37,6 @@
 
 .card {
   padding: 32px;
-  /* 2em converted to px assuming base font size is 16px */
 }
 
 .read-the-docs {
