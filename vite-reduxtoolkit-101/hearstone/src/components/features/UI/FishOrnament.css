@@ -1,0 +1,13 @@
+.right-fish {
+    transform: rotateX(180deg) rotate(-60deg);
+    width: 450px;
+    bottom: -444px;
+    right: 0px;
+}
+
+.left-fish {
+    transform: rotateX(180deg) rotate(43deg);
+    width: 450px;
+    top: -183px;
+    left: 0px;
+}
