@@ -12,11 +12,11 @@ body {
 
 .board {
   background-image: url("../public/hearthstone-board-2.png");
-  margin-left: 50px;
-  top: 33px;
   position: fixed;
+  background-repeat: no-repeat;
   background-size: contain;
   height: 850px;
   width: 1750px;
-  margin: 0 auto;
+  margin-left: 180px;
+  margin-top: 33px;
 }
