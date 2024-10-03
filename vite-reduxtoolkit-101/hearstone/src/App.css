@@ -1,21 +1,20 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 96px; /* 6em converted to px assuming base font size is 16px */
+  padding: 24px; /* 1.5em converted to px assuming base font size is 16px */
   will-change: filter;
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 32px #646cffaa); /* 2em converted to px assuming base font size is 16px */
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 32px #61dafbaa); /* 2em converted to px assuming base font size is 16px */
 }
 
 @keyframes logo-spin {
@@ -34,7 +33,7 @@
 }
 
 .card {
-  padding: 2em;
+  padding: 32px; /* 2em converted to px assuming base font size is 16px */
 }
 
 .read-the-docs {
