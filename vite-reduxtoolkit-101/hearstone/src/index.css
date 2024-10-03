@@ -3,25 +3,20 @@
 @tailwind utilities;
 
 body {
-  height: 930px; 
-  width: 1850px; 
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(0, 217, 224);
   background-image: url("../public/bg.png");
-  background-size: contain;
-  overflow-y: hidden;
-  background-repeat: repeat;
+  background-color: rgb(0, 217, 224);
+  height: 930px;
+  width: 1850px;
+  margin: 0 auto;
 }
 
 .board {
-  position: fixed;
-  height: 850px; 
-  width: 1750px;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, 30px);
   background-image: url("../public/hearthstone-board-2.png");
+  margin-left: 50px;
+  top: 33px;
+  position: fixed;
+  background-size: contain;
+  height: 850px;
+  width: 1750px;
+  margin: 0 auto;
 }

@@ -4,6 +4,7 @@ export default function GameBoard() {
   return (
     <div className="board">
       <ManaBox />
+    
     </div>
   );
 }
