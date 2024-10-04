@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import "./GameCard.css";
 
 export default function GameCard({ position, card }) {
@@ -16,12 +17,37 @@ export default function GameCard({ position, card }) {
         alt="game card"
         className="game-card-image"
       />
+      
       <span className="absolute card-cost">{card.cardCost}</span>
-      <img  className="absolute card-image" src={"/public/cards/card-images/"+ card.cardImageName +".png"} alt="game card" />
-      <span className="absolute card-name">{card.cardName}</span>
+      <img className="absolute card-image" src={`/public/cards/card-images/${card.cardImageName}.png`} alt="card artwork" />
+      <svg className="absolute card-name-svg" width="100" height="20">
+        <path id="wavyPath" d="M0,10 Q25,20 50,10 Q75,0 100,10" fill="none" stroke="black" strokeWidth="1" />
+        <text>
+          <textPath href="#wavyPath" startOffset="50%" textAnchor="middle">
+            {card.cardName}
+          </textPath>
+        </text>
+      </svg>
       <span className="absolute card-description">{card.cardDescription}</span>
       <span className="absolute card-attack">{card.cardAttack}</span>
       <span className="absolute card-health">{card.cardHealth}</span>
     </div>
   );
 }
+
+GameCard.propTypes = {
+  position: PropTypes.shape({
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+    size: PropTypes.number.isRequired,
+    offset: PropTypes.number.isRequired,
+  }).isRequired,
+  card: PropTypes.shape({
+    cardCost: PropTypes.number.isRequired,
+    cardImageName: PropTypes.string.isRequired,
+    cardName: PropTypes.string.isRequired,
+    cardDescription: PropTypes.string.isRequired,
+    cardAttack: PropTypes.number.isRequired,
+    cardHealth: PropTypes.number.isRequired,
+  }).isRequired,
+};

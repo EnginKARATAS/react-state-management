@@ -20,14 +20,21 @@
   z-index: -1;
 }
 
-.card-name {
+.card-name-svg {
+  top: 105px;
+  left: 24px;
+  width: 100px;
+}
+
+.card-name-svg text {
   font-size: 11px;
+  fill: white;
+  font-weight: bold;
   text-shadow: 2px 2px 2px black;
-  color: white;
   top: 105px;
   left: 44px;
-  font-weight: bold;
 }
+
 .card-description {
   font-size: 9px;
   text-align: center;
@@ -37,7 +44,6 @@
   top: 141px;
   left: 33px;
 }
-
 
 .card-attack {
   bottom: 6px;
