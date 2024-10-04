@@ -8,8 +8,9 @@ export default function Deck() {
 
   return (
     <div className="deck relative flex">
-      {cards && cards.map((card) => {
-        return <GameCard card={card} position={{ x: 20, y: 22, size: 150 }} key={card.cardId} />;
+      {cards && cards.map((card, i) => {
+        console.log("card", card)
+        return <GameCard card={card} position={{ x: 20, y: 22, size: 150, offset: i>0 ? 20 : 0 }} key={card.cardId} />;
       })}
     </div>
   );

@@ -5,19 +5,30 @@ const initialState = {
 };
 
 const createRandomCard = () => {
-  const cardNames = ["CSS Unleasher", "Portfoliotize", "LinkedIn Bot", "Resume Builder", "Interview Prep", "Job Application", "Job Interview", "Job Offer"];
-  const cardDescriptions = ["Unleash CSS Skils, deal 1 damage to all enemy minions. Draw a card.", "Find an amazing company and let them follow you on LinkedIn.", "This is a random card", "This is a random card", "This is a random card", "This is a random card", "This is a random card", "This is a random card"];
+  const cardNames = [
+    ["CSS Unleasher", "cat", "Unleash CSS Skils, deal 1 damage to all enemy minions. Draw a card."],
+    ["Portfoliotize", "cat", "Find an amazing company and let them follow you on LinkedIn."],
+    ["LinkedIn Bot", "cat", "This is a random card"],
+    ["Resume Builder", "cat", "This is a random card"],
+    ["Interview Prep", "cat", "This is a random card"],
+    ["Job Application", "cat", "This is a random card"],
+    ["Job Interview", "cat", "This is a random card"],
+    ["Job Offer", "cat"]
+  ];
   const cardTypes = ["minion", "spell", "weapon"];
+   
 
   const randomIndex = Math.floor(Math.random() * cardNames.length);
   const randomCard = {
     cardId: Math.random(),
-    cardName: cardNames[randomIndex],
     cardType: cardTypes[Math.floor(Math.random() * cardTypes.length)],
     cardCost: Math.floor(Math.random() * 10),
+    cardName: cardNames[randomIndex][0],
+    cardImageName: cardNames[randomIndex][1],
+    cardDescription: cardNames[randomIndex][2],
+    
     cardAttack: Math.floor(Math.random() * 10),
     cardHealth: Math.floor(Math.random() * 10),
-    cardDescription: cardDescriptions[randomIndex],
   };
   return randomCard;
 };

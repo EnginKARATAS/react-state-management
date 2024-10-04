@@ -1,7 +1,64 @@
+
+.game-card {
+  z-index: 1;
+}
+
+.card-cost {
+  top: 4px;
+  left: 11px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 2px 2px 1px black;
+  font-size: 30px;
+}
+
+.card-image {
+  width: 105px;
+  top: 11px;
+  border-radius: 77%;
+  left: 22px;
+  z-index: -1;
+}
+
+.card-name {
+  font-size: 11px;
+  text-shadow: 2px 2px 2px black;
+  color: white;
+  top: 105px;
+  left: 44px;
+  font-weight: bold;
+}
+.card-description {
+  font-size: 9px;
+  text-align: center;
+  width: 88px;
+  font-weight: 500;
+  line-height: 12px;
+  top: 141px;
+  left: 33px;
+}
+
+
+.card-attack {
+  bottom: 6px;
+  left: 15px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 2px 2px 1px black;
+  font-size: 23px;
+}
+
+.card-health {
+  bottom: 5px;
+  right: 14px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 2px 2px 1px black;
+  font-size: 23px;
+}
+
 .game-card-image {
   width: 200px;
-  margin-left: -60px;
   min-height: 213px;
   min-width: 147px;
-
 }

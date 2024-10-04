@@ -566,6 +566,10 @@ video {
   bottom: 0px;
 }
 
+.left-10 {
+  left: 2.5rem;
+}
+
 .m-3 {
   margin: 0.75rem;
 }
@@ -594,18 +598,14 @@ video {
   gap: 1.25rem;
 }
 
-.rounded-lg {
-  border-radius: 0.5rem;
-}
-
-.bg-yellow-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
-}
-
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .text-sky-400 {
