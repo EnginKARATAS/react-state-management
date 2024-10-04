@@ -1,17 +1,17 @@
 import "./EndTurnButton.css";
 import { useDispatch } from 'react-redux'
 import { closeYourTurn } from '../../counter/counterSlice'
-
+import { useSelector } from 'react-redux'
 export default function EndTurnButton() {
   const dispatch = useDispatch();
+  const isClientTurn = useSelector((state) => state.counter.isClientTurn);
   const onEndTurnButtonClick = () => {
-    dispatch(closeYourTurn());
+    if (isClientTurn) {
+      dispatch(closeYourTurn());
+    }
   };
+
   return (
-    <div
-      className="end-turn-button m-3 bg-yellow-500 rounded-lg flex justify-center items-center"
-    >
-      <button onClick={onEndTurnButtonClick}>End Turn</button>
-    </div>
-  );
+       <button style={{backgroundImage: isClientTurn ? "url('/public/turn/end-turn.png')" : "url('/public/turn/enemy-turn.png')"}} className="end-turn-button m-3" onClick={onEndTurnButtonClick}></button> 
+  )
 }
