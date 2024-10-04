@@ -21,7 +21,7 @@ export default function GameCard({ position, card }) {
       <span className="absolute card-cost">{card.cardCost}</span>
       <img className="absolute card-image" src={`/public/cards/card-images/${card.cardImageName}.png`} alt="card artwork" />
       <svg className="absolute card-name-svg" width="100" height="20">
-        <path id="wavyPath" d="M0,10 Q25,20 50,10 Q75,0 100,10" fill="none" stroke="black" strokeWidth="1" />
+        <path id="wavyPath" d="M-3,17 Q25,15 50,10 Q75,5 100,13" fill="none" strokeWidth="1" />
         <text>
           <textPath href="#wavyPath" startOffset="50%" textAnchor="middle">
             {card.cardName}
