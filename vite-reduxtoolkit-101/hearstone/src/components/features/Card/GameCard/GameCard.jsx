@@ -2,7 +2,7 @@ import './GameCard.css';
 
 export default function GameCard({ position }) {
   return (
-    <div className="game-card flex flex-row " style={{ left: position.x, top: position.y, width: position.size }}>
+    <div className="game-card" style={{ left: position.x, top: position.y, width: position.size }}>
       <img
         src="/public/cards/blank.png"
         alt="game card"
