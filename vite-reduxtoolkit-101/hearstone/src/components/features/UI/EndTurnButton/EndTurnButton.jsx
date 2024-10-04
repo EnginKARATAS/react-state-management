@@ -1,6 +1,6 @@
 import "./EndTurnButton.css";
 import { useDispatch } from 'react-redux'
-import { increment } from '../counter/counterSlice'
+import { increment } from '../../counter/counterSlice'
 
 export default function EndTurnButton({ onManaChange }) {
   const dispatch = useDispatch();
