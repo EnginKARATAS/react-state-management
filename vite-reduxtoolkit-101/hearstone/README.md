@@ -9,8 +9,4 @@
 ![image](https://github.com/user-attachments/assets/2df4917d-38f9-4d7b-a06f-49d550b1c917)
 
 ## How It Works?
-![image]([https://github.com/user-attachments/assets/2df4917d-38f9-4d7b-a06f-49d550b1c917]
-(https://www.gamereactor.eu/media/63/blizzardafslorerhearthstone_736361b.jpg))
-
-## How It Works?
 ![blizzardafslorerhearthstone_736361b](https://github.com/user-attachments/assets/05b067f4-22dc-4381-9e59-ac747c73e256)
