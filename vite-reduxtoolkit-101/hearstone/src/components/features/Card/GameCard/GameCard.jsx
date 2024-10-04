@@ -1,13 +1,12 @@
-import "./GameCard.css";
+import './GameCard.css';
 
 export default function GameCard({ position }) {
   return (
-    <div className="game-card">
+    <div className="game-card flex flex-row " style={{ left: position.x, top: position.y, width: position.size }}>
       <img
         src="/public/cards/blank.png"
         alt="game card"
-        className="game-card-image absolute"
-        style={{ left: position.x, top: position.y }}
+        className="game-card-image"
       />
     </div>
   );
