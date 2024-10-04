@@ -554,12 +554,12 @@ video {
   display: none;
 }
 
-.static {
-  position: static;
-}
-
 .absolute {
   position: absolute;
+}
+
+.relative {
+  position: relative;
 }
 
 .bottom-0 {

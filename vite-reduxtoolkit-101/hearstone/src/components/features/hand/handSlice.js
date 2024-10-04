@@ -1,17 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cards: [
-    {
-      cardId: 1,
-      cardName: "CSS Unleasher",
-      cardType: "minion",
-      cardCost: 1,
-      cardAttack: 2,
-      cardHealth: 3,
-      cardDescription: "Unleash CSS Skills, deal 1 damage to all enemy minions. Draw a card.",
-    }
-  ],
+  cards: [],
 };
 
 const createRandomCard = () => {
@@ -21,6 +11,7 @@ const createRandomCard = () => {
 
   const randomIndex = Math.floor(Math.random() * cardNames.length);
   const randomCard = {
+    cardId: Math.random(),
     cardName: cardNames[randomIndex],
     cardType: cardTypes[Math.floor(Math.random() * cardTypes.length)],
     cardCost: Math.floor(Math.random() * 10),
@@ -37,6 +28,7 @@ export const handSlice = createSlice({
     drawCard: (state) => {
       state.cards.push(createRandomCard());
     },
+
   },
 });
 
