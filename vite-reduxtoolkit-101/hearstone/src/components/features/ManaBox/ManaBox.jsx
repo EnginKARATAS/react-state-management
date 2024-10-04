@@ -1,6 +1,8 @@
 import "./ManaBox.css";
+import { useSelector } from 'react-redux'
 
-export default function ManaBox({ mana }) {
+export default function ManaBox() {
+  const mana = useSelector((state) => state.counter.value)
   return (
     <div className="mana-container flex flex-row gap-5">
       <div className="mana-counter flex justify-center items-center">
