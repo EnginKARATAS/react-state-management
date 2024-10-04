@@ -1,13 +1,23 @@
 .right-fish {
     transform: rotateX(180deg) rotate(-60deg);
-    width: 450px;
-    bottom: -444px;
+    width: 398px;
+    bottom: -397px;
     right: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .left-fish {
     transform: rotateY(180deg) rotate(341deg) rotate(-25deg);
     width: 357px;
-    top: -511px;
-    left: -165px;
+    top: -306px;
+    left: -107px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none
 }

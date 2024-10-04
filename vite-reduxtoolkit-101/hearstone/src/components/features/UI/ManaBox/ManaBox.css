@@ -1,0 +1,16 @@
+.mana-container {
+  position: absolute;
+  top: 46.55pc;
+  left: 54.8pc;
+}
+
+.mana-cyrstal {
+  width: 18px;
+  height: 18px;
+  padding-top: 1px;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
