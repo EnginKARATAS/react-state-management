@@ -1,11 +1,13 @@
 import "./EndTurnButton.css";
 import { useDispatch } from 'react-redux'
 import { increment } from '../../counter/counterSlice'
+import { drawCard } from '../../hand/handSlice'
 
 export default function EndTurnButton({ onManaChange }) {
   const dispatch = useDispatch();
   const onEndTurnButtonClick = () => {
     dispatch(increment());
+    dispatch(drawCard());
   };
   return (
     <div
