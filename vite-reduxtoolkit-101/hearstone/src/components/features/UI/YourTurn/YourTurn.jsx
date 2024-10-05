@@ -27,7 +27,7 @@ export default function YourTurn() {
         dispatch(drawCard());
         dispatch(openYourTurn());
         setOpenPopup(true);
-      }, 2000);
+      }, 1);
 
       return () => clearTimeout(timer);
     }

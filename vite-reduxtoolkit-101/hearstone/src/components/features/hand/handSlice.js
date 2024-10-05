@@ -6,14 +6,11 @@ const initialState = {
 
 const createRandomCard = () => {
   const cardNames = [
-    ["CSS Unleasher", "cat", "Unleash CSS Skils, deal 1 damage to all enemy minions. Draw a card."],
-    ["Portfoliotize", "cat", "Find an amazing company and let them follow you on LinkedIn."],
-    ["LinkedIn Bot", "cat", "This is a random card"],
-    ["Resume Builder", "cat", "This is a random card"],
-    ["Interview Prep", "cat", "This is a random card"],
-    ["Job Application", "cat", "This is a random card"],
-    ["Job Interview", "cat", "This is a random card"],
-    ["Job Offer", "cat"]
+    ["Yavuz Reis", "cat", "Bu kart oynandığı anda kullanıcısına anında 10 yıllık tecrübe kazandırır."],
+    ["Diktatör", "dictator", "Bu kart oynandığında en düşük mana kullanan savaşçı kartını yok eder."],
+    ["Gitarist", "guitar", "Gitarist kartı oynandıktan sonra elinizdeki kartların hepsi 1 güç kazanır."],
+    ["Ödenmiş Bedel", "soldier", "Bu kartı oynadıktan sonra iş bulma ihtimaliniz %50 artar."],
+    ["Savaşçı", "worrior", "Savaşçı kartı oynandıktan sonra kullanıcının canı 1 artar."],
   ];
   const cardTypes = ["minion", "spell", "weapon"];
    
