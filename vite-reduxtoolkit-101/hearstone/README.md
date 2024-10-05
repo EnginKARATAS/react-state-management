@@ -4,6 +4,9 @@
 
 ## View Insights
 ### Here is the screenshoot from hearthstone clone(Newest First⬆️)
+
+![image](https://github.com/user-attachments/assets/233019da-0465-40cc-a258-a95f663e6179)
+
 ![image](https://github.com/user-attachments/assets/b7e1b784-960a-4ebd-bacf-f0984343176f)
 
 ![image](https://github.com/user-attachments/assets/2df4917d-38f9-4d7b-a06f-49d550b1c917)
