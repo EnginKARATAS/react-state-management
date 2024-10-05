@@ -1,7 +1,7 @@
 import ManaBox from "./features/UI/ManaBox/ManaBox";
 import EndTurnButton from "./features/UI/EndTurnButton/EndTurnButton";
 import FishOrnament from "./features/UI/FishOrnament";
-import Deck from "./features/Card/Deck/Deck";
+import Hand from "./features/Card/Hand/Hand";
 import YourTurn from "./features/UI/YourTurn/YourTurn"
 export default function GameBoard() {
   return (
@@ -9,7 +9,7 @@ export default function GameBoard() {
       <FishOrnament />
       <YourTurn />
       <ManaBox />
-      <Deck />
+      <Hand />
       <EndTurnButton/>
     </div>
   );

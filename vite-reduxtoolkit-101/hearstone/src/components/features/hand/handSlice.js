@@ -26,6 +26,7 @@ const createRandomCard = () => {
     
     cardAttack: Math.floor(Math.random() * 10),
     cardHealth: Math.floor(Math.random() * 10),
+    cardPosition: {x: 0, y: 0, size: 150, offset: 0}
   };
   return randomCard;
 };
@@ -36,10 +37,17 @@ export const handSlice = createSlice({
     drawCard: (state) => {
       state.cards.push(createRandomCard());
     },
+    showCard: (state, action) => {
+      const card = state.cards.find(card => card.cardId === action.payload.cardId)
+      card.cardPosition.y = 300
+      card.cardPosition.x = 300
+      card.cardPosition.size = 150
+      card.cardSelected = true
+    }
 
   },
 });
 
-export const { drawCard } = handSlice.actions;
+export const { drawCard, showCard } = handSlice.actions;
 
 export default handSlice.reducer;

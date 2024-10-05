@@ -1,10 +1,18 @@
 import PropTypes from 'prop-types';
 import "./GameCard.css";
+import { useDispatch } from 'react-redux';
+import { showCard } from '../../hand/handSlice';
 
 export default function GameCard({ position, card }) {
+  const dispatch = useDispatch();
+
   return (
     <div
       className="game-card relative"
+      onClick={() => {
+        console.log("clicked", card.cardId)
+        dispatch(showCard(card))
+      }}
       style={{
         left: position.x,
         top: position.y,
