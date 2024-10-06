@@ -5,11 +5,9 @@ import { useEffect } from 'react';
 export default function SingleGameCard({ position }) {
   const singleCard = useSelector((state) => state.hand.singleCard);
 
-  useEffect(() => {
-    console.log("card hovered, single gamecard component", singleCard);
-  }, [singleCard]);
-
+ 
   return (
+    singleCard &&
     <div
       className="single-game-card absolute"
       style={{
