@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cards: [],
+  singleCard: null
 };
 
 const createRandomCard = () => {
@@ -43,11 +44,15 @@ export const handSlice = createSlice({
       card.cardPosition.x = 300
       card.cardPosition.size = 150
       card.cardSelected = true
+    },
+    hoverSingleCard: (state, action) => {
+      state.singleCard = action.payload
+      state.cards.splice(state.cards.indexOf(action.payload, 1))
     }
 
   },
 });
 
-export const { drawCard, showCard } = handSlice.actions;
+export const { drawCard, showCard, hoverSingleCard } = handSlice.actions;
 
 export default handSlice.reducer;

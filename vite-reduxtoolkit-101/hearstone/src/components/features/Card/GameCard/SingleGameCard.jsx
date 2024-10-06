@@ -1,23 +1,27 @@
-import PropTypes from 'prop-types';
-import "./GameCard.css";
+import "./SingleGameCard.css";
 import { useDispatch } from 'react-redux';
-import { showCard } from '../../hand/handSlice';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { hoverSingleCard } from '../../hand/handSlice';
 
-export default function GameCard({ position, card }) {
+export default function SingleGameCard({ position, card }) {
   const dispatch = useDispatch();
+  const singleCard = useSelector((state) => state.hand.singleCard)
+
+  useEffect(() => {
+    console.log("card hovered, single gamecard component", singleCard)
+  }, [singleCard])
+
+
 
   return (
     <div
-      className="game-card relative"
-      onClick={() => {
-        console.log("clicked", card.cardId)
-        dispatch(showCard(card))
-      }}
+      className="single-game-card absolute"
       style={{
-        left: position.x,
-        top: position.y,
-        width: position.size,
-        marginLeft: position.offset,
+        left: position?.x,
+        top: position?.y,
+        width: position?.size,
+        marginLeft: position?.offset,
       }}
     >
       <img
@@ -26,36 +30,21 @@ export default function GameCard({ position, card }) {
         className="game-card-image"
       />
       
-      <span className="absolute card-cost">{card.cardCost}</span>
-      <img className="absolute card-image" src={`/public/cards/card-images/${card.cardImageName}.png`} alt="card artwork" />
+      <span className="absolute card-cost">{singleCard?.cardCost}</span>
+      <img className="absolute card-image" src={`/public/cards/card-images/cat.png`} alt="card artwork" />
       <svg className="absolute card-name-svg" width="100" height="20">
         <path id="wavyPath" d="M-3,17 Q25,15 50,10 Q75,5 100,13" fill="none" strokeWidth="1" />
         <text>
           <textPath href="#wavyPath" startOffset="50%" textAnchor="middle">
-            {card.cardName}
+            {singleCard?.cardName}
           </textPath>
         </text>
       </svg>
-      <span className="absolute card-description">{card.cardDescription}</span>
-      <span className="absolute card-attack">{card.cardAttack}</span>
-      <span className="absolute card-health">{card.cardHealth}</span>
+      <span className="absolute card-description">{singleCard?.cardDescription}</span>
+      <span className="absolute card-attack">{singleCard?.cardAttack}</span>
+      <span className="absolute card-health">{singleCard?.cardHealth}</span>
     </div>
   );
 }
 
-GameCard.propTypes = {
-  position: PropTypes.shape({
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    size: PropTypes.number.isRequired,
-    offset: PropTypes.number.isRequired,
-  }).isRequired,
-  card: PropTypes.shape({
-    cardCost: PropTypes.number.isRequired,
-    cardImageName: PropTypes.string.isRequired,
-    cardName: PropTypes.string.isRequired,
-    cardDescription: PropTypes.string.isRequired,
-    cardAttack: PropTypes.number.isRequired,
-    cardHealth: PropTypes.number.isRequired,
-  }).isRequired,
-};
+ 

@@ -1,6 +1,8 @@
-
-.game-card {
-    z-index: 1;
+.single-game-card {
+  z-index: 1;
+  position: absolute;
+  top: 200px;
+  left: 571px;
   }
   
   .card-cost {

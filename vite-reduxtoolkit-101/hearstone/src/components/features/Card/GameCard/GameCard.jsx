@@ -1,17 +1,19 @@
 import "./GameCard.css";
 import { useDispatch } from 'react-redux';
-import { showCard } from '../../hand/handSlice';
+import { hoverSingleCard } from '../../hand/handSlice';
 
 export default function GameCard({ position, card }) {
   const dispatch = useDispatch();
 
+  const onMouseOver = (card) => {
+    console.log("carefull", card)
+    dispatch(hoverSingleCard(card))
+  }
+
   return (
     <div
       className="game-card relative"
-      onClick={() => {
-        console.log("clicked", card.cardId)
-        dispatch(showCard(card))
-      }}
+      onMouseOver={()=>onMouseOver(card)}
       style={{
         left: position.x,
         top: position.y,
