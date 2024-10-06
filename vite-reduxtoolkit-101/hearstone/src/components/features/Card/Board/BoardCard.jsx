@@ -5,8 +5,8 @@ export default function BoardCard({ position, boardCard }) {
         className="relative board-card"
         style={{
           left: position.x,
-          marginLeft: position.offset,
-        }}
+          marginRight: position.offset,
+         }}
       >
         <img
           src="/public/cards/card-images/board_blank.png"

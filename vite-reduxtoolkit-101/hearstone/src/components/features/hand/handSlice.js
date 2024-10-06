@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   cards: [],
   singleCard: null,
-  boardCards: [],
+  boardCards: [], // Add this line to store board cards
 };
 
 const createRandomCard = () => {

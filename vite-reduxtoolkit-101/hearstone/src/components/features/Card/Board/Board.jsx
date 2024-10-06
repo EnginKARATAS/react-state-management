@@ -9,7 +9,7 @@ export default function Board() {
     <div className="board-cards absolute flex">
       {boardCards &&
         boardCards.map((boardCard, i) => {
-          return <BoardCard position={{ x:-boardCards.length*57, y: 0, size: 150, offset: boardCard.length*15}} boardCard={boardCard} key={boardCard.cardId} />;
+          return <BoardCard position={{ x:-boardCards.length*49  , y: 0, size: 150, offset: 10}} boardCard={boardCard} key={boardCard.cardId} />;
         })}
     </div>
   );

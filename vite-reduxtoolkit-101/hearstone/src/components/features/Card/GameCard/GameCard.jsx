@@ -2,8 +2,10 @@ import "./GameCard.css";
 import { useDispatch } from 'react-redux';
 import { hoverSingleCard, addCardToBoard } from '../../hand/handSlice';
 import { useState } from 'react';
-export default function GameCard({ position, card }) {
+import { decrement, isCardPlayable } from '../../counter/counterSlice';
+ export default function GameCard({ position, card }) {
   const dispatch = useDispatch();
+ 
   const [zIndex, setZIndex] = useState(0)
 
   const onMouseOver = (card) => {
@@ -20,10 +22,15 @@ export default function GameCard({ position, card }) {
     }, 200)
   }
 
-  const onClick = (card) => {
-    console.log("onclick", card)
-    dispatch(addCardToBoard(card))
-  }
+  const onClick = async () => {
+    const res = await dispatch(isCardPlayable(card));  
+    console.log("🚀 ~ onClick ~ successStatus:", res );
+    
+    if (res) {
+      dispatch(addCardToBoard(card));
+      dispatch(decrement(card));
+    }
+  };
 
   return (
     <div
@@ -61,4 +68,3 @@ export default function GameCard({ position, card }) {
     </div>
   );
 }
- 
