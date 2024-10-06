@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import "./GameCard.css";
 import { useDispatch } from 'react-redux';
 import { showCard } from '../../hand/handSlice';
@@ -42,20 +41,4 @@ export default function GameCard({ position, card }) {
     </div>
   );
 }
-
-GameCard.propTypes = {
-  position: PropTypes.shape({
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    size: PropTypes.number.isRequired,
-    offset: PropTypes.number.isRequired,
-  }).isRequired,
-  card: PropTypes.shape({
-    cardCost: PropTypes.number.isRequired,
-    cardImageName: PropTypes.string.isRequired,
-    cardName: PropTypes.string.isRequired,
-    cardDescription: PropTypes.string.isRequired,
-    cardAttack: PropTypes.number.isRequired,
-    cardHealth: PropTypes.number.isRequired,
-  }).isRequired,
-};
+ 
