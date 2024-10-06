@@ -14,8 +14,10 @@ export default function GameCard({ position, card }) {
   }
 
   const onMouseLeave = (card) => {
-    dispatch(hoverSingleCard(null))
-    setZIndex(0)
+    setTimeout(() => {
+      dispatch(hoverSingleCard(null))
+      setZIndex(0)
+    }, 200)
   }
 
   return (
