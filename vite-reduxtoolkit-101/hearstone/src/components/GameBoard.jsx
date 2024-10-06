@@ -5,10 +5,12 @@ import Hand from "./features/Card/Hand/Hand";
 import YourTurn from "./features/UI/YourTurn/YourTurn"
 import SingleGameCard from "./features/Card/GameCard/SingleGameCard";
 import Board from "./features/Card/Board/Board";
+import EnemyProfile from "./features/UI/EnemyProfile/EnemyProfile";
 export default function GameBoard() {
   return (
     <div className="board ">
       <FishOrnament />
+      <EnemyProfile/>
       <YourTurn />
       <ManaBox />
       <Board/>
