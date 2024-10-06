@@ -7,7 +7,9 @@ export default function GameCard({ position, card }) {
 
   const onMouseOver = (card) => {
     console.log("carefull", card)
-    dispatch(hoverSingleCard(card))
+    setTimeout(() => {
+      dispatch(hoverSingleCard(card))
+    }, 200)
   }
 
   return (

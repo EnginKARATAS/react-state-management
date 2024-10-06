@@ -1,18 +1,13 @@
 import "./SingleGameCard.css";
-import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { hoverSingleCard } from '../../hand/handSlice';
 
-export default function SingleGameCard({ position, card }) {
-  const dispatch = useDispatch();
-  const singleCard = useSelector((state) => state.hand.singleCard)
+export default function SingleGameCard({ position }) {
+  const singleCard = useSelector((state) => state.hand.singleCard);
 
   useEffect(() => {
-    console.log("card hovered, single gamecard component", singleCard)
-  }, [singleCard])
-
-
+    console.log("card hovered, single gamecard component", singleCard);
+  }, [singleCard]);
 
   return (
     <div
@@ -27,22 +22,22 @@ export default function SingleGameCard({ position, card }) {
       <img
         src="/public/cards/blank.png"
         alt="game card"
-        className="game-card-image"
+        className="game-single-card-image"
       />
       
-      <span className="absolute card-cost">{singleCard?.cardCost}</span>
-      <img className="absolute card-image" src={`/public/cards/card-images/cat.png`} alt="card artwork" />
-      <svg className="absolute card-name-svg" width="100" height="20">
-        <path id="wavyPath" d="M-3,17 Q25,15 50,10 Q75,5 100,13" fill="none" strokeWidth="1" />
+      <span className="absolute single-card-cost">{singleCard?.cardCost}</span>
+      <img className="absolute single-card-image" src={`/public/cards/card-images/${singleCard?.cardImageName}.png`} alt="card artwork" />
+      <svg className="absolute single-card-name-svg" width="180" height="40">
+        <path id="sPath" d="M10,50 Q40,35 90,30 T200,30" fill="none" stroke="none" />
         <text>
-          <textPath href="#wavyPath" startOffset="50%" textAnchor="middle">
+          <textPath href="#sPath" startOffset="50%" textAnchor="middle">
             {singleCard?.cardName}
           </textPath>
         </text>
       </svg>
-      <span className="absolute card-description">{singleCard?.cardDescription}</span>
-      <span className="absolute card-attack">{singleCard?.cardAttack}</span>
-      <span className="absolute card-health">{singleCard?.cardHealth}</span>
+      <span className="absolute single-card-description">{singleCard?.cardDescription}</span>
+      <span className="absolute single-card-attack">{singleCard?.cardAttack}</span>
+      <span className="absolute single-card-health">{singleCard?.cardHealth}</span>
     </div>
   );
 }

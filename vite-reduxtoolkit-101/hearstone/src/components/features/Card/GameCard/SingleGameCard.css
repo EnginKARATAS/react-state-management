@@ -1,72 +1,73 @@
 .single-game-card {
   z-index: 1;
   position: absolute;
-  top: 200px;
-  left: 571px;
-  }
-  
-  .card-cost {
-    top: 4px;
-    left: 11px;
-    color: white;
-    font-weight: bolder;
-    text-shadow: 2px 2px 1px black;
-    font-size: 30px;
-  }
-  
-  .card-image {
-    width: 105px;
-    top: 11px;
-    border-radius: 77%;
-    left: 22px;
-    z-index: -1;
-  }
-  
-  .card-name-svg {
-    top: 106px;
-    left: 25px;
-    width: 100px;
-  }
-  
-  .card-name-svg text {
-    font-size: 11px;
-    fill: white;
-    font-weight: bold;
-    text-shadow: 2px 2px 2px black;
-    top: 105px;
-    left: 44px;
-  }
-  
-  .card-description {
-    font-size: 9px;
-    text-align: center;
-    width: 88px;
-    font-weight: 500;
-    line-height: 12px;
-    top: 141px;
-    left: 33px;
-  }
-  
-  .card-attack {
-    bottom: 6px;
-    left: 15px;
-    color: white;
-    font-weight: bolder;
-    text-shadow: 2px 2px 1px black;
-    font-size: 23px;
-  }
-  
-  .card-health {
-    bottom: 5px;
-    right: 14px;
-    color: white;
-    font-weight: bolder;
-    text-shadow: 2px 2px 1px black;
-    font-size: 23px;
-  }
-  
-  .game-card-image {
-    width: 200px;
-    min-height: 213px;
-    min-width: 147px;
-  }
+  top: 195px;
+  left: 549px;
+  width: 300px;
+  height: 400px;
+}
+
+.single-card-cost {
+  top: 13px;
+  left: 25px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 2px 2px 1px black;
+  font-size: 45px;
+}
+
+.single-card-image {
+  width: 185px;
+  top: 19px;
+  border-radius: 77%;
+  left: 45px;
+  z-index: -1;
+}
+
+.single-card-name-svg {
+  top: 180px;
+  left: 40px;
+  width: 280px;
+  height: 50px;
+}
+
+.single-card-name-svg text {
+  font-size: 23px;
+  fill: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px black;
+}
+
+.single-card-description {
+  top: 255px;
+  left: 56px;
+  font-size: 18px;
+  text-align: center;
+  width: 160px;
+  font-weight: 500;
+  line-height: 19px;
+}
+
+.single-card-attack {
+  bottom: 28px;
+  left: 30px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 2px 2px 1px black;
+  font-size: 38px;
+}
+
+.single-card-health {
+  bottom: 28px;
+  right: 55px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 2px 2px 1px black;
+  font-size: 38px;
+}
+
+.game-card-image {
+  width: 200px;
+  min-height: 213px;
+  min-width: 147px;
+}
