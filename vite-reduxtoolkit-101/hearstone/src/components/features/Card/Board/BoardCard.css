@@ -1,0 +1,34 @@
+.board-card {
+    top:0;
+    left:0;
+    z-index: 1;
+}
+
+.board-card-image {
+    clip-path: ellipse(49% 49% at 50% 50%);
+    height: 117px;
+    width: 96px;
+    z-index: -1;
+    top: 6px;
+    left: 4px;
+}
+ 
+.board-frame {
+    width: 100px;
+    min-width: 100px;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
+.board-card-attack {
+    position: absolute;
+    bottom: 18px;
+    left: 15px;
+}
+
+.board-card-health {
+    position: absolute;
+    bottom: 17px;
+    right: 12px;
+}

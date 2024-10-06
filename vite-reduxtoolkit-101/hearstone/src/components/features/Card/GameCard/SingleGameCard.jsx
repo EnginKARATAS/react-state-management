@@ -18,7 +18,7 @@ export default function SingleGameCard({ position }) {
       }}
     >
       <img
-        src="/public/cards/blank.png"
+        src="/public/cards/card-images/blank.png"
         alt="game card"
         className="game-single-card-image"
       />

@@ -40,9 +40,9 @@ export default function GameCard({ position, card }) {
       }}
     >
       <img
-        src="/public/cards/blank.png"
+        src="/public/cards/card-images/blank.png"
         alt="game card"
-        className="game-card-image"
+        className="game-card-frame"
       />
       
       <span className="absolute card-cost">{card.cardCost}</span>
