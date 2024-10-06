@@ -1,6 +1,6 @@
 import "./GameCard.css";
 import { useDispatch } from 'react-redux';
-import { hoverSingleCard } from '../../hand/handSlice';
+import { hoverSingleCard, addCardToBoard } from '../../hand/handSlice';
 import { useState } from 'react';
 export default function GameCard({ position, card }) {
   const dispatch = useDispatch();
@@ -20,11 +20,17 @@ export default function GameCard({ position, card }) {
     }, 200)
   }
 
+  const onClick = (card) => {
+    console.log("onclick", card)
+    dispatch(addCardToBoard(card))
+  }
+
   return (
     <div
       className="game-card relative"
       onMouseOver={()=>onMouseOver(card)}
       onMouseLeave={()=>onMouseLeave(card)}
+      onClick={()=>onClick(card)}
       style={{
         left: position.x,
         top: position.y-30*zIndex,
