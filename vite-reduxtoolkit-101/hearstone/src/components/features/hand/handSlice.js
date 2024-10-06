@@ -8,7 +8,7 @@ const initialState = {
 const createRandomCard = () => {
   const cardNames = [
     ["Yavuz Reis", "cat", "Bu kart oynandığı anda kullanıcısına anında 10 yıllık tecrübe kazandırır."],
-    ["Diktatör", "dictator", "Bu kart oynandığında en düşük mana kullanan savaşçı kartını yok eder."],
+    ["Diktatör", "dictator", "Bu kart oynanırsa rakibin en düşük mana kullanan kartı yok olur."],
     ["Gitarist", "guitar", "Gitarist kartı oynandıktan sonra elinizdeki kartların hepsi 1 güç kazanır."],
     ["Ödenmiş Bedel", "soldier", "Bu kartı oynadıktan sonra iş bulma ihtimaliniz %50 artar."],
     ["Savaşçı", "worrior", "Savaşçı kartı oynandıktan sonra kullanıcının canı 1 artar."],
@@ -36,7 +36,8 @@ export const handSlice = createSlice({
   initialState,
   reducers: {
     drawCard: (state) => {
-      state.cards.push(createRandomCard());
+      if(state.cards.length < 10)
+         state.cards.push(createRandomCard());
     },
     showCard: (state, action) => {
       const card = state.cards.find(card => card.cardId === action.payload.cardId)
@@ -47,7 +48,7 @@ export const handSlice = createSlice({
     },
     hoverSingleCard: (state, action) => {
       state.singleCard = action.payload
-      state.cards.splice(state.cards.indexOf(action.payload, 1))
+      //state.cards.splice(state.cards.indexOf(action.payload, 1))
     }
 
   },
