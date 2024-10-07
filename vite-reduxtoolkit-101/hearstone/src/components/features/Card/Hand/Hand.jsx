@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 export default function Hand({player, position}) {
   const cards = useSelector((state) => state.hand.cards);
 
+
   return (
     <div className="hand flex absolute"
     style={{
@@ -15,7 +16,7 @@ export default function Hand({player, position}) {
     }}
     >
       {cards && cards.map((card, i) => {
-        return <GameCard player={player} card={card} position={{ x:310-cards.length*17, y: player==="player"?0:-80, size: 150, offset: card.length<5?-cards.length*15:-120}} key={card.cardId} />;
+        return <GameCard player={player} card={card} deg={card.deg} position={{ x:310-cards.length*17, y: player==="player"?0:-97, size: 150, offset: card.length<5?-cards.length*15:-120}} key={card.cardId} />;
       })}
     </div>
   );

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { hoverSingleCard, addCardToBoard } from "../../hand/handSlice";
 import { useState } from "react";
 import { decrement, isCardPlayable } from "../../counter/counterSlice";
-export default function GameCard({ position, card, player }) {
+export default function GameCard({ position, card, player, deg }) {
   const dispatch = useDispatch();
 
   const [zIndex, setZIndex] = useState(0);
@@ -79,16 +79,23 @@ export default function GameCard({ position, card, player }) {
           <span className="absolute card-health">{card.cardHealth}</span>
         </div>
       ) : (
-        <div className="backside-game-card relative"
-        style={{
-          left: position.x,
-          top: position.y - 30 * zIndex,
-          width: position.size,
-          marginLeft: position.offset,
-          zIndex: zIndex,
-        }}
+        <div
+          className="backside-game-card relative"
+          style={{
+            left: position.x,
+            top: position.y - 30 * zIndex,
+            width: position.size,
+            marginLeft: position.offset,
+            zIndex: zIndex,
+          }}
         >
-          <img className="backside-image" src={`/public/cards/card-images/card-back.png`} />
+          <img
+            className="backside-image"
+            style={{
+              transform: `rotate(${-deg}deg)`
+            }}
+            src={`/public/cards/card-images/card-back.png`}
+          />
         </div>
       )}
     </div>
