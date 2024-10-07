@@ -4,14 +4,13 @@ import ManaBox from "../../ManaBox/ManaBox";
 import Hand from "../../../Card/Hand/Hand";
 export default function EnemyProfile() {
   return (
-    <div className="enemy-profile absolute">
-      <Hand player="enemy"></Hand>
+    <div className="absolute enemy-profile">
       <Profile
-        className="enemy-profile absolute"
         img={{ pack: "yavuz-pack", photo: "hero-yavuz" }}
-        position={{ top: -58, left: 5 }}
+        position={{ top: 153, left: 6 }}
       />
-      <ManaBox className="absolute" position={{ top: 108, left: 218 }} player="enemy" />
+      <ManaBox  position={{ top: 108, left: 218 }} player="enemy" />
+      <Hand  player="enemy" position={{top: 12, left: -193}}></Hand>
     </div>
   );
 }

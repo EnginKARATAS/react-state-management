@@ -2,7 +2,7 @@ import "./Profile.css";
 export default function Profile({ img, position }) {
   return (
     <div
-      className="profile relative"
+      className="profile absolute"
       style={{
         top: position.top,
         left: position.left,

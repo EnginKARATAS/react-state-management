@@ -5,7 +5,7 @@ export default function ManaBox({ position, player }) {
   const mana = useSelector((state) => state.counter.value);
   return (
     <div
-      className="mana-container flex flex-row gap-5 align-center"
+      className="mana-container flex flex-row gap-5 align-center absolute"
       style={{
         top: position?.top,
         left: position?.left,
