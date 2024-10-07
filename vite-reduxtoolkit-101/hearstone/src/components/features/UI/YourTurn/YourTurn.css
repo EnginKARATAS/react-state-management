@@ -1,4 +1,5 @@
 .your-turn{
+    z-index: 100;
     position: absolute;
     width: 738px;
     bottom: 252px;
