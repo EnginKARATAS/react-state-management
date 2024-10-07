@@ -1,11 +1,11 @@
 import ManaBox from "./features/UI/ManaBox/ManaBox";
 import EndTurnButton from "./features/UI/EndTurnButton/EndTurnButton";
 import FishOrnament from "./features/UI/FishOrnament";
-import Hand from "./features/Card/Hand/Hand";
 import YourTurn from "./features/UI/YourTurn/YourTurn"
-import SingleGameCard from "./features/Card/GameCard/SingleGameCard";
 import Board from "./features/Card/Board/Board";
 import Profile from "./features/UI/Profile/Profile";
+import ClientProfile from "./features/UI/Profile/ClientProfile/ClientProfile";
+import SingleGameCard from "./features/Card/GameCard/SingleGameCard";
 export default function GameBoard() {
   return (
     <div className="board ">
@@ -14,10 +14,9 @@ export default function GameBoard() {
       <YourTurn />
       <ManaBox />
       <Board/>
-      <Hand />
-      <EndTurnButton/>
-      <Profile className="enemy-profile" img={{pack: "engin-pack", photo: "hero-engin"}} position={{ left: 635, bottom: 175}}/>
       <SingleGameCard/>
+      <EndTurnButton/>
+      <ClientProfile />
     </div>
   );
 }
