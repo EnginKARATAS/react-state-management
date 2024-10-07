@@ -48,6 +48,7 @@ const createRandomCard = () => {
     cardAttack: Math.floor(Math.random() * 10),
     cardHealth: Math.floor(Math.random() * 10),
     cardPosition: { x: 0, y: 0, size: 150, offset: 0 },
+    deg: 0,
   };
   return randomCard;
 };
@@ -56,7 +57,15 @@ export const handSlice = createSlice({
   initialState,
   reducers: {
     drawCard: (state) => {
-      if (state.cards.length < 10) state.cards.push(createRandomCard());
+      if (state.cards.length < 10) {
+        state.cards.push(createRandomCard());
+        state.cards = state.cards.map((card,i)=>{
+          const degCel = 4;
+          if (state.cards.length===1) return {...card, deg: 0}
+          
+          return {...card, deg: -state.cards.length*degCel/2+(i*degCel)}
+        });
+      };
     },
     showCard: (state, action) => {
       const card = state.cards.find(
