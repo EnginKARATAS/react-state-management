@@ -1,0 +1,13 @@
+.profile {
+  height: 112px;
+  overflow: hidden;
+  width: 95px;
+
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+}
+
+.profile-image {
+  border-top-right-radius: 93px;
+  border-top-left-radius: 93px;
+}

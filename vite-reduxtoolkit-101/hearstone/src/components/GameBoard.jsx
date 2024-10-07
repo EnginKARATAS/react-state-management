@@ -5,17 +5,18 @@ import Hand from "./features/Card/Hand/Hand";
 import YourTurn from "./features/UI/YourTurn/YourTurn"
 import SingleGameCard from "./features/Card/GameCard/SingleGameCard";
 import Board from "./features/Card/Board/Board";
-import EnemyProfile from "./features/UI/EnemyProfile/EnemyProfile";
+import Profile from "./features/UI/Profile/Profile";
 export default function GameBoard() {
   return (
     <div className="board ">
       <FishOrnament />
-      <EnemyProfile/>
+      <Profile className="enemy-profile" img={{pack: "yavuz-pack", photo: "hero-yavuz"}} position={{top: 101, left: 635.8}}/>
       <YourTurn />
       <ManaBox />
       <Board/>
       <Hand />
       <EndTurnButton/>
+      <Profile className="enemy-profile" img={{pack: "engin-pack", photo: "hero-engin"}} position={{ left: 635, bottom: 175}}/>
       <SingleGameCard/>
     </div>
   );
