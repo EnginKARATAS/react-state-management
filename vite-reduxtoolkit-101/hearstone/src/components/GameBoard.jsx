@@ -1,5 +1,4 @@
-import ManaBox from "./features/UI/ManaBox/ManaBox";
-import EndTurnButton from "./features/UI/EndTurnButton/EndTurnButton";
+ import EndTurnButton from "./features/UI/EndTurnButton/EndTurnButton";
 import FishOrnament from "./features/UI/FishOrnament";
 import YourTurn from "./features/UI/YourTurn/YourTurn"
 import Board from "./features/Card/Board/Board";
@@ -10,13 +9,11 @@ export default function GameBoard() {
   return (
     <div className="board ">
       <FishOrnament />
-      <EnemyProfile />
+      <EnemyProfile player="enemy"/>
       <YourTurn />
-      <ManaBox />
       <Board/>
-      <SingleGameCard/>
       <EndTurnButton/>
-      <ClientProfile />
+      <ClientProfile player="player" />
     </div>
   );
 }

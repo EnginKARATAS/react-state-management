@@ -1,8 +1,7 @@
 .single-game-card {
   z-index: 1;
-  position: absolute;
-  top: 247px;
-  left: 290px;
+  top: -360px;
+  left: -300px;
   width: 300px;
   height: 400px;
 }

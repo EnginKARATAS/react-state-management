@@ -1,6 +1,5 @@
 import "./SingleGameCard.css";
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 
 export default function SingleGameCard({ position }) {
   const singleCard = useSelector((state) => state.hand.singleCard);

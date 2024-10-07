@@ -3,6 +3,17 @@
   z-index: 1;
 }
 
+.backside-game-card{
+  z-index: 1;
+  transform: rotate(180deg);
+  
+}
+
+.backside-image{
+  width: 150px;
+  
+}
+
 .card-cost {
   top: 4px;
   left: 11px;
