@@ -57,15 +57,29 @@ export const handSlice = createSlice({
   initialState,
   reducers: {
     drawCard: (state) => {
-      if (state.cards.length < 10) {
+      const cardsLenght = state.cards.length;
+      if (cardsLenght < 10) {
         state.cards.push(createRandomCard());
-        state.cards = state.cards.map((card,i)=>{
+        state.cards = state.cards.map((card, i) => {
           const degCel = 4;
-          if (state.cards.length===1) return {...card, deg: 0}
-          
-          return {...card, deg: -state.cards.length*degCel/2+(i*degCel)}
+          const pos = 310;
+          if (cardsLenght === 1)
+            return {
+              ...card,
+              cardPosition: { x: pos, y: 0, offset: 0 },
+              deg: 0,
+            };
+          return {
+            ...card,
+            cardPosition: {
+              x: 0,
+              y: 0,
+              offset:0
+            },
+            deg: (-cardsLenght * degCel) / 2 + i * degCel,
+          };
         });
-      };
+      }
     },
     showCard: (state, action) => {
       const card = state.cards.find(
@@ -81,9 +95,9 @@ export const handSlice = createSlice({
     },
 
     addCardToBoard: (state, action) => {
-      if (state.boardCards.length < 7){
-      state.boardCards.push(action.payload);
-      state.cards.splice(state.cards.indexOf(action.payload, 1));
+      if (state.boardCards.length < 7) {
+        state.boardCards.push(action.payload);
+        state.cards.splice(state.cards.indexOf(action.payload, 1));
       }
 
       console.log("addCardToBoard", action.payload);
