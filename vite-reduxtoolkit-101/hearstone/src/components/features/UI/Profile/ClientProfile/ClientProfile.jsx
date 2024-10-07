@@ -5,7 +5,7 @@ import "./ClientProfile.css"
 import SingleGameCard from "../../../Card/GameCard/SingleGameCard";
 export default function ClientProfile({player}) {
   return (
-    <div className="absolute client-profile  ">
+    <div className="absolute client-profile">
       <Profile
         className="enemy-profile"
         img={{ pack: "engin-pack", photo: "hero-engin" }}
@@ -13,7 +13,7 @@ export default function ClientProfile({player}) {
       />   
       <ManaBox position={{top: -149, left:246}} />
       <Hand position={{bottom: -12, left:-199}} player={player} className="hand"  />
-      <SingleGameCard/>
+      <SingleGameCard position={{bottom: 280, left:-330}}/>
     </div>
   );
 }

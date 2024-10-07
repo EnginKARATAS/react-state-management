@@ -10,10 +10,8 @@ export default function SingleGameCard({ position }) {
     <div
       className="single-game-card absolute"
       style={{
-        left: position?.x,
-        top: position?.y,
-        width: position?.size,
-        marginLeft: position?.offset,
+        left: position?.left,
+        bottom: position?.bottom,
       }}
     >
       <img
