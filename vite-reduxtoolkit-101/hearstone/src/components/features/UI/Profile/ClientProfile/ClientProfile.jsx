@@ -12,7 +12,7 @@ export default function ClientProfile({player}) {
         position={{ left: 4, bottom: 220 }}
       />   
       <ManaBox position={{top: -149, left:246}} />
-      <Hand position={{bottom: -12, left:-199}} player={player} className="hand"  />
+      <Hand position={{bottom: -12, left:-476}} player={player} className="hand"  />
       <SingleGameCard position={{bottom: 280, left:-330}}/>
     </div>
   );

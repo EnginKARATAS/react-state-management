@@ -61,8 +61,9 @@ export const handSlice = createSlice({
       if (cardsLenght < 10) {
         state.cards.push(createRandomCard());
         state.cards = state.cards.map((card, i) => {
-          const degCel = 4;
-          const pos = 310;
+          const degCel = 8;
+          const startPoint = 280;
+          const pos = startPoint+(i*33)+(-3*cardsLenght*0.6)-(12*i*cardsLenght*0.8+i* 50);//swipe left - swipe card between cards
           if (cardsLenght === 1)
             return {
               ...card,
@@ -72,7 +73,7 @@ export const handSlice = createSlice({
           return {
             ...card,
             cardPosition: {
-              x: 0,
+              x: pos,
               y: 0,
               offset:0
             },

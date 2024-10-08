@@ -26,7 +26,7 @@ export default function Hand({ player, position }) {
               card={card}
               deg={card.deg}
               position={{
-                x: 100,
+                x: card.cardPosition.x,
                 y: player === "player" ? 0 : -97,
                 size: 150,
                 offset: -card.cardPosition.offset,

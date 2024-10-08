@@ -46,6 +46,7 @@ export default function GameCard({ position, card, player, deg }) {
             width: position.size,
             marginLeft: position.offset,
             zIndex: zIndex,
+            transform: `rotate(${+deg}deg)`
           }}
         >
           <img
