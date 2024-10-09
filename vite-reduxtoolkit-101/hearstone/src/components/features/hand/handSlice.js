@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { pos, getTop } from "./cardPositioningUtils";
 const initialState = {
   cards: [],
   singleCard: null,
@@ -7,43 +7,43 @@ const initialState = {
 };
 
 const createRandomCard = () => {
-  const cardNames = [
-    [
-      "Yavuz Reis",
-      "cat",
-      "Bu kart oynandığı anda kullanıcısına anında 10 yıllık tecrübe kazandırır.",
-    ],
-    [
-      "Diktatör",
-      "dictator",
-      "Bu kart oynanırsa rakibin en düşük mana kullanan kartı yok olur.",
-    ],
-    [
-      "Gitarist",
-      "guitar",
-      "Gitarist kartı oynandıktan sonra elinizdeki kartların hepsi 1 güç kazanır.",
-    ],
-    [
-      "Ödenmiş Bedel",
-      "soldier",
-      "Bu kartı oynadıktan sonra iş bulma ihtimaliniz %50 artar.",
-    ],
-    [
-      "Savaşçı",
-      "worrior",
-      "Savaşçı kartı oynandıktan sonra kullanıcının canı 1 artar.",
-    ],
+  const clientCardBase = [
+    {
+      cardName: "Yavuz Reis",
+      image: "cat",
+      description: "Bu kart oynandığı anda kullanıcısına anında 10 yıllık tecrübe kazandırır.",
+    },
+    {
+      cardName: "Diktatör",
+      image: "dictator",
+      description: "Bu kart oynanırsa rakibin en düşük mana kullanan kartı yok olur.",
+    },
+    {
+      cardName: "Gitarist",
+      image: "guitar",
+      description: "Gitarist kartı oynandıktan sonra elinizdeki kartların hepsi 1 güç kazanır.",
+    },
+    {
+      cardName: "Ödenmiş Bedel",
+      image: "soldier",
+      description: "Bu kartı oynadıktan sonra iş bulma ihtimaliniz %50 artar.",
+    },
+    {
+      cardName: "Savaşçı",
+      image: "worrior",
+      description: "Savaşçı kartı oynandıktan sonra kullanıcının canı 1 artar.",
+    },
   ];
   const cardTypes = ["minion", "spell", "weapon"];
 
-  const randomIndex = Math.floor(Math.random() * cardNames.length);
+  const randomIndex = Math.floor(Math.random() * clientCardBase.length);
   const randomCard = {
     cardId: Math.random(),
     cardType: cardTypes[Math.floor(Math.random() * cardTypes.length)],
     cardCost: Math.floor(Math.random() * 10),
-    cardName: cardNames[randomIndex][0],
-    cardImageName: cardNames[randomIndex][1],
-    cardDescription: cardNames[randomIndex][2],
+    cardName: clientCardBase[randomIndex].cardName,
+    cardImageName: clientCardBase[randomIndex].image,
+    cardDescription: clientCardBase[randomIndex].description,
 
     cardBelongsTo: "player",
     isPlayed: false,
@@ -57,30 +57,13 @@ const createRandomCard = () => {
   return randomCard;
 };
 
-const pos = (cardsLenght, i) => {
-  const startPoint = 444;
-  return (
-    startPoint +
-    i * 33 -
-    (16 * i * cardsLenght * 0.7 + i * 66)
-  ); //swipe left - swipe card between cards
-};
 
-const getTop = (cardsLenght) => {
-  if (cardsLenght > 2 && cardsLenght <= 7) {
-    return 55;
-  }
-  if (cardsLenght == 8) {
-    return 32;
-  }
-  return 0;
-};
 
 export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
-    drawCard: (state) => {
+    drawCard: (state, action) => {
       const cardsLenght = state.cards.length;
       if (cardsLenght < 10) {
         state.cards.push(createRandomCard());

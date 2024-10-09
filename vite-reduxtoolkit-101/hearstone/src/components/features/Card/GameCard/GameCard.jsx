@@ -24,8 +24,6 @@ export default function GameCard({ position, card, player, deg }) {
 
   const onClick = async () => {
     const res = await dispatch(isCardPlayable(card));
-    console.log("🚀 ~ onClick ~ successStatus:", res);
-
     if (res) {
       dispatch(addCardToBoard(card));
       dispatch(decrement(card));
@@ -58,7 +56,7 @@ export default function GameCard({ position, card, player, deg }) {
           <span className="absolute card-cost">{card.cardCost}</span>
           <img
             className="absolute card-image"
-            src={`/public/cards/card-images/${card.cardImageName}.png`}
+            src={`/public/cards/card-images/engin-pack/${card.cardImageName}.png`}
           />
           <svg className="absolute card-name-svg" width="100" height="20">
             <path

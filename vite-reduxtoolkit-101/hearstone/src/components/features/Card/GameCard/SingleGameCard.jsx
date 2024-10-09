@@ -21,7 +21,7 @@ export default function SingleGameCard({ position }) {
       />
       
       <span className="absolute single-card-cost">{singleCard?.cardCost}</span>
-      <img className="absolute single-card-image" src={`/public/cards/card-images/${singleCard?.cardImageName}.png`} alt="card artwork" />
+      <img className="absolute single-card-image" src={`/public/cards/card-images/engin-pack/${singleCard?.cardImageName}.png`} alt="card artwork" />
       <svg className="absolute single-card-name-svg" width="180" height="40">
         <path id="sPath" d="M10,50 Q40,35 90,30 T200,30" fill="none" stroke="none" />
         <text>
