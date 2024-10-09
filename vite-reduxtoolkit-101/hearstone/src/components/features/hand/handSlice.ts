@@ -17,56 +17,45 @@ export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
-    enemyDrawCard: (state: InitialState) => {
-      const cardsLength = state.hand.enemyCards.length;
-      if (cardsLength < 10) {
-        state.hand.enemyCards.push(createRandomCard());
-        state.hand.enemyCards = state.hand.enemyCards.map((card, i) => {
-          const degCel = 8;
+   
+    drawCard: (state: InitialState, action: { payload: { isEnemy: boolean } }) => {
+      const cardsLength = action.payload.isEnemy 
+        ? state.hand.enemyCards.length 
+        : state.hand.playerCards.length;
 
-          if (cardsLength === 1)
+      if (cardsLength < 10) {
+        const card = createRandomCard();
+        if (action.payload.isEnemy) {
+          state.hand.enemyCards.push(card);
+          state.hand.enemyCards = state.hand.enemyCards.map((card, i) => {
+            const degCel = 8;
             return {
               ...card,
-              cardPosition: { x: pos(cardsLength, i), y: 0, offset: 0, top: 0 },
-              deg: 0,
+              cardPosition: {
+                x: pos(cardsLength, i),
+                y: 0,
+                offset: 0,
+                top: getTop(cardsLength),
+              },
+              deg: (-cardsLength * degCel) / 2 + i * degCel,
             };
-          return {
-            ...card,
-            cardPosition: {
-              x: pos(cardsLength, i),
-              y: 0,
-              offset: 0,
-              top: getTop(cardsLength),
-            },
-            deg: (-cardsLength * degCel) / 2 + i * degCel,
-          };
-        });
-      }
-    },
-    drawCard: (state: InitialState) => {
-      const cardsLength = state.hand.playerCards.length;
-      if (cardsLength < 10) {
-        state.hand.playerCards.push(createRandomCard());
-        state.hand.playerCards = state.hand.playerCards.map((card, i) => {
-          const degCel = 8;
-
-          if (cardsLength === 1)
+          });
+        } else {
+          state.hand.playerCards.push(card);
+          state.hand.playerCards = state.hand.playerCards.map((card, i) => {
+            const degCel = 8;
             return {
               ...card,
-              cardPosition: { x: pos(cardsLength, i), y: 0, offset: 0, top: 0 },
-              deg: 0,
+              cardPosition: {
+                x: pos(cardsLength, i),
+                y: 0,
+                offset: 0,
+                top: getTop(cardsLength),
+              },
+              deg: (-cardsLength * degCel) / 2 + i * degCel,
             };
-          return {
-            ...card,
-            cardPosition: {
-              x: pos(cardsLength, i),
-              y: 0,
-              offset: 0,
-              top: getTop(cardsLength),
-            },
-            deg: (-cardsLength * degCel) / 2 + i * degCel,
-          };
-        });
+          });
+        }
       }
     },
     showCard: (state: InitialState, action: { payload: { cardId: string } }) => {

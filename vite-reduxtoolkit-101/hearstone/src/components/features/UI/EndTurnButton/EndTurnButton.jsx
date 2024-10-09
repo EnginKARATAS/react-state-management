@@ -13,7 +13,8 @@ export default function EndTurnButton() {
     if (isClientTurn === false) {
       const timer = setTimeout(() => {
         dispatch(increment());
-        dispatch(drawCard());
+        dispatch(drawCard({isEnemy: true}));
+        dispatch(drawCard({isEnemy: false}));
         dispatch(openYourTurn());
         
       }, 1000);
