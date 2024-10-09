@@ -1,5 +1,6 @@
 const clientCardBase: Card[] = [
   {
+    cardPack: "engin-pack",
     cardName: "Diktatör",
     image: "dictator",
     description:
@@ -15,6 +16,7 @@ const clientCardBase: Card[] = [
     deg: 0,
   },
   {
+    cardPack: "engin-pack",
     cardName: "Gitarist",
     image: "guitar",
     description:
@@ -30,6 +32,7 @@ const clientCardBase: Card[] = [
     deg: 0,
   },
   {
+    cardPack: "engin-pack",
     cardName: "Ödenmiş Bedel",
     image: "soldier",
     description: "Bu kartı oynadıktan sonra iş bulma ihtimaliniz %50 artar.",
@@ -44,6 +47,7 @@ const clientCardBase: Card[] = [
     deg: 0,
   },
   {
+    cardPack: "engin-pack",
     cardName: "Savaşçı",
     image: "worrior",
     description: "Savaşçı kartı oynandıktan sonra kullanıcının canı 1 artar.",
@@ -61,6 +65,7 @@ const clientCardBase: Card[] = [
 
 const enemyCardBase: Card[] = [
   {
+    cardPack: "yavuz-pack",
     cardName: "Yavuz Reis",
     image: "cix",
     description: "Sahaya iner ve kullanıcıya 10 yıllık tecrübe kazandırır.",
@@ -75,6 +80,7 @@ const enemyCardBase: Card[] = [
     deg: 0,
   },
   {
+    cardPack: "yavuz-pack",
     cardName: "Hacker Yavuz",
     image: "hacker",
     description: "Rakibe anında saldırarak 3 can azaltır.",
@@ -89,6 +95,7 @@ const enemyCardBase: Card[] = [
     deg: 0,
   },
   {
+    cardPack: "yavuz-pack",
     cardName: "Sleeper Coder",
     image: "sleeper",
     description: "Saldırması için 1 tur bekler. Her tur 2 can kazanır.",

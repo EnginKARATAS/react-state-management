@@ -100,7 +100,7 @@ export const handSlice = createSlice({
       state.singleCard = action.payload;
     },
 
-    addCardToBoard: (state: InitialState, action: { payload: Card }) => {
+    addCardToBoard: (state: InitialState, action: { payload: Card, player: "player" | "enemy" }) => {
       console.log("action.payload", state.board.playerCards.length)
       if (state.board.playerCards.length < 7) {
         state.board.playerCards.push(action.payload);
@@ -110,7 +110,7 @@ export const handSlice = createSlice({
         refreshPlayerCards(state, state.hand.playerCards.length)
         refreshBoardCardPlayer(state, state.board.playerCards.length)
       }
-      if (state.board.enemyCards.length < 7) {
+      if (state.board.enemyCards.length < 7 && action.player === "enemy") {
         state.board.enemyCards.push(action.payload);
         const cardIndex = state.hand.enemyCards.findIndex(card => card.cardId === action.payload.cardId)
         state.hand.enemyCards.splice(cardIndex, 1);

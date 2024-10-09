@@ -22,6 +22,7 @@ interface Card {
   isPlayed: boolean;
   cardAttack: number;
   cardHealth: number;
+  cardPack: string;
   cardPosition: {
     x: number;
     y: number;

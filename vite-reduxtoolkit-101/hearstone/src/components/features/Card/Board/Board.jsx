@@ -8,52 +8,45 @@ export default function Board({ player, position }) {
 
   return (
     <div>
-      <div
-        className="board-cards absolute flex player-board"
-        style={{ top: -490, left: 100-playerBoardCards.length * 66 }}
-      >
-        {player === "player" &&
-          playerBoardCards &&
-          playerBoardCards.map((boardCard, i) => {
+      {player === "player" && playerBoardCards && (
+        <div
+          className="board-cards absolute flex player-board"
+          style={{ top: -490, left: 100 - playerBoardCards.length * 66 }}
+        >
+          {playerBoardCards.map((boardCard, i) => {
             return (
               <BoardCard
                 position={{
                   left: i * 100,
-                  offset: 555,
-                }}
-                boardCard={boardCard}
+                offset: 555,
+              }}
+              boardCard={boardCard}
                 key={boardCard.cardId}
               />
             );
           })}
-      </div>
-      <div
-        className="board-cards absolute flex"
-        style={{ top: position.top, left: position.left }}
-      >
-        {player === "enemy" &&
-          playerBoardCards &&
-          playerBoardCards.map((boardCard, i) => {
-            {
-              player === "enemy-board" &&
-                enemyBoardCards &&
-                enemyBoardCards.map((boardCard, i) => {
-                  return (
-                    <BoardCard
-                      position={{
-                        x: -enemyBoardCards.length * 49,
-                        y: 100,
-                        size: 150,
-                        offset: 10,
-                      }}
-                      boardCard={boardCard}
-                      key={boardCard.cardId}
-                    />
-                  );
-                });
-            }
+        </div>
+      )}
+      {player === "enemy" && enemyBoardCards && (
+        <div
+          className="board-cards absolute flex enemy-board"
+          style={{ top: 300, left: 0 }}
+        >
+          {enemyBoardCards.map((enemyBoardCard, i) => {
+            return (
+              <BoardCard
+                player="enemy"
+                position={{
+                  left: i * 100,
+                  offset: 555,
+                }}
+                boardCard={enemyBoardCard}
+                key={enemyBoardCard.cardId}
+              />
+            );
           })}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

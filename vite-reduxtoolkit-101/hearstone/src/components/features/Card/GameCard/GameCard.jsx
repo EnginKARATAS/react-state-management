@@ -26,7 +26,7 @@ export default function GameCard({ position, card, player, deg }) {
     const res = await dispatch(isCardPlayable(card));
     console.log("res", res)
     if (res) {
-      dispatch(addCardToBoard(card));
+      dispatch(addCardToBoard(card, player));
       dispatch(decrement(card));
     }
   };
