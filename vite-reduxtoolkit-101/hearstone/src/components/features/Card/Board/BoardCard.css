@@ -24,13 +24,13 @@
 .board-card-attack {
     position: absolute;
     font-weight: 700;
-    bottom: 17px;
+    bottom: 16px;
     left: 14px;
 }
 
 .board-card-health {
     position: absolute;
     font-weight: 500;
-    bottom: 19px;
-    right: 12px;
+    bottom: 16px;
+    right: 11px;
 }

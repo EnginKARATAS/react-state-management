@@ -72,7 +72,7 @@ const enemyCardBase: Card[] = [
     cardId: Math.random(),
     cardType: "minion",
     cardCost: 1,
-    cardImageName: "cat",
+    cardImageName: "cix",
     isPlayed: false,
     cardAttack: 3,
     cardHealth: 2,
