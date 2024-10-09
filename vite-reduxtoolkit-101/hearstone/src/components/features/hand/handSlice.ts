@@ -118,6 +118,15 @@ export const handSlice = createSlice({
         refreshBoardCardEnemy(state, state.board.enemyCards.length)
       }
     },
+    playCardToBoard: (state: InitialState, action: { payload: { isEnemy: boolean } }) => {
+      if (action.payload.isEnemy) {
+        const randomCard = Math.floor(Math.random() * state.hand.enemyCards.length)
+        state.board.enemyCards.push(state.hand.enemyCards[randomCard]);
+        state.hand.enemyCards.splice(randomCard, 1);
+        refreshEnemyCards(state, state.hand.enemyCards.length)
+        refreshBoardCardEnemy(state, state.board.enemyCards.length)
+      }
+    }
   },
 });
 
@@ -151,6 +160,6 @@ const refreshBoardCardPlayer = (state: InitialState, cardsLength: number) => {
   });
 }
 
-export const { drawCard, showCard, hoverSingleCard, addCardToBoard } =
+export const { drawCard, showCard, hoverSingleCard, addCardToBoard, playCardToBoard } =
   handSlice.actions;
 export default handSlice.reducer;

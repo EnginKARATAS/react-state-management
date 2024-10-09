@@ -1,4 +1,5 @@
 import "./BoardCard.css";
+
 export default function BoardCard({ position, boardCard }) {
   return (
     <div

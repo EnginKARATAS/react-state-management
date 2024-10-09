@@ -3,7 +3,28 @@ import "./EnemyProfile.css";
 import ManaBox from "../../ManaBox/ManaBox";
 import Hand from "../../../Card/Hand/Hand";
 import Board from "../../../Card/Board/Board";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { increment, openYourTurn } from "../../../counter/counterSlice";
+import { drawCard, playCardToBoard } from "../../../hand/handSlice";
+
+
 export default function EnemyProfile() {
+  const isClientTurn = useSelector((state) => state.counter.isClientTurn);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (isClientTurn === false) {
+      const timer = setTimeout(() => {
+        dispatch(increment());
+        dispatch(drawCard({ isEnemy: true }));
+        dispatch(drawCard({ isEnemy: false }));
+        dispatch(playCardToBoard({ isEnemy: true }));
+        dispatch(openYourTurn());
+      }, 1);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isClientTurn, dispatch]);
   return (
     <div className="absolute enemy-profile">
       <Profile

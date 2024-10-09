@@ -5,7 +5,7 @@ import BoardCard from "./BoardCard";
 export default function Board({ player, position }) {
   const playerBoardCards = useSelector((state) => state.hand.board.playerCards);
   const enemyBoardCards = useSelector((state) => state.hand.board.enemyCards);
-
+ 
   return (
     <div>
       {player === "player" && playerBoardCards && (
