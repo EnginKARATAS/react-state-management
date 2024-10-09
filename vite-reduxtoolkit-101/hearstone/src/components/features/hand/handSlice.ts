@@ -2,26 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { pos, getTop } from "./cardPositioningUtils.js";
 import { createRandomCard } from "./cardService.js";
 
-interface Card {
-  cardId: string;
-  cardPosition: {
-    x: number;
-    y: number;
-    offset: number;
-    top: number;
-  };
-  deg: number;
-  cardSelected?: boolean;
-}
 
-interface InitialState {
-  cards: Card[];
-  singleCard: Card | null;
-  boardCards: Card[];
-}
 
 const initialState: InitialState = {
-  cards: [],
+  hand: {
+    playerCards: [],
+    enemyCards: [],
+  },
   singleCard: null,
   boardCards: [],
 };
@@ -30,11 +17,11 @@ export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
-    drawCard: (state: InitialState) => {
-      const cardsLength = state.cards.length;
+    enemyDrawCard: (state: InitialState) => {
+      const cardsLength = state.hand.enemyCards.length;
       if (cardsLength < 10) {
-        state.cards.push(createRandomCard());
-        state.cards = state.cards.map((card, i) => {
+        state.hand.enemyCards.push(createRandomCard());
+        state.hand.enemyCards = state.hand.enemyCards.map((card, i) => {
           const degCel = 8;
 
           if (cardsLength === 1)
@@ -56,23 +43,50 @@ export const handSlice = createSlice({
         });
       }
     },
-    showCard: (state, action) => {
-      const card = state.cards.find(
+    drawCard: (state: InitialState) => {
+      const cardsLength = state.hand.playerCards.length;
+      if (cardsLength < 10) {
+        state.hand.playerCards.push(createRandomCard());
+        state.hand.playerCards = state.hand.playerCards.map((card, i) => {
+          const degCel = 8;
+
+          if (cardsLength === 1)
+            return {
+              ...card,
+              cardPosition: { x: pos(cardsLength, i), y: 0, offset: 0, top: 0 },
+              deg: 0,
+            };
+          return {
+            ...card,
+            cardPosition: {
+              x: pos(cardsLength, i),
+              y: 0,
+              offset: 0,
+              top: getTop(cardsLength),
+            },
+            deg: (-cardsLength * degCel) / 2 + i * degCel,
+          };
+        });
+      }
+    },
+    showCard: (state: InitialState, action: { payload: { cardId: string } }) => {
+      const card = state.hand.playerCards.find(
         (card) => card.cardId === action.payload.cardId
       );
-      card.cardPosition.y = 300;
-      card.cardPosition.x = 300;
-      card.cardPosition.size = 150;
-      card.cardSelected = true;
+      if (card) {
+        card.cardPosition.y = 300;
+        card.cardPosition.x = 300;
+        card.cardSelected = true;
+      }
     },
-    hoverSingleCard: (state, action) => {
+    hoverSingleCard: (state: InitialState, action: { payload: Card | null }) => {
       state.singleCard = action.payload;
     },
 
-    addCardToBoard: (state, action) => {
+    addCardToBoard: (state: InitialState, action: { payload: Card }) => {
       if (state.boardCards.length < 7) {
         state.boardCards.push(action.payload);
-        state.cards.splice(state.cards.indexOf(action.payload, 1));
+        state.hand.playerCards.splice(state.hand.playerCards.indexOf(action.payload, 1));
       }
     },
   },

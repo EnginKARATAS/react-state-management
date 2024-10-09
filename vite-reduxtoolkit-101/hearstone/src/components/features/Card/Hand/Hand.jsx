@@ -3,7 +3,7 @@ import "./Hand.css";
 import { useSelector } from "react-redux";
 
 export default function Hand({ player, position }) {
-  const cards = useSelector((state) => state.hand.cards);
+  const cards = useSelector((state) => state.hand.hand[player === "player" ? "playerCards" : "enemyCards"]);
 
   return (
     <div
