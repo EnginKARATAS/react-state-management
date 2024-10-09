@@ -54,21 +54,21 @@ export const handSlice = createSlice({
   reducers: {
    
     drawCard: (state: InitialState, action: { payload: { isEnemy: boolean } }) => {
-      const cardsLength = action.payload.isEnemy 
-        ? state.hand.enemyCards.length 
-        : state.hand.playerCards.length;
+      const cardDb = action.payload.isEnemy 
+        ? state.hand.enemyCards 
+        : state.hand.playerCards;
       
-      if (cardsLength < 10) {
+      if (cardDb.length < 10) {
         const card = action.payload.isEnemy 
-          ? createRandomCard({isEnemy: true}) 
-          : createRandomCard({isEnemy: false});
+          ? createRandomCard({isEnemy: true, cardDb}) 
+          : createRandomCard({isEnemy: false, cardDb});
 
         if (action.payload.isEnemy) {
           state.hand.enemyCards.push(card);
-          refreshEnemyCards(state, cardsLength) 
+          refreshEnemyCards(state, cardDb.length) 
         } else {
           state.hand.playerCards.push(card);
-          refreshPlayerCards(state, cardsLength)
+          refreshPlayerCards(state, cardDb.length)
         }
       }
     },
