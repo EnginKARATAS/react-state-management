@@ -11,8 +11,8 @@ export default function Hand({ player, position }) {
       style={{
         clipPath:
           player === "player"
-            ? "polygon(0 -34%, 194% -14%, 121% 74%, 1% 73%)"
-            : "polygon(0px 18%, 120% 18%, 132% 152%, 16% 98%)",
+            ? "polygon(0px -32%, 203% -114%, 203% 72%, 4% 73%)"
+            : "polygon(0px 18%, 170% 18%, 340% 18%, 128% 99%)",
         left: position?.left,
         bottom: player === "player" ? position?.bottom : "",
         top: player === "enemy" ? position?.top : "",
@@ -30,6 +30,7 @@ export default function Hand({ player, position }) {
                 y: player === "player" ? 0 : -97,
                 size: 150,
                 offset: -card.cardPosition.offset,
+                top: card.cardPosition.top
               }}
               key={card.cardId}
             />

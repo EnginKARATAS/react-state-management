@@ -42,7 +42,7 @@ export default function GameCard({ position, card, player, deg }) {
           onClick={() => onClick(card)}
           style={{
             left: position.x,
-            top: position.y - 30 * zIndex,
+            top: position.y - 30 * zIndex + position.top,
             width: position.size,
             marginLeft: position.offset,
             zIndex: zIndex,
@@ -84,16 +84,16 @@ export default function GameCard({ position, card, player, deg }) {
           className="backside-game-card relative"
           style={{
             left: position.x,
-            top: position.y - 30 * zIndex,
             width: position.size,
             marginLeft: position.offset,
             zIndex: zIndex,
+            top: -110
           }}
         >
           <img
             className="backside-image"
             style={{
-              transform: `rotate(${-deg}deg)`
+              transform: `rotate(${-deg}deg)`,
             }}
             src={`/public/cards/card-images/card-back.png`}
           />

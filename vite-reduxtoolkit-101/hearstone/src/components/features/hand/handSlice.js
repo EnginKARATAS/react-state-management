@@ -45,13 +45,37 @@ const createRandomCard = () => {
     cardImageName: cardNames[randomIndex][1],
     cardDescription: cardNames[randomIndex][2],
 
+    cardBelongsTo: "player",
+    isPlayed: false,
+    
+
     cardAttack: Math.floor(Math.random() * 10),
     cardHealth: Math.floor(Math.random() * 10),
-    cardPosition: { x: 0, y: 0, size: 150, offset: 0 },
+    cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
   };
   return randomCard;
 };
+
+const pos = (cardsLenght, i) => {
+  const startPoint = 444;
+  return (
+    startPoint +
+    i * 33 -
+    (16 * i * cardsLenght * 0.7 + i * 66)
+  ); //swipe left - swipe card between cards
+};
+
+const getTop = (cardsLenght) => {
+  if (cardsLenght > 2 && cardsLenght <= 7) {
+    return 55;
+  }
+  if (cardsLenght == 8) {
+    return 32;
+  }
+  return 0;
+};
+
 export const handSlice = createSlice({
   name: "hand",
   initialState,
@@ -62,20 +86,20 @@ export const handSlice = createSlice({
         state.cards.push(createRandomCard());
         state.cards = state.cards.map((card, i) => {
           const degCel = 8;
-          const startPoint = 280;
-          const pos = startPoint+(i*33)+(-3*cardsLenght*0.6)-(12*i*cardsLenght*0.8+i* 50);//swipe left - swipe card between cards
+
           if (cardsLenght === 1)
             return {
               ...card,
-              cardPosition: { x: pos, y: 0, offset: 0 },
+              cardPosition: { x: pos(cardsLenght, i), y: 0, offset: 0, top: 0 },
               deg: 0,
             };
           return {
             ...card,
             cardPosition: {
-              x: pos,
+              x: pos(cardsLenght, i),
               y: 0,
-              offset:0
+              offset: 0,
+              top: getTop(cardsLenght),
             },
             deg: (-cardsLenght * degCel) / 2 + i * degCel,
           };
