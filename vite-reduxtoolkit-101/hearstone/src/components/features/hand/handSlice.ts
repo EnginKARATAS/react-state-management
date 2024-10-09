@@ -126,6 +126,9 @@ export const handSlice = createSlice({
         refreshBoardCardEnemy(state, state.board.enemyCards.length)
       }
   },
+  closeCard: (state: InitialState, action: { payload: Card | null }) => {
+    state.singleCard = null;
+  }
 }});
 
 const refreshBoardCardEnemy = (state: InitialState, cardsLength: number) => {
@@ -158,6 +161,6 @@ const refreshBoardCardPlayer = (state: InitialState, cardsLength: number) => {
   });
 }
 
-export const { drawCard, showCard, hoverSingleCard, addCardToBoard, playCardToBoard } =
+export const { drawCard, showCard, hoverSingleCard, addCardToBoard, playCardToBoard, closeCard } =
   handSlice.actions;
 export default handSlice.reducer;

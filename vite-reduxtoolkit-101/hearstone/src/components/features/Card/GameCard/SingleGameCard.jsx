@@ -7,14 +7,12 @@ import { useEffect } from 'react';
 export default function SingleGameCard({ position }) {
   const singleCard = useSelector((state) => state.hand.singleCard);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(closeCard(singleCard))
-  }, [singleCard, dispatch])
  
   return (
     singleCard &&
     <div
       className="single-game-card absolute"
+      onMouseLeave={() => dispatch(closeCard(singleCard))}
       style={{
         left: position?.left,
         bottom: position?.bottom,
