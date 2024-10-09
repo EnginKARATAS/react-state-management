@@ -1,27 +1,33 @@
 interface InitialState {
-    hand: {
-        playerCards: Card[];
-        enemyCards: Card[];
-    };
-    singleCard: Card | null;
-    boardCards: Card[];
-  }
+  hand: {
+    playerCards: Card[];
+    enemyCards: Card[];
+  };
+  singleCard: Card | null;
+  boardCards: Card[];
+}
 
 interface Card {
-    cardId: string;
-    cardPosition: {
-      x: number;
-      y: number;
-      offset: number;
-      top: number;
-    };
-    deg: number;
-  cardSelected?: boolean;
+  cardName: string;
+  image: string;
+  description: string;
+  cardId: number;
+  cardType: string;
+  cardCost: number;
+  cardImageName: string;
+  isPlayed: boolean;
+  cardAttack: number;
+  cardHealth: number;
+  cardPosition: {
+    x: number;
+    y: number;
+    top: number;
+    size: number;
+    offset: number;
+  };
+  deg: number;
 }
 
-interface EnemyCard extends Card {
-}
+interface EnemyCard extends Card {}
 
-interface PlayerCard extends Card {
-}
-
+interface PlayerCard extends Card {}

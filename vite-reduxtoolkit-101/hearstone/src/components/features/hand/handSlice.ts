@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { pos, getTop } from "./cardPositioningUtils.js";
-import { createRandomCard } from "./cardService.js";
+import { createRandomCard } from "./cardService.ts";
 
 
 
@@ -38,6 +38,7 @@ const refreshPlayerCards = (state: InitialState, cardsLength: number) => {
         y: 0,
         offset: 0,
         top: getTop(cardsLength),
+        size: 150,
       },
       deg: (-cardsLength * degCel) / 2 + i * degCel,
     };
@@ -52,9 +53,12 @@ export const handSlice = createSlice({
       const cardsLength = action.payload.isEnemy 
         ? state.hand.enemyCards.length 
         : state.hand.playerCards.length;
-
+      
       if (cardsLength < 10) {
-        const card = createRandomCard();
+        const card = action.payload.isEnemy 
+          ? createRandomCard({isEnemy: true}) 
+          : createRandomCard({isEnemy: false});
+
         if (action.payload.isEnemy) {
           state.hand.enemyCards.push(card);
           refreshEnemyCards(state, cardsLength) 
@@ -64,14 +68,13 @@ export const handSlice = createSlice({
         }
       }
     },
-    showCard: (state: InitialState, action: { payload: { cardId: string } }) => {
+    showCard: (state: InitialState, action: { payload: { cardId: number } }) => {
       const card = state.hand.playerCards.find(
         (card) => card.cardId === action.payload.cardId
       );
       if (card) {
         card.cardPosition.y = 300;
         card.cardPosition.x = 300;
-        card.cardSelected = true;
       }
     },
     hoverSingleCard: (state: InitialState, action: { payload: Card | null }) => {

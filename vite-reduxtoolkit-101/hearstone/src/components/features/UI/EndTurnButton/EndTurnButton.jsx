@@ -17,7 +17,7 @@ export default function EndTurnButton() {
         dispatch(drawCard({isEnemy: false}));
         dispatch(openYourTurn());
         
-      }, 1000);
+      }, 1);
 
       return () => clearTimeout(timer);
     }
