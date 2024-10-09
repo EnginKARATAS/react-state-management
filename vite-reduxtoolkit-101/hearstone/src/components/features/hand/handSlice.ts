@@ -9,8 +9,11 @@ const initialState: InitialState = {
     playerCards: [],
     enemyCards: [],
   },
+  board: {
+    playerCards: [],
+    enemyCards: [],
+  },
   singleCard: null,
-  boardCards: [],
 };
 
 const refreshEnemyCards = (state: InitialState, cardsLength: number) => {
@@ -83,8 +86,8 @@ export const handSlice = createSlice({
     },
 
     addCardToBoard: (state: InitialState, action: { payload: Card }) => {
-      if (state.boardCards.length < 7) {
-        state.boardCards.push(action.payload);
+      if (state.board.playerCards.length < 7) {
+        state.board.playerCards.push(action.payload);
         console.log("action.payload", action.payload)
         const cardIndex = state.hand.playerCards.findIndex(card => card.cardId === action.payload.cardId)
         state.hand.playerCards.splice(cardIndex, 1);

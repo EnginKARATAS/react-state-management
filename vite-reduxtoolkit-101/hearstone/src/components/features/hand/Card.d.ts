@@ -3,8 +3,11 @@ interface InitialState {
     playerCards: Card[];
     enemyCards: Card[];
   };
+  board: {
+    playerCards: Card[];
+    enemyCards: Card[];
+  };
   singleCard: Card | null;
-  boardCards: Card[];
 }
 
 interface Card {
