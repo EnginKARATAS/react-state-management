@@ -30,7 +30,7 @@ export default function Board({ player, position }) {
       {player === "enemy" && enemyBoardCards && (
         <div
           className="board-cards absolute flex enemy-board"
-          style={{ top: 300, left: 0 }}
+          style={{ top: 300, left: -100 - playerBoardCards.length * 66 }}
         >
           {enemyBoardCards.map((enemyBoardCard, i) => {
             return (

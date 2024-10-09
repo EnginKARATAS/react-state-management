@@ -13,8 +13,9 @@ export const counterSlice = createSlice({
     openYourTurn: (state) => {
       state.isClientTurn = true;
     },
-    closeYourTurn: (state) => {
+    closeYourTurn: (state, action) => {
       state.isClientTurn = false;
+      state.successStatus = action.payload;
     },
     increment: (state) => {
       if (state.value < 10) {
