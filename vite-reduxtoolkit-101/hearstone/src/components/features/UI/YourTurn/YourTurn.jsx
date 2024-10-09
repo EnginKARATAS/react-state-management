@@ -9,7 +9,6 @@ export default function YourTurn() {
     if (isClientTurn === true) {
       setOpenPopup(true);
       const timer = setTimeout(() => {
-        console.log("openPopup", openPopup);
         setOpenPopup(false);
       }, 500);
 

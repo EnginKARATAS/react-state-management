@@ -98,13 +98,12 @@ export const handSlice = createSlice({
     },
     hoverSingleCard: (state: InitialState, action: { payload: Card | null }) => {
       state.singleCard = action.payload;
+      console.log("🚀 ~ hoverSingleCard ~ state.singleCard:", state.singleCard)
     },
 
     addCardToBoard: (state: InitialState, action: { payload: Card, player: "player" | "enemy" }) => {
-      console.log("action.payload", state.board.playerCards.length)
       if (state.board.playerCards.length < 7) {
         state.board.playerCards.push(action.payload);
-        console.log("action.payload", action.payload)
         const cardIndex = state.hand.playerCards.findIndex(card => card.cardId === action.payload.cardId)
         state.hand.playerCards.splice(cardIndex, 1);
         refreshPlayerCards(state, state.hand.playerCards.length)
@@ -119,16 +118,15 @@ export const handSlice = createSlice({
       }
     },
     playCardToBoard: (state: InitialState, action: { payload: { isEnemy: boolean } }) => {
-      if (action.payload.isEnemy) {
+      if (action.payload.isEnemy && state.hand.enemyCards.length > 0) {
         const randomCard = Math.floor(Math.random() * state.hand.enemyCards.length)
         state.board.enemyCards.push(state.hand.enemyCards[randomCard]);
         state.hand.enemyCards.splice(randomCard, 1);
         refreshEnemyCards(state, state.hand.enemyCards.length)
         refreshBoardCardEnemy(state, state.board.enemyCards.length)
       }
-    }
   },
-});
+}});
 
 const refreshBoardCardEnemy = (state: InitialState, cardsLength: number) => {
   state.board.enemyCards = state.board.enemyCards.map((card, i) => {

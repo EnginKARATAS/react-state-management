@@ -7,9 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { increment, openYourTurn } from "../../../counter/counterSlice";
 import { drawCard, playCardToBoard } from "../../../hand/handSlice";
-
+  
 
 export default function EnemyProfile() {
+  const boardCards = useSelector((state) => state.hand.board.enemyCards);
   const isClientTurn = useSelector((state) => state.counter.isClientTurn);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function EnemyProfile() {
       />
       <ManaBox position={{ top: 108, left: 218 }} player="enemy" />
       <Hand player="enemy" position={{ top: 12, left: -541 }}></Hand>
-      <Board player="enemy" position={{ top: 300, left: -0 }} />
+      <Board player="enemy" position={{ top: 300, left: -0 }} boardCards={boardCards} />
     </div>
   );
 }

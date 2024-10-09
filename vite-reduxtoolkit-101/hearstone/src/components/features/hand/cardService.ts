@@ -120,10 +120,8 @@ export const pullRandomCard = ({ isEnemy }: { isEnemy: boolean }) => {
     enemyCardBase.splice(randomIndex, 1);
   } else {
     randomIndex = Math.floor(Math.random() * clientCardBase.length);
-    console.log(randomIndex)
     randomCard = clientCardBase[randomIndex];
     clientCardBase.splice(randomIndex, 1);
-    console.log(randomCard)
   }
 
   return randomCard ? randomCard : null;

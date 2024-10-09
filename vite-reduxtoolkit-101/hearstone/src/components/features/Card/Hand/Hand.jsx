@@ -3,7 +3,7 @@ import "./Hand.css";
 import { useSelector } from "react-redux";
 
 export default function Hand({ player, position }) {
-  const cards = useSelector((state) => state.hand.hand[player === "player" ? "playerCards" : "enemyCards"]);
+  const handCards = useSelector((state) => state.hand.hand[player === "player" ? "playerCards" : "enemyCards"]);;
 
   return (
     <div
@@ -18,8 +18,8 @@ export default function Hand({ player, position }) {
         top: player === "enemy" ? position?.top : "",
       }}
     >
-      {cards &&
-        cards.map((card, i) => {
+      {handCards &&
+        handCards.map((card, i) => {
           return (
             <GameCard
               player={player}
