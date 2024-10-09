@@ -23,6 +23,7 @@ const refreshEnemyCards = (state: InitialState, cardsLength: number) => {
         y: 0,
         offset: 0,
         top: getTop(cardsLength),
+        size: 150,
       },
       deg: (-cardsLength * degCel) / 2 + i * degCel,
     };
