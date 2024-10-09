@@ -1,6 +1,6 @@
 import "./GameCard.css";
 import { useDispatch } from "react-redux";
-import { hoverSingleCard, addCardToBoard } from "../../hand/handSlice";
+import { hoverSingleCard, addCardToBoard } from "../../hand/handSlice.ts";
 import { useState } from "react";
 import { decrement, isCardPlayable } from "../../counter/counterSlice";
 export default function GameCard({ position, card, player, deg }) {

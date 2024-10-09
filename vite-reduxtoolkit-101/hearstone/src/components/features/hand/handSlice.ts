@@ -1,38 +1,57 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { pos, getTop } from "./cardPositioningUtils";
-import { createRandomCard } from "./cardService";
-const initialState = {
+import { pos, getTop } from "./cardPositioningUtils.js";
+import { createRandomCard } from "./cardService.js";
+
+interface Card {
+  cardId: string;
+  cardPosition: {
+    x: number;
+    y: number;
+    offset: number;
+    top: number;
+  };
+  deg: number;
+  cardSelected?: boolean;
+}
+
+interface InitialState {
+  cards: Card[];
+  singleCard: Card | null;
+  boardCards: Card[];
+}
+
+const initialState: InitialState = {
   cards: [],
   singleCard: null,
-  boardCards: [], // Add this line to store board cards
+  boardCards: [],
 };
 
 export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
-    drawCard: (state, action) => {
-      const cardsLenght = state.cards.length;
-      if (cardsLenght < 10) {
+    drawCard: (state: InitialState) => {
+      const cardsLength = state.cards.length;
+      if (cardsLength < 10) {
         state.cards.push(createRandomCard());
         state.cards = state.cards.map((card, i) => {
           const degCel = 8;
 
-          if (cardsLenght === 1)
+          if (cardsLength === 1)
             return {
               ...card,
-              cardPosition: { x: pos(cardsLenght, i), y: 0, offset: 0, top: 0 },
+              cardPosition: { x: pos(cardsLength, i), y: 0, offset: 0, top: 0 },
               deg: 0,
             };
           return {
             ...card,
             cardPosition: {
-              x: pos(cardsLenght, i),
+              x: pos(cardsLength, i),
               y: 0,
               offset: 0,
-              top: getTop(cardsLenght),
+              top: getTop(cardsLength),
             },
-            deg: (-cardsLenght * degCel) / 2 + i * degCel,
+            deg: (-cardsLength * degCel) / 2 + i * degCel,
           };
         });
       }

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { openYourTurn } from "../../counter/counterSlice";
 import { increment } from "../../counter/counterSlice";
-import { drawCard } from "../../hand/handSlice";
+import { drawCard } from "../../hand/handSlice.ts";
 
 export default function YourTurn() {
   const isClientTurn = useSelector((state) => state.counter.isClientTurn);
