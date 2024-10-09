@@ -2,9 +2,9 @@ import "./BoardCard.css";
 export default function BoardCard({ position, boardCard }) {
     return (
       <div
-        className="relative board-card"
+        className="absolute board-card"
         style={{
-          left: position.x,
+          left: position.left,
           marginRight: position.offset,
          }}
       >

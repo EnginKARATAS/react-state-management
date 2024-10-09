@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { pos, getTop } from "./cardPositioningUtils.js";
-import { createRandomCard } from "./cardService.ts";
+import { pullRandomCard } from "./cardService.ts";
 
 
 
@@ -48,27 +48,42 @@ const refreshPlayerCards = (state: InitialState, cardsLength: number) => {
     };
   });
 }
+const refreshBoardCards = (state: InitialState, cardsLength: number) => {
+  state.board.playerCards = state.board.playerCards.map((card, i) => {
+    return {
+      ...card,
+      cardPosition: {
+        x: -cardsLength * 49,
+        y: 0,
+        offset: 555,
+        size: 150,
+        top: getTop(cardsLength),
+      },
+    };
+  });
+}
+
 export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
    
     drawCard: (state: InitialState, action: { payload: { isEnemy: boolean } }) => {
-      const cardDb = action.payload.isEnemy 
+      const cardState = action.payload.isEnemy 
         ? state.hand.enemyCards 
         : state.hand.playerCards;
-      
-      if (cardDb.length < 10) {
-        const card = action.payload.isEnemy 
-          ? createRandomCard({isEnemy: true, cardDb}) 
-          : createRandomCard({isEnemy: false, cardDb});
+        const randomCard = action.payload.isEnemy 
+        ? pullRandomCard({isEnemy: true}) 
+        : pullRandomCard({isEnemy: false});
 
-        if (action.payload.isEnemy) {
-          state.hand.enemyCards.push(card);
-          refreshEnemyCards(state, cardDb.length) 
+      if (cardState.length < 10 && randomCard) {
+
+        if (action.payload.isEnemy && randomCard) {
+          state.hand.enemyCards.push(randomCard);
+          refreshEnemyCards(state, cardState.length) 
         } else {
-          state.hand.playerCards.push(card);
-          refreshPlayerCards(state, cardDb.length)
+          state.hand.playerCards.push(randomCard);
+          refreshPlayerCards(state, cardState.length)
         }
       }
     },
@@ -86,16 +101,55 @@ export const handSlice = createSlice({
     },
 
     addCardToBoard: (state: InitialState, action: { payload: Card }) => {
+      console.log("action.payload", state.board.playerCards.length)
       if (state.board.playerCards.length < 7) {
         state.board.playerCards.push(action.payload);
         console.log("action.payload", action.payload)
         const cardIndex = state.hand.playerCards.findIndex(card => card.cardId === action.payload.cardId)
         state.hand.playerCards.splice(cardIndex, 1);
         refreshPlayerCards(state, state.hand.playerCards.length)
+        refreshBoardCardPlayer(state, state.board.playerCards.length)
+      }
+      if (state.board.enemyCards.length < 7) {
+        state.board.enemyCards.push(action.payload);
+        const cardIndex = state.hand.enemyCards.findIndex(card => card.cardId === action.payload.cardId)
+        state.hand.enemyCards.splice(cardIndex, 1);
+        refreshEnemyCards(state, state.hand.enemyCards.length)
+        refreshBoardCardEnemy(state, state.board.enemyCards.length)
       }
     },
   },
 });
+
+const refreshBoardCardEnemy = (state: InitialState, cardsLength: number) => {
+  state.board.enemyCards = state.board.enemyCards.map((card, i) => {
+    return {
+      ...card,
+      cardPosition: {
+        x: -cardsLength * 49,
+        y: 0,
+        offset: 555,
+        size: 150,
+        top: getTop(cardsLength),
+      },
+    };
+  });
+}
+
+const refreshBoardCardPlayer = (state: InitialState, cardsLength: number) => {
+  state.board.playerCards = state.board.playerCards.map((card, i) => {
+    return {
+      ...card,
+      cardPosition: {
+        x: cardsLength * 49,
+        y: 0,
+        offset: 555,
+        size: 150,
+        top: getTop(cardsLength),
+      },
+    };
+  });
+}
 
 export const { drawCard, showCard, hoverSingleCard, addCardToBoard } =
   handSlice.actions;

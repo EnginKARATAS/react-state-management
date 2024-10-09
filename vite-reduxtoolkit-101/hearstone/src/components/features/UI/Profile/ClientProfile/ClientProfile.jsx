@@ -3,9 +3,11 @@ import Hand from "../../../Card/Hand/Hand";
 import ManaBox from "../../ManaBox/ManaBox";
 import "./ClientProfile.css"
 import SingleGameCard from "../../../Card/GameCard/SingleGameCard";
-export default function ClientProfile({player}) {
+import Board from "../../../Card/Board/Board";
+export default function ClientProfile({player, position}) {
   return (
     <div className="absolute client-profile">
+    <Board player="player" position={{top: -497, left: 150}}/>
       <Profile
         className="enemy-profile"
         img={{ pack: "engin-pack", photo: "hero-engin" }}

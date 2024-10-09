@@ -8,6 +8,7 @@ interface InitialState {
     enemyCards: Card[];
   };
   singleCard: Card | null;
+  cardCache: number[];
 }
 
 interface Card {

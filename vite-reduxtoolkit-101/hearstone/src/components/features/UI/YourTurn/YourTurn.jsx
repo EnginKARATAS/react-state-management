@@ -12,7 +12,7 @@ export default function YourTurn() {
         console.log("openPopup", openPopup);
         setOpenPopup(false);
         
-      }, 2000);
+      }, 500);
 
       return () => clearTimeout(timer);
     }

@@ -15,7 +15,7 @@ export default function GameCard({ position, card, player, deg }) {
     }, 200);
   };
 
-  const onMouseLeave = (card) => {
+  const onMouseLeave = () => {
     setTimeout(() => {
       dispatch(hoverSingleCard(null));
       setZIndex(0);
@@ -24,6 +24,7 @@ export default function GameCard({ position, card, player, deg }) {
 
   const onClick = async () => {
     const res = await dispatch(isCardPlayable(card));
+    console.log("res", res)
     if (res) {
       dispatch(addCardToBoard(card));
       dispatch(decrement(card));

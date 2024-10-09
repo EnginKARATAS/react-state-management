@@ -35,6 +35,7 @@ export const counterSlice = createSlice({
 
  export const isCardPlayable = (card) => async (dispatch, getState) => {
   const state = getState();
+  console.log("state", state)
   if (state.counter.value > 0 && state.counter.value >= card.cardCost) {
     console.log("🚀 ~ state.value:", state.counter.value);
     dispatch(setSuccessStatus(true));

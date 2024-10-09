@@ -63,8 +63,7 @@ const enemyCardBase: Card[] = [
   {
     cardName: "Yavuz Reis",
     image: "cix",
-    description:
-      "Sahaya iner ve kullanıcıya 10 yıllık tecrübe kazandırır.",
+    description: "Sahaya iner ve kullanıcıya 10 yıllık tecrübe kazandırır.",
     cardId: Math.random(),
     cardType: "minion",
     cardCost: 1,
@@ -78,8 +77,7 @@ const enemyCardBase: Card[] = [
   {
     cardName: "Hacker Yavuz",
     image: "hacker",
-    description:
-      "Rakibe anında saldırarak 3 can azaltır.",
+    description: "Rakibe anında saldırarak 3 can azaltır.",
     cardId: Math.random(),
     cardType: "minion",
     cardCost: 1,
@@ -93,8 +91,7 @@ const enemyCardBase: Card[] = [
   {
     cardName: "Sleeper Coder",
     image: "sleeper",
-    description:
-      "Saldırması için 1 tur bekler. Her tur 2 can kazanır.",
+    description: "Saldırması için 1 tur bekler. Her tur 2 can kazanır.",
     cardId: Math.random(),
     cardType: "minion",
     cardCost: 5,
@@ -105,14 +102,22 @@ const enemyCardBase: Card[] = [
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
   },
-]
+];
 
+export const pullRandomCard = ({ isEnemy }: { isEnemy: boolean }) => {
+  let randomIndex;
+  let randomCard: any = null;
+  if (isEnemy) {
+    randomIndex = Math.floor(Math.random() * enemyCardBase.length);
+    randomCard = enemyCardBase[randomIndex];
+    enemyCardBase.splice(randomIndex, 1);
+  } else {
+    randomIndex = Math.floor(Math.random() * clientCardBase.length);
+    console.log(randomIndex)
+    randomCard = clientCardBase[randomIndex];
+    clientCardBase.splice(randomIndex, 1);
+    console.log(randomCard)
+  }
 
-
-export const createRandomCard = ({isEnemy}: {isEnemy: boolean}) => {
-  const randomIndex = Math.floor(Math.random() * 4);
-  const randomCard = isEnemy 
-    ? enemyCardBase[randomIndex] 
-    : clientCardBase[randomIndex];
-  return randomCard;
+  return randomCard ? randomCard : null;
 };
