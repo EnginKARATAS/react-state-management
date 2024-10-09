@@ -13,6 +13,36 @@ const initialState: InitialState = {
   boardCards: [],
 };
 
+const refreshEnemyCards = (state: InitialState, cardsLength: number) => {
+  state.hand.enemyCards = state.hand.enemyCards.map((card, i) => {
+    const degCel = 8;
+    return {
+      ...card,
+      cardPosition: {
+        x: pos(cardsLength, i),
+        y: 0,
+        offset: 0,
+        top: getTop(cardsLength),
+      },
+      deg: (-cardsLength * degCel) / 2 + i * degCel,
+    };
+  });
+}
+const refreshPlayerCards = (state: InitialState, cardsLength: number) => {
+  state.hand.playerCards = state.hand.playerCards.map((card, i) => {
+    const degCel = 8;
+    return {
+      ...card,
+      cardPosition: {
+        x: pos(cardsLength, i),
+        y: 0,
+        offset: 0,
+        top: getTop(cardsLength),
+      },
+      deg: (-cardsLength * degCel) / 2 + i * degCel,
+    };
+  });
+}
 export const handSlice = createSlice({
   name: "hand",
   initialState,
@@ -27,34 +57,10 @@ export const handSlice = createSlice({
         const card = createRandomCard();
         if (action.payload.isEnemy) {
           state.hand.enemyCards.push(card);
-          state.hand.enemyCards = state.hand.enemyCards.map((card, i) => {
-            const degCel = 8;
-            return {
-              ...card,
-              cardPosition: {
-                x: pos(cardsLength, i),
-                y: 0,
-                offset: 0,
-                top: getTop(cardsLength),
-              },
-              deg: (-cardsLength * degCel) / 2 + i * degCel,
-            };
-          });
+          refreshEnemyCards(state, cardsLength) 
         } else {
           state.hand.playerCards.push(card);
-          state.hand.playerCards = state.hand.playerCards.map((card, i) => {
-            const degCel = 8;
-            return {
-              ...card,
-              cardPosition: {
-                x: pos(cardsLength, i),
-                y: 0,
-                offset: 0,
-                top: getTop(cardsLength),
-              },
-              deg: (-cardsLength * degCel) / 2 + i * degCel,
-            };
-          });
+          refreshPlayerCards(state, cardsLength)
         }
       }
     },
@@ -75,7 +81,10 @@ export const handSlice = createSlice({
     addCardToBoard: (state: InitialState, action: { payload: Card }) => {
       if (state.boardCards.length < 7) {
         state.boardCards.push(action.payload);
-        state.hand.playerCards.splice(state.hand.playerCards.indexOf(action.payload, 1));
+        console.log("action.payload", action.payload)
+        const cardIndex = state.hand.playerCards.findIndex(card => card.cardId === action.payload.cardId)
+        state.hand.playerCards.splice(cardIndex, 1);
+        refreshPlayerCards(state, state.hand.playerCards.length)
       }
     },
   },
