@@ -9,8 +9,8 @@ export default function Board({ player, position }) {
   return (
     <div>
       <div
-        className="board-cards absolute flex"
-        style={{ top: position.top, left: position.left }}
+        className="board-cards absolute flex player-board"
+        style={{ top: -490, left: 100-playerBoardCards.length * 66 }}
       >
         {player === "player" &&
           playerBoardCards &&
@@ -18,7 +18,7 @@ export default function Board({ player, position }) {
             return (
               <BoardCard
                 position={{
-                  left: -playerBoardCards.length * 49,
+                  left: i * 100,
                   offset: 555,
                 }}
                 boardCard={boardCard}

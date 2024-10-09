@@ -53,7 +53,7 @@ const clientCardBase: Card[] = [
     cardImageName: "worrior",
     isPlayed: false,
     cardAttack: 2,
-    cardHealth: 120,
+    cardHealth: 9,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
   },
