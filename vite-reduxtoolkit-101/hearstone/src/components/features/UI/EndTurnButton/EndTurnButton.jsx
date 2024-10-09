@@ -10,7 +10,7 @@ export default function EndTurnButton() {
   const isClientTurn = useSelector((state) => state.counter.isClientTurn);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!isClientTurn) {
+    if (isClientTurn === false) {
       const timer = setTimeout(() => {
         dispatch(increment());
         dispatch(drawCard());

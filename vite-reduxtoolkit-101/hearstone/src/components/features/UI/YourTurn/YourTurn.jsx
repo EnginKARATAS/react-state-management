@@ -6,19 +6,22 @@ export default function YourTurn() {
   const isClientTurn = useSelector((state) => state.counter.isClientTurn);
   const [openPopup, setOpenPopup] = useState(false);
   useEffect(() => {
-    if (openPopup) {
+    if (isClientTurn === true) {
+      setOpenPopup(true);
       const timer = setTimeout(() => {
+        console.log("openPopup", openPopup);
         setOpenPopup(false);
+        
       }, 2000);
 
       return () => clearTimeout(timer);
     }
-  }, [openPopup]);
+  }, [isClientTurn]);
 
 
   return (
     <div>
-      {isClientTurn && (
+      {openPopup && (
         <img className="your-turn" src="/public/your-turn.png" alt="" />
       )}
     </div>
