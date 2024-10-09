@@ -10,9 +10,9 @@ export default function EnemyProfile() {
         img={{ pack: "yavuz-pack", photo: "hero-yavuz" }}
         position={{ top: 153, left: 6 }}
       />
-      <ManaBox  position={{ top: 108, left: 218 }} player="enemy" />
-      <Hand  player="enemy" position={{top: 12, left: -541}}></Hand>
-      <Board player="enemy" position={{top: 300, left: -0}} />
+      <ManaBox position={{ top: 108, left: 218 }} player="enemy" />
+      <Hand player="enemy" position={{ top: 12, left: -541 }}></Hand>
+      <Board player="enemy" position={{ top: 300, left: -0 }} />
     </div>
   );
 }

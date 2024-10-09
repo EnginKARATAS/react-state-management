@@ -11,13 +11,11 @@ export default function YourTurn() {
       const timer = setTimeout(() => {
         console.log("openPopup", openPopup);
         setOpenPopup(false);
-        
       }, 500);
 
       return () => clearTimeout(timer);
     }
   }, [isClientTurn]);
-
 
   return (
     <div>
