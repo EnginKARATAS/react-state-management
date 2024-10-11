@@ -35,7 +35,8 @@ const clientCardBase: Card[] = [
     cardPack: "engin-pack",
     cardName: "Ödenmiş Bedel",
     image: "soldier",
-    cardDescription: "Bu kartı oynadıktan sonra iş bulma ihtimaliniz %50 artar.",
+    cardDescription:
+      "Bu kartı oynadıktan sonra iş bulma ihtimaliniz %50 artar.",
     cardId: Math.random(),
     cardType: "minion",
     cardCost: 2,
@@ -50,7 +51,8 @@ const clientCardBase: Card[] = [
     cardPack: "engin-pack",
     cardName: "Savaşçı",
     image: "worrior",
-    cardDescription: "Savaşçı kartı oynandıktan sonra kullanıcının canı 1 artar.",
+    cardDescription:
+      "Savaşçı kartı oynandıktan sonra kullanıcının canı 1 artar.",
     cardId: Math.random(),
     cardType: "minion",
     cardCost: 2,

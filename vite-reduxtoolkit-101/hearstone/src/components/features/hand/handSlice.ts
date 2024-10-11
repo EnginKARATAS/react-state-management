@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { pos, getTop } from "./cardPositioningUtils.js";
 import { pullRandomCard } from "./cardService.ts";
 
-
-
 const initialState: InitialState = {
   hand: {
     playerCards: [],
@@ -23,8 +21,8 @@ const initialState: InitialState = {
     enemy: {
       health: 30,
       armor: 0,
-    }
-  }
+    },
+  },
 };
 
 const refreshEnemyCards = (state: InitialState, cardsLength: number) => {
@@ -42,7 +40,7 @@ const refreshEnemyCards = (state: InitialState, cardsLength: number) => {
       deg: (-cardsLength * degCel) / 2 + i * degCel,
     };
   });
-}
+};
 const refreshPlayerCards = (state: InitialState, cardsLength: number) => {
   state.hand.playerCards = state.hand.playerCards.map((card, i) => {
     const degCel = 8;
@@ -58,7 +56,7 @@ const refreshPlayerCards = (state: InitialState, cardsLength: number) => {
       deg: (-cardsLength * degCel) / 2 + i * degCel,
     };
   });
-}
+};
 const refreshBoardCards = (state: InitialState, cardsLength: number) => {
   state.board.playerCards = state.board.playerCards.map((card, i) => {
     return {
@@ -72,33 +70,37 @@ const refreshBoardCards = (state: InitialState, cardsLength: number) => {
       },
     };
   });
-}
+};
 
 export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
-   
-    drawCard: (state: InitialState, action: { payload: { isEnemy: boolean } }) => {
-      const cardState = action.payload.isEnemy 
-        ? state.hand.enemyCards 
+    drawCard: (
+      state: InitialState,
+      action: { payload: { isEnemy: boolean } }
+    ) => {
+      const cardState = action.payload.isEnemy
+        ? state.hand.enemyCards
         : state.hand.playerCards;
-        const randomCard = action.payload.isEnemy 
-        ? pullRandomCard({isEnemy: true}) 
-        : pullRandomCard({isEnemy: false});
+      const randomCard = action.payload.isEnemy
+        ? pullRandomCard({ isEnemy: true })
+        : pullRandomCard({ isEnemy: false });
 
       if (cardState.length < 10 && randomCard) {
-
         if (action.payload.isEnemy && randomCard) {
           state.hand.enemyCards.push(randomCard);
-          refreshEnemyCards(state, cardState.length) 
+          refreshEnemyCards(state, cardState.length);
         } else {
           state.hand.playerCards.push(randomCard);
-          refreshPlayerCards(state, cardState.length)
+          refreshPlayerCards(state, cardState.length);
         }
       }
     },
-    showCard: (state: InitialState, action: { payload: { cardId: number } }) => {
+    showCard: (
+      state: InitialState,
+      action: { payload: { cardId: number } }
+    ) => {
       const card = state.hand.playerCards.find(
         (card) => card.cardId === action.payload.cardId
       );
@@ -107,40 +109,56 @@ export const handSlice = createSlice({
         card.cardPosition.x = 300;
       }
     },
-    hoverSingleCard: (state: InitialState, action: { payload: Card | null }) => {
+    hoverSingleCard: (
+      state: InitialState,
+      action: { payload: Card | null }
+    ) => {
       state.singleCard = action.payload;
-      console.log("🚀 ~ hoverSingleCard ~ state.singleCard:", state.singleCard)
+      console.log("🚀 ~ hoverSingleCard ~ state.singleCard:", state.singleCard);
     },
 
-    addCardToBoard: (state: InitialState, action: { payload: Card, player: "player" | "enemy" }) => {
+    addCardToBoard: (
+      state: InitialState,
+      action: { payload: Card; player: "player" | "enemy" }
+    ) => {
       if (state.board.playerCards.length < 7) {
         state.board.playerCards.push(action.payload);
-        const cardIndex = state.hand.playerCards.findIndex(card => card.cardId === action.payload.cardId)
+        const cardIndex = state.hand.playerCards.findIndex(
+          (card) => card.cardId === action.payload.cardId
+        );
         state.hand.playerCards.splice(cardIndex, 1);
-        refreshPlayerCards(state, state.hand.playerCards.length)
-        refreshBoardCardPlayer(state, state.board.playerCards.length)
+        refreshPlayerCards(state, state.hand.playerCards.length);
+        refreshBoardCardPlayer(state, state.board.playerCards.length);
       }
       if (state.board.enemyCards.length < 7 && action.player === "enemy") {
         state.board.enemyCards.push(action.payload);
-        const cardIndex = state.hand.enemyCards.findIndex(card => card.cardId === action.payload.cardId)
+        const cardIndex = state.hand.enemyCards.findIndex(
+          (card) => card.cardId === action.payload.cardId
+        );
         state.hand.enemyCards.splice(cardIndex, 1);
-        refreshEnemyCards(state, state.hand.enemyCards.length)
-        refreshBoardCardEnemy(state, state.board.enemyCards.length)
+        refreshEnemyCards(state, state.hand.enemyCards.length);
+        refreshBoardCardEnemy(state, state.board.enemyCards.length);
       }
     },
-    playCardToBoard: (state: InitialState, action: { payload: { isEnemy: boolean } }) => {
+    playCardToBoard: (
+      state: InitialState,
+      action: { payload: { isEnemy: boolean } }
+    ) => {
       if (action.payload.isEnemy && state.hand.enemyCards.length > 0) {
-        const randomCard = Math.floor(Math.random() * state.hand.enemyCards.length)
+        const randomCard = Math.floor(
+          Math.random() * state.hand.enemyCards.length
+        );
         state.board.enemyCards.push(state.hand.enemyCards[randomCard]);
         state.hand.enemyCards.splice(randomCard, 1);
-        refreshEnemyCards(state, state.hand.enemyCards.length)
-        refreshBoardCardEnemy(state, state.board.enemyCards.length)
+        refreshEnemyCards(state, state.hand.enemyCards.length);
+        refreshBoardCardEnemy(state, state.board.enemyCards.length);
       }
+    },
+    closeCard: (state: InitialState, action: { payload: Card | null }) => {
+      state.singleCard = null;
+    },
   },
-  closeCard: (state: InitialState, action: { payload: Card | null }) => {
-    state.singleCard = null;
-  }
-}});
+});
 
 const refreshBoardCardEnemy = (state: InitialState, cardsLength: number) => {
   state.board.enemyCards = state.board.enemyCards.map((card, i) => {
@@ -155,7 +173,7 @@ const refreshBoardCardEnemy = (state: InitialState, cardsLength: number) => {
       },
     };
   });
-}
+};
 
 const refreshBoardCardPlayer = (state: InitialState, cardsLength: number) => {
   state.board.playerCards = state.board.playerCards.map((card, i) => {
@@ -170,8 +188,14 @@ const refreshBoardCardPlayer = (state: InitialState, cardsLength: number) => {
       },
     };
   });
-}
+};
 
-export const { drawCard, showCard, hoverSingleCard, addCardToBoard, playCardToBoard, closeCard } =
-  handSlice.actions;
+export const {
+  drawCard,
+  showCard,
+  hoverSingleCard,
+  addCardToBoard,
+  playCardToBoard,
+  closeCard,
+} = handSlice.actions;
 export default handSlice.reducer;
