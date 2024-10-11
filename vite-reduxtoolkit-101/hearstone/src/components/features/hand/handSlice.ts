@@ -33,6 +33,15 @@ export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
+    clickBoardCard: (state: InitialState, action: { payload: Card }) => {
+      //find card owner
+      const cardOwner = action.payload.cardOwner === "player" ? "player" : "enemy";
+      //find card in board
+      const card = state.board[cardOwner].find((card) => card.cardId === action.payload.cardId);
+      if (card) {
+        card.isSelected = !card.isSelected;
+      }
+    },
     syncCardBaseLenght: (state: InitialState) => {
       state.cardBaseCount.player = getCardBaseLenght({player: "player"});
       state.cardBaseCount.enemy = getCardBaseLenght({player: "enemy"});

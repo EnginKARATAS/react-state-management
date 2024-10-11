@@ -1,6 +1,6 @@
 const clientCardBase: Card[] = [
   {
-        playerName: "player",
+        cardOwner: "player",
         isSelected: false,
     cardId: Math.random(),
     cardPack: "engin-pack",
@@ -18,7 +18,7 @@ const clientCardBase: Card[] = [
     deg: 0,
   },
   {
-    playerName: "player",
+    cardOwner: "player",
     isSelected: false,
     cardId: Math.random(),
     cardPack: "engin-pack",
@@ -36,7 +36,7 @@ const clientCardBase: Card[] = [
     deg: 0,
   },
   {
-    playerName: "player",
+    cardOwner: "player",
     isSelected: false,
     cardId: Math.random(),
     cardPack: "engin-pack",
@@ -54,7 +54,7 @@ const clientCardBase: Card[] = [
     deg: 0,
   },
   {
-    playerName: "player",
+    cardOwner: "player",
     isSelected: false,
     cardId: Math.random(),
     cardPack: "engin-pack",
@@ -75,7 +75,7 @@ const clientCardBase: Card[] = [
 
 const enemyCardBase: Card[] = [
   {
-    playerName: "enemy",
+    cardOwner: "enemy",
     isSelected: false,
     cardId: Math.random(),
     cardPack: "yavuz-pack",
@@ -92,7 +92,7 @@ const enemyCardBase: Card[] = [
     deg: 0,
   },
   {
-    playerName: "enemy",
+    cardOwner: "enemy",
     isSelected: false,
     cardId: Math.random(),
     cardPack: "yavuz-pack",
@@ -109,7 +109,7 @@ const enemyCardBase: Card[] = [
     deg: 0,
   },
   {
-    playerName: "enemy",
+    cardOwner: "enemy",
     isSelected: false,
     cardId: Math.random(),
     cardPack: "yavuz-pack",
