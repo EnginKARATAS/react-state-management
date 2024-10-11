@@ -1,13 +1,17 @@
-.right-fish {
-    transform: rotateX(180deg) rotate(-60deg);
-    width: 398px;
-    bottom: -397px;
-    right: 0px;
+
+* {
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+}
+.right-fish {
+    transform: rotateX(180deg) rotate(-60deg);
+    width: 398px;
+    bottom: -397px;
+    right: 0px;
+
 }
 
 .left-fish {
@@ -15,9 +19,5 @@
     width: 357px;
     top: -306px;
     left: -107px;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none
+
 }

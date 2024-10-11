@@ -16,6 +16,8 @@ body {
   overflow-x: hidden;
 }
 
+
+
 .board {
   position: relative;
   box-shadow: rgba(0, 0, 20, 0.75) 3px 3px 44px 38px,
