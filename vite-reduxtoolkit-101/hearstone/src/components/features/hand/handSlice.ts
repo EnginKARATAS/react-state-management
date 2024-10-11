@@ -38,6 +38,7 @@ export const handSlice = createSlice({
       state.cardBaseCount.enemy = getCardBaseLenght({player: "enemy"});
     },
     addHealth: (state: InitialState, action: { payload: { value: number, player: "player" | "enemy" }}) => {
+      console.log("action.payload", action.payload);
       const profile = action.payload.player === "player" ? state.profile.player : state.profile.enemy;
       profile.health += action.payload.value;
       if (profile.health <= 0) {

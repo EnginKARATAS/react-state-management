@@ -2,7 +2,7 @@ import "./EndTurnButton.css";
 import { useDispatch } from "react-redux";
 import { closeYourTurn } from "../../counter/counterSlice";
 import { useSelector } from "react-redux";
-import { addHealth } from "../../hand/handSlice"; 
+import { addHealth, syncCardBaseLenght } from "../../hand/handSlice"; 
 export default function EndTurnButton() {
   const isClientTurn = useSelector((state) => state.counter.isClientTurn);
   const cardBaseCount = useSelector((state) => state.hand.cardBaseCount.player);
@@ -10,6 +10,7 @@ export default function EndTurnButton() {
 
 
   const onEndTurnButtonClick = () => {
+    dispatch(syncCardBaseLenght());
     if (isClientTurn) {
       if (cardBaseCount <= 0) {
         dispatch(addHealth({ value: -1, player: "player" }));
