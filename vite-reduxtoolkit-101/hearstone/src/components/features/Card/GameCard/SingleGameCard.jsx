@@ -13,6 +13,8 @@ export default function SingleGameCard({ position }) {
     <div
       className="single-game-card absolute"
       onMouseLeave={() => dispatch(closeCard(singleCard))}
+      onClick={() => dispatch(closeCard(singleCard))}
+      
       style={{
         left: position?.left,
         bottom: position?.bottom,
