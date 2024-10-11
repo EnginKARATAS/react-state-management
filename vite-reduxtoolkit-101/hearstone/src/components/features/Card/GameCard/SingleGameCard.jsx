@@ -1,19 +1,25 @@
 import "./SingleGameCard.css";
 import { useSelector } from 'react-redux';
-import { closeCard } from '../../hand/handSlice';
+import { closeSingleCard } from '../../hand/handSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
   
 export default function SingleGameCard({ position }) {
   const singleCard = useSelector((state) => state.hand.singleCard);
   const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("singleCard", singleCard);
+    setTimeout(() => {
+      dispatch(closeSingleCard());
+    }, 5000);
+  }, [singleCard]);
  
   return (
     singleCard &&
     <div
       className="single-game-card absolute"
-      onMouseLeave={() => dispatch(closeCard(singleCard))}
-      onClick={() => dispatch(closeCard(singleCard))}
+      onMouseLeave={() => dispatch(closeSingleCard(singleCard))}
+      onClick={() => dispatch(closeSingleCard())}
       
       style={{
         left: position?.left,

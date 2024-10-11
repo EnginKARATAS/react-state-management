@@ -89,6 +89,9 @@ export const handSlice = createSlice({
     ) => {
       state.singleCard = action.payload;
     },
+    closeSingleCard: (state: InitialState) => {
+      state.singleCard = null;
+    },
     addCardToBoard: (
       state: InitialState,
       action: { payload: Card; player: "player" | "enemy" }
@@ -205,5 +208,6 @@ export const {
   addHealth,
   addArmor, 
   syncCardBaseLenght,
+  closeSingleCard,
 } = handSlice.actions;
 export default handSlice.reducer;
