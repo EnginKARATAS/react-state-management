@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import BoardCard from "./BoardCard";
 
 export default function Board({ player, position }) {
-  const playerBoardCards = useSelector((state) => state.hand.board.playerCards);
-  const enemyBoardCards = useSelector((state) => state.hand.board.enemyCards);
+  const playerBoardCards = useSelector((state) => state.hand.board.player);
+  const enemyBoardCards = useSelector((state) => state.hand.board.enemy);
  
   return (
     <div>
