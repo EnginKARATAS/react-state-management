@@ -1,13 +1,45 @@
 .profile {
   height: 112px;
-  overflow: hidden;
   width: 95px;
-
-  border-top-left-radius: 70px;
-  border-top-right-radius: 70px;
+}
+.image-container {
+  height: 111px;
+  overflow: hidden;
 }
 
-.profile-image {
-  border-top-right-radius: 93px;
-  border-top-left-radius: 93px;
+
+.armor-bar-text {
+  font-size: 23px;
+  margin-bottom: -1.6px;
+  margin-left: 8.4px;
+}
+
+.armor-bar {
+  width: 33px;
+  z-index: 1;
+  top: 63px;
+  right: -10px;
+}
+
+.armor-bar-image {
+  bottom: -15px;
+  right: -4px;
+}
+
+.health-bar-text {
+  font-size: 21px;
+  margin-bottom: -3.6px;
+  margin-left: 5px;
+}
+
+.health-bar {
+  width: 29px;
+  z-index: 0;
+  bottom: -11px;
+  right: -10px;
+}
+
+.health-bar-image {
+  bottom: -7px;
+  right: -3px;
 }
