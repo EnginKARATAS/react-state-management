@@ -57,25 +57,12 @@ const refreshPlayerCards = (state: InitialState, cardsLength: number) => {
     };
   });
 };
-const refreshBoardCards = (state: InitialState, cardsLength: number) => {
-  state.board.playerCards = state.board.playerCards.map((card, i) => {
-    return {
-      ...card,
-      cardPosition: {
-        x: -cardsLength * 49,
-        y: 0,
-        offset: 555,
-        size: 150,
-        top: getTop(cardsLength),
-      },
-    };
-  });
-};
-
+ 
 export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
+    
     drawCard: (
       state: InitialState,
       action: { payload: { isEnemy: boolean } }
