@@ -11,7 +11,7 @@ export default function Board({ player, position }) {
       {player === "player" && playerBoardCards && (
         <div
           className="board-cards absolute flex player-board"
-          style={{ top: -490, left: 100 - playerBoardCards.length * 66 }}
+          style={{ top: -495, left: 55 - playerBoardCards.length * 50 }}
         >
           {playerBoardCards.map((boardCard, i) => {
             return (
@@ -30,14 +30,14 @@ export default function Board({ player, position }) {
       {player === "enemy" && enemyBoardCards && (
         <div
           className="board-cards absolute flex enemy-board"
-          style={{ top: 300, left: -100 - playerBoardCards.length * 66 }}
+          style={{ top: 310, left: 55 - enemyBoardCards.length * 50}}
         >
           {enemyBoardCards.map((enemyBoardCard, i) => {
             return (
               <BoardCard
                 player="enemy"
                 position={{
-                  left: i * 100,
+                  left: 100 * i,
                   offset: 555,
                 }}
                 boardCard={enemyBoardCard}
