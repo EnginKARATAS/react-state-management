@@ -12,6 +12,7 @@ export default function ClientProfile({ player, position }) {
         className="enemy-profile"
         img={{ pack: "engin-pack", photo: "hero-engin" }}
         position={{ left: 4, bottom: 216 }}
+        player="player"
       />
       <ManaBox position={{ top: -149, left: 246 }} />
       <Hand

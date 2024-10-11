@@ -8,7 +8,16 @@ interface InitialState {
     enemyCards: Card[];
   };
   singleCard: Card | null;
-  cardCache: number[];
+  profile: {
+    player: {
+      health: number;
+      armor: number;
+    };
+    enemy: {
+      health: number;
+      armor: number;
+    };
+  };
 }
 
 interface Card {

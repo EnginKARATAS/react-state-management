@@ -14,6 +14,17 @@ const initialState: InitialState = {
     enemyCards: [],
   },
   singleCard: null,
+
+  profile: {
+    player: {
+      health: 30,
+      armor: 0,
+    },
+    enemy: {
+      health: 30,
+      armor: 0,
+    }
+  }
 };
 
 const refreshEnemyCards = (state: InitialState, cardsLength: number) => {

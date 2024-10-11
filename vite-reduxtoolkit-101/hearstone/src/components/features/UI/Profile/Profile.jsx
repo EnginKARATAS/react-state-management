@@ -1,5 +1,8 @@
 import "./Profile.css";
-export default function Profile({ img, position }) {
+import {useSelector} from "react-redux"
+export default function Profile({ img, position, player }) {
+  const profile = useSelector((state) => state.hand.profile);
+  const stats = player === "player" ? profile.player : profile.enemy;
   return (
     <div
       className="profile absolute"
@@ -22,14 +25,14 @@ export default function Profile({ img, position }) {
         <div className="armor-bar absolute">
           <img className="armor-bar-image absolute" src="/public/armor-bar.png" alt="" />
         <div className="flex justify-center items-center  ">
-          <p className="text-white text-xl z-10 armor-bar-text">33</p>
+          <p className="text-white text-xl z-10 armor-bar-text">{stats.armor}</p>
         </div>
       </div>
 
       <div className="health-bar absolute">
         <img className="health-bar-image absolute" src="/public/health-bar.png" alt="" />
         <div className="flex justify-center items-center  ">
-          <p className="text-white text-xl z-10 health-bar-text">33</p>
+          <p className="text-white text-xl z-10 health-bar-text">{stats.health}</p>
         </div>
       </div>
     </div>
