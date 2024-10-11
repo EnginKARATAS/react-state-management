@@ -6,8 +6,12 @@ import Board from "../../../Card/Board/Board";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { increment, openYourTurn } from "../../../counter/counterSlice";
-import { drawCard, playCardToBoard } from "../../../hand/handSlice";
-
+import {
+  drawCard,
+  playCardToBoard,
+  addHealth,
+  syncCardBaseLenght,
+} from "../../../hand/handSlice";
 
 export default function EnemyProfile() {
   const boardCards = useSelector((state) => state.hand.board.enemyCards);
@@ -21,6 +25,8 @@ export default function EnemyProfile() {
         dispatch(drawCard({ isEnemy: false }));
         dispatch(playCardToBoard({ isEnemy: true }));
         dispatch(openYourTurn());
+        dispatch(syncCardBaseLenght());
+        dispatch(addHealth({ value: -1, player: "enemy" }));
       }, 1);
 
       return () => clearTimeout(timer);
@@ -35,7 +41,11 @@ export default function EnemyProfile() {
       />
       <ManaBox position={{ top: 108, left: 218 }} player="enemy" />
       <Hand player="enemy" position={{ top: 12, left: -541 }}></Hand>
-      <Board player="enemy" position={{ top: 300, left: -150 }} boardCards={boardCards} />
+      <Board
+        player="enemy"
+        position={{ top: 300, left: -150 }}
+        boardCards={boardCards}
+      />
     </div>
   );
 }
