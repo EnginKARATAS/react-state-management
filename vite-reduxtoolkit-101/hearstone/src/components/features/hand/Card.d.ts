@@ -1,11 +1,11 @@
 interface InitialState {
   hand: {
-    playerCards: Card[];
-    enemyCards: Card[];
+    player: Card[];
+    enemy: Card[];
   };
   board: {
-    playerCards: Card[];
-    enemyCards: Card[];
+    player: Card[];
+    enemy: Card[];
   };
   cardBaseCount: {
     enemy: number;
@@ -25,14 +25,16 @@ interface InitialState {
 }
 
 interface Card {
+  cardId: number;
+  playerName: "player" | "enemy";
   cardName: string;
   image: string;
-  description: string;
-  cardId: number;
+  cardDescription: string;
   cardType: string;
   cardCost: number;
   cardImageName: string;
   isPlayed: boolean;
+  isSelected: boolean;
   cardAttack: number;
   cardHealth: number;
   cardPack: string;

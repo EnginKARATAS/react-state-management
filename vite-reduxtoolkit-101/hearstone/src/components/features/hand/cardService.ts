@@ -1,11 +1,13 @@
 const clientCardBase: Card[] = [
   {
+        playerName: "player",
+        isSelected: false,
+    cardId: Math.random(),
     cardPack: "engin-pack",
     cardName: "Diktatör",
     image: "dictator",
     cardDescription:
       "Bu kart oynanırsa rakibin en düşük mana kullanan kartı yok olur.",
-    cardId: Math.random(),
     cardType: "minion",
     cardCost: 1,
     cardImageName: "dictator",
@@ -16,12 +18,14 @@ const clientCardBase: Card[] = [
     deg: 0,
   },
   {
+    playerName: "player",
+    isSelected: false,
+    cardId: Math.random(),
     cardPack: "engin-pack",
     cardName: "Gitarist",
     image: "guitar",
     cardDescription:
       "Gitarist kartı oynandıktan sonra elinizdeki kartların hepsi 1 güç kazanır.",
-    cardId: Math.random(),
     cardType: "minion",
     cardCost: 3,
     cardImageName: "guitar",
@@ -32,12 +36,14 @@ const clientCardBase: Card[] = [
     deg: 0,
   },
   {
+    playerName: "player",
+    isSelected: false,
+    cardId: Math.random(),
     cardPack: "engin-pack",
     cardName: "Ödenmiş Bedel",
     image: "soldier",
     cardDescription:
       "Bu kartı oynadıktan sonra iş bulma ihtimaliniz %50 artar.",
-    cardId: Math.random(),
     cardType: "minion",
     cardCost: 2,
     cardImageName: "soldier",
@@ -48,12 +54,14 @@ const clientCardBase: Card[] = [
     deg: 0,
   },
   {
+    playerName: "player",
+    isSelected: false,
+    cardId: Math.random(),
     cardPack: "engin-pack",
     cardName: "Savaşçı",
     image: "worrior",
     cardDescription:
       "Savaşçı kartı oynandıktan sonra kullanıcının canı 1 artar.",
-    cardId: Math.random(),
     cardType: "minion",
     cardCost: 2,
     cardImageName: "worrior",
@@ -67,11 +75,13 @@ const clientCardBase: Card[] = [
 
 const enemyCardBase: Card[] = [
   {
+    playerName: "enemy",
+    isSelected: false,
+    cardId: Math.random(),
     cardPack: "yavuz-pack",
     cardName: "Yavuz Reis",
     image: "cix",
     cardDescription: "Sahaya iner ve kullanıcıya 10 yıllık tecrübe kazandırır.",
-    cardId: Math.random(),
     cardType: "minion",
     cardCost: 1,
     cardImageName: "cix",
@@ -82,11 +92,13 @@ const enemyCardBase: Card[] = [
     deg: 0,
   },
   {
+    playerName: "enemy",
+    isSelected: false,
+    cardId: Math.random(),
     cardPack: "yavuz-pack",
     cardName: "Hacker Yavuz",
     image: "hacker",
     cardDescription: "Rakibe anında saldırarak 3 can azaltır.",
-    cardId: Math.random(),
     cardType: "minion",
     cardCost: 1,
     cardImageName: "hacker",
@@ -97,11 +109,13 @@ const enemyCardBase: Card[] = [
     deg: 0,
   },
   {
+    playerName: "enemy",
+    isSelected: false,
+    cardId: Math.random(),
     cardPack: "yavuz-pack",
     cardName: "Sleeper Coder",
     image: "sleeper",
     cardDescription: "Saldırması için 1 tur bekler. Her tur 2 can kazanır.",
-    cardId: Math.random(),
     cardType: "minion",
     cardCost: 5,
     cardImageName: "sleeper",

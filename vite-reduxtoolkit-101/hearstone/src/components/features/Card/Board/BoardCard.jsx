@@ -1,10 +1,11 @@
 import "./BoardCard.css";
 import { useDispatch } from "react-redux";
-import { hoverSingleCard } from "../../hand/handSlice";
+import { hoverSingleCard, closeSingleCard, clickBoardCard } from "../../hand/handSlice";
+import { useSelector } from "react-redux";
 
 export default function BoardCard({ position, boardCard }) {
   const dispatch = useDispatch();
-    const onMouseOver = (card) => {
+     const onMouseOver = (card) => {
     setTimeout(() => {
       dispatch(hoverSingleCard(card));
     }, 200);
@@ -15,14 +16,22 @@ export default function BoardCard({ position, boardCard }) {
       dispatch(hoverSingleCard(card));
     }, 200);
   };
+
+  const onClickBoardCard = (card) => {
+    dispatch(closeSingleCard());
+    dispatch(clickBoardCard(card));
+  };
+
   return (
     <div
+      onClick={() => onClickBoardCard(boardCard)}
       onMouseOver={() => onMouseOver(boardCard)}
       onMouseLeave={() => onMouseLeave(boardCard)}
       className="absolute board-card"
       style={{
         left: position.left,
         marginRight: position.offset,
+        border: boardCard?.isSelected ? "2px solid red" : "none",
       }}
     >
       <img

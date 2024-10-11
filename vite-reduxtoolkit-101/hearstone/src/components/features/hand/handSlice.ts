@@ -209,5 +209,6 @@ export const {
   addArmor, 
   syncCardBaseLenght,
   closeSingleCard,
+  clickBoardCard
 } = handSlice.actions;
 export default handSlice.reducer;
