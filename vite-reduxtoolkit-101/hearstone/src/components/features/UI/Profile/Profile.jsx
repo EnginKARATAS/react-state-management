@@ -1,8 +1,15 @@
 import "./Profile.css";
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
+import { syncCardBaseLenght } from "../../hand/handSlice";
+import { useEffect } from "react";
 export default function Profile({ img, position, player }) {
+  const dispatch = useDispatch();
   const profile = useSelector((state) => state.hand.profile);
   const stats = player === "player" ? profile.player : profile.enemy;
+  const baseCardsCount = useSelector((state) => state.hand.cardBaseCount);
+  useEffect(() => {
+    dispatch(syncCardBaseLenght({player: player}));
+  }, [baseCardsCount]);
   return (
     <div
       className="profile absolute"

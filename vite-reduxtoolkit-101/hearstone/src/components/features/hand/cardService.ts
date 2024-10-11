@@ -113,6 +113,10 @@ const enemyCardBase: Card[] = [
   },
 ];
 
+export const getCardBaseLenght = ({ player }: { player: "player" | "enemy" }): number => {
+  return player === "player" ? clientCardBase.length : enemyCardBase.length;
+};
+
 export const pullRandomCard = ({ isEnemy }: { isEnemy: boolean }) => {
   let randomIndex;
   let randomCard: any = null;

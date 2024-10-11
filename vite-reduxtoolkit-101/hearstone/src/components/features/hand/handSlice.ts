@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { pos, getTop } from "./cardPositioningUtils.js";
-import { pullRandomCard } from "./cardService.ts";
+import { pullRandomCard, getCardBaseLenght } from "./cardService.ts";
 
 const initialState: InitialState = {
   hand: {
@@ -10,6 +10,10 @@ const initialState: InitialState = {
   board: {
     playerCards: [],
     enemyCards: [],
+  },
+  cardBaseCount: {
+    enemy: getCardBaseLenght({player: "enemy"}),
+    player: getCardBaseLenght({player: "player"}),
   },
   singleCard: null,
 
@@ -24,45 +28,27 @@ const initialState: InitialState = {
     },
   },
 };
-
-const refreshEnemyCards = (state: InitialState, cardsLength: number) => {
-  state.hand.enemyCards = state.hand.enemyCards.map((card, i) => {
-    const degCel = 8;
-    return {
-      ...card,
-      cardPosition: {
-        x: pos(cardsLength, i),
-        y: 0,
-        offset: 0,
-        top: getTop(cardsLength),
-        size: 150,
-      },
-      deg: (-cardsLength * degCel) / 2 + i * degCel,
-    };
-  });
-};
-const refreshPlayerCards = (state: InitialState, cardsLength: number) => {
-  state.hand.playerCards = state.hand.playerCards.map((card, i) => {
-    const degCel = 8;
-    return {
-      ...card,
-      cardPosition: {
-        x: pos(cardsLength, i),
-        y: 0,
-        offset: 0,
-        top: getTop(cardsLength),
-        size: 150,
-      },
-      deg: (-cardsLength * degCel) / 2 + i * degCel,
-    };
-  });
-};
  
 export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
-    
+    syncCardBaseLenght: (state: InitialState) => {
+      state.cardBaseCount.player = getCardBaseLenght({player: "player"});
+      state.cardBaseCount.enemy = getCardBaseLenght({player: "enemy"});
+    },
+    addHealth: (state: InitialState, action: { payload: { value: number, player: "player" | "enemy" }}) => {
+      const profile = action.payload.player === "player" ? state.profile.player : state.profile.enemy;
+      profile.health += action.payload.value;
+      if (profile.health <= 0) {
+        //TODO: game over screen
+        profile.health = 0;
+      }
+    },
+    addArmor: (state: InitialState, action: { payload: { value: number, player: "player" | "enemy" }}) => {
+      const profile = action.payload.player === "player" ? state.profile.player : state.profile.enemy;
+      profile.armor += action.payload.value;
+    },
     drawCard: (
       state: InitialState,
       action: { payload: { isEnemy: boolean } }
@@ -101,9 +87,7 @@ export const handSlice = createSlice({
       action: { payload: Card | null }
     ) => {
       state.singleCard = action.payload;
-      console.log("🚀 ~ hoverSingleCard ~ state.singleCard:", state.singleCard);
     },
-
     addCardToBoard: (
       state: InitialState,
       action: { payload: Card; player: "player" | "enemy" }
@@ -177,6 +161,39 @@ const refreshBoardCardPlayer = (state: InitialState, cardsLength: number) => {
   });
 };
 
+const refreshEnemyCards = (state: InitialState, cardsLength: number) => {
+  state.hand.enemyCards = state.hand.enemyCards.map((card, i) => {
+    const degCel = 8;
+    return {
+      ...card,
+      cardPosition: {
+        x: pos(cardsLength, i),
+        y: 0,
+        offset: 0,
+        top: getTop(cardsLength),
+        size: 150,
+      },
+      deg: (-cardsLength * degCel) / 2 + i * degCel,
+    };
+  });
+};
+const refreshPlayerCards = (state: InitialState, cardsLength: number) => {
+  state.hand.playerCards = state.hand.playerCards.map((card, i) => {
+    const degCel = 8;
+    return {
+      ...card,
+      cardPosition: {
+        x: pos(cardsLength, i),
+        y: 0,
+        offset: 0,
+        top: getTop(cardsLength),
+        size: 150,
+      },
+      deg: (-cardsLength * degCel) / 2 + i * degCel,
+    };
+  });
+};
+
 export const {
   drawCard,
   showCard,
@@ -184,5 +201,8 @@ export const {
   addCardToBoard,
   playCardToBoard,
   closeCard,
+  addHealth,
+  addArmor, 
+  syncCardBaseLenght,
 } = handSlice.actions;
 export default handSlice.reducer;

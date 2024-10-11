@@ -7,6 +7,10 @@ interface InitialState {
     playerCards: Card[];
     enemyCards: Card[];
   };
+  cardBaseCount: {
+    enemy: number;
+    player: number;
+  };
   singleCard: Card | null;
   profile: {
     player: {
