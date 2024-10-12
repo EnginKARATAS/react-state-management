@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { pos, getTop } from "./cardPositioningUtils.js";
 import { pullRandomCard, getCardBaseLenght } from "./cardService.ts";
-
+import Scenario from "./Scenario.js";
+const playMovement = new Scenario();
 const initialState: InitialState = {
   hand: {
     player: [],
@@ -16,7 +17,7 @@ const initialState: InitialState = {
     player: getCardBaseLenght({player: "player"}),
   },
   singleCard: null,
-
+  selectedCardCache: null,
   profile: {
     player: {
       health: 30,
@@ -34,13 +35,9 @@ export const handSlice = createSlice({
   initialState,
   reducers: {
     clickBoardCard: (state: InitialState, action: { payload: Card }) => {
-      //find card owner
       const cardOwner = action.payload.cardOwner === "player" ? "player" : "enemy";
-      //find card in board
-      const card = state.board[cardOwner].find((card) => card.cardId === action.payload.cardId);
-      if (card) {
-        card.isSelected = !card.isSelected;
-      }
+      const clickedCard = state.board[cardOwner].find((card) => card.cardId === action.payload.cardId);
+      playMovement.clickBoardCard(clickedCard);
     },
     syncCardBaseLenght: (state: InitialState) => {
       state.cardBaseCount.player = getCardBaseLenght({player: "player"});

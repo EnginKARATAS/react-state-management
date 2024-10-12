@@ -22,11 +22,13 @@ interface InitialState {
       armor: number;
     };
   };
+  selectedCardCache: Card | null;
 }
 
 interface Card {
   cardId: number;
-  cardOwner: "player" | "enemy";
+
+  cardOwner: "player" | "enemy" | "";
   cardName: string;
   image: string;
   cardDescription: string;

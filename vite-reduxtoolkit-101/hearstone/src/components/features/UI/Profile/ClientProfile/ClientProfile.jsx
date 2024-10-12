@@ -20,7 +20,7 @@ export default function ClientProfile({ player, position }) {
         player={player}
         className="hand"
       />
-      <SingleGameCard position={{ bottom: 280, left: -330 }} />
+      <SingleGameCard position={{ bottom: 280, left: -600 }} />
     </div>
   );
 }
