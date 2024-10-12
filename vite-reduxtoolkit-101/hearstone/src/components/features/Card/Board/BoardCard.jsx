@@ -31,7 +31,7 @@ export default function BoardCard({ position, boardCard }) {
       style={{
         left: position.left,
         marginRight: position.offset,
-        border: boardCard?.isSelected ? "2px solid red" : "none",
+        border: boardCard?.borderColor ? `2px solid ${boardCard.borderColor}` : "none",
       }}
     >
       <img

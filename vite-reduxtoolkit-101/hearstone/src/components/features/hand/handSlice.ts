@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { pos, getTop } from "./cardPositioningUtils.js";
 import { pullRandomCard, getCardBaseLenght } from "./cardService.ts";
-import Scenario from "./Scenario.js";
+import Scenario from "./Scenario.ts";
 const playMovement = new Scenario();
 const initialState: InitialState = {
   hand: {

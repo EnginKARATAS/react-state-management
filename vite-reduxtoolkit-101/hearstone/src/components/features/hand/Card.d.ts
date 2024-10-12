@@ -27,7 +27,7 @@ interface InitialState {
 
 interface Card {
   cardId: number;
-
+  borderColor: string | null;
   cardOwner: "player" | "enemy" | "";
   cardName: string;
   image: string;

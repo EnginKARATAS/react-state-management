@@ -1,6 +1,7 @@
 const clientCardBase: Card[] = [
   {
         cardOwner: "player",
+        borderColor: null,
         isSelected: false,
     cardId: Math.random(),
     cardPack: "engin-pack",
@@ -19,6 +20,7 @@ const clientCardBase: Card[] = [
   },
   {
     cardOwner: "player",
+    borderColor: null,
     isSelected: false,
     cardId: Math.random(),
     cardPack: "engin-pack",
@@ -37,6 +39,7 @@ const clientCardBase: Card[] = [
   },
   {
     cardOwner: "player",
+    borderColor: null,
     isSelected: false,
     cardId: Math.random(),
     cardPack: "engin-pack",
@@ -55,6 +58,7 @@ const clientCardBase: Card[] = [
   },
   {
     cardOwner: "player",
+    borderColor: null,
     isSelected: false,
     cardId: Math.random(),
     cardPack: "engin-pack",
@@ -76,6 +80,7 @@ const clientCardBase: Card[] = [
 const enemyCardBase: Card[] = [
   {
     cardOwner: "enemy",
+    borderColor: null,
     isSelected: false,
     cardId: Math.random(),
     cardPack: "yavuz-pack",
@@ -93,6 +98,7 @@ const enemyCardBase: Card[] = [
   },
   {
     cardOwner: "enemy",
+    borderColor: null,
     isSelected: false,
     cardId: Math.random(),
     cardPack: "yavuz-pack",
@@ -110,6 +116,7 @@ const enemyCardBase: Card[] = [
   },
   {
     cardOwner: "enemy",
+    borderColor: null,
     isSelected: false,
     cardId: Math.random(),
     cardPack: "yavuz-pack",
