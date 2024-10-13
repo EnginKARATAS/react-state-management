@@ -1,5 +1,5 @@
 # hearthstone clone app
-* UI in progress
+* UI Finished
 * state management in progress
 
 ## View Insights
