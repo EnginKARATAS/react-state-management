@@ -30,14 +30,13 @@ export default function BoardCard({ position, boardCard }) {
       style={{
         left: position.left,
         marginRight: position.offset,
-        border: `1px solid ${boardCard?.borderColor}`,
+        border: boardCard?.borderColor ? `4px solid ${boardCard?.borderColor}` : "none",
       }}
     >
       <img
         src="/public/cards/card-images/board_blank.png"
         className="board-frame"
       />
-      
       <img
         className=" board-card-image absolute"
         src={`/public/cards/card-images/${boardCard?.cardPack}/${boardCard?.cardImageName}.png`}
