@@ -24,10 +24,11 @@ interface InitialState {
       armor: number;
     };
   };
-  selectedCardCache: Card | null;
-  borderColor: string;
-  cacheSelectedCard: any;
-  move: Card[];
+
+
+  cardCache: [{clientCard: Card | null, enemyCard: Card | null}];
+  moveCount: number
+
 }
 
 interface Card {
@@ -40,7 +41,6 @@ interface Card {
   cardType: string;
   cardCost: number;
   cardImageName: string;
-  isPlayed: boolean;
   isSelected: boolean;
   cardAttack: number;
   cardHealth: number;
@@ -53,6 +53,7 @@ interface Card {
     offset: number;
   };
   deg: number;
+  move: number;
 }
 
 interface EnemyCard extends Card {}
