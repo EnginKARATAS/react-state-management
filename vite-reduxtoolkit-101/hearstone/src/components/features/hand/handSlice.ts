@@ -3,8 +3,8 @@ import { pos, getTop } from "./cardPositioningUtils.js";
 import { pullRandomCard, getCardBaseLenght } from "./cardService.ts";
 import { scenarioSlice } from "../scenario/scenarioSlice.ts";
 const borderColorCode: string[] = [
-  "red",
   "blue",
+  "red",
   "green",
   "yellow",
   "purple",
@@ -14,14 +14,19 @@ const borderColorCode: string[] = [
   "gray",
 ];
 
-const isCardCachePlayable = (state: InitialState) => {
+const isCard_CachePlayable = (state: InitialState, clickedCard: Card | any) => {
   //loking for cache of current move
-  const currentMoveCards = state.cardCache[state.moveCount];
-  const currentMoveClientCard = currentMoveCards.clientCard;
-  const currentMoveEnemyCard = currentMoveCards.enemyCard;
-  if (currentMoveClientCard == null && currentMoveEnemyCard == null)
-    return true;
-  else return false;
+  let isPlayable = true;
+  state.cardCache.forEach((moveCards, index) => {
+    if (
+      index <= state.moveCount &&
+      (moveCards.clientCard?.cardId === clickedCard.cardId ||
+        moveCards.enemyCard?.cardId === clickedCard.cardId)
+    ) {
+      isPlayable = false;
+    }
+  });
+  return isPlayable;
 };
 
 const getBorderColor = (state: InitialState) => {
@@ -52,7 +57,7 @@ const initialState: InitialState = {
     },
   },
 
-  cardCache: [{ clientCard: null, enemyCard: null }],
+  cardCache: [],
   moveCount: 0,
 };
 
@@ -62,15 +67,18 @@ export const handSlice = createSlice({
   reducers: {
     clickBoardCard: (
       state: InitialState,
-      action: { payload: { clickedCard: Card } }
+      action: { payload: { clickedCard: Card | any } }
     ) => {
-      const clickedCard = action.payload.clickedCard;
-      console.log("kart kitlendi mi?", isCardCachePlayable(state));
-      if (isCardCachePlayable(state)) {
-        console.log("ilk Defa Mı Tıklandı");
-        if (state.moveCount == clickedCard.move) {
-        }
-      }
+      const cardOwner =
+        action.payload.clickedCard.cardOwner === "player" ? "player" : "enemy";
+      const clickedCard = state.board[cardOwner].find(
+        (card) => card.cardId === action.payload.clickedCard.cardId
+      );
+      let moveCount = state.moveCount;
+      let currentCache = state.cardCache;
+
+      
+     
     },
     syncCardBaseLenght: (state: InitialState) => {
       state.cardBaseCount.player = getCardBaseLenght({ player: "player" });

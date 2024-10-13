@@ -18,7 +18,7 @@ export default function BoardCard({ position, boardCard }) {
 
   const onClickBoardCard = (card) => {
     dispatch(closeSingleCard());
-    dispatch(clickBoardCard(card));
+    dispatch(clickBoardCard({clickedCard: card}));
   };
 
   return (
@@ -30,7 +30,7 @@ export default function BoardCard({ position, boardCard }) {
       style={{
         left: position.left,
         marginRight: position.offset,
-        border: boardCard?.borderColor,
+        border: `1px solid ${boardCard?.borderColor}`,
       }}
     >
       <img
