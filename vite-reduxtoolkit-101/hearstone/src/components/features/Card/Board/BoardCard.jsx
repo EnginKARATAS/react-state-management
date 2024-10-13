@@ -1,7 +1,6 @@
 import "./BoardCard.css";
 import { useDispatch } from "react-redux";
 import { hoverSingleCard, closeSingleCard, clickBoardCard } from "../../hand/handSlice";
-import { useSelector } from "react-redux";
 
 export default function BoardCard({ position, boardCard }) {
   const dispatch = useDispatch();
@@ -31,7 +30,7 @@ export default function BoardCard({ position, boardCard }) {
       style={{
         left: position.left,
         marginRight: position.offset,
-        border: boardCard?.borderColor ? `2px solid ${boardCard.borderColor}` : "none",
+        border: boardCard?.borderColor,
       }}
     >
       <img

@@ -1,8 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { pos, getTop } from "./cardPositioningUtils.js";
 import { pullRandomCard, getCardBaseLenght } from "./cardService.ts";
-import Scenario from "./Scenario.ts";
-const playMovement = new Scenario();
+import { scenarioSlice } from "../scenario/scenarioSlice.ts";
+const borderColorCode: string[] = [
+  "red",
+  "blue",
+  "green",
+  "yellow",
+  "purple",
+  "orange",
+  "white",
+  "black",
+  "gray",
+];
+
 const initialState: InitialState = {
   hand: {
     player: [],
@@ -28,16 +39,23 @@ const initialState: InitialState = {
       armor: 0,
     },
   },
+
+
+  borderColor: "",
+  cacheSelectedCard: null,
+  move: [],
 };
  
+const getBorderColor = (state: InitialState) => {
+  return borderColorCode[state.move.length];
+}
 export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
+
     clickBoardCard: (state: InitialState, action: { payload: Card }) => {
-      const cardOwner = action.payload.cardOwner === "player" ? "player" : "enemy";
-      const clickedCard = state.board[cardOwner].find((card) => card.cardId === action.payload.cardId);
-      playMovement.clickBoardCard(clickedCard);
+     
     },
     syncCardBaseLenght: (state: InitialState) => {
       state.cardBaseCount.player = getCardBaseLenght({player: "player"});

@@ -1,3 +1,5 @@
+ 
+
 interface InitialState {
   hand: {
     player: Card[];
@@ -23,6 +25,9 @@ interface InitialState {
     };
   };
   selectedCardCache: Card | null;
+  borderColor: string;
+  cacheSelectedCard: any;
+  move: Card[];
 }
 
 interface Card {
