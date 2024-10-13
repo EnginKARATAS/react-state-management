@@ -14,6 +14,19 @@ const borderColorCode: string[] = [
   "gray",
 ];
 
+const isCardCachePlayable = (state: InitialState) => {
+  //loking for cache of current move
+  const currentMoveCards = state.cardCache[state.moveCount];
+  const currentMoveClientCard = currentMoveCards.clientCard;
+  const currentMoveEnemyCard = currentMoveCards.enemyCard;
+  if (currentMoveClientCard == null && currentMoveEnemyCard == null)
+    return true;
+  else return false;
+};
+
+const getBorderColor = (state: InitialState) => {
+  return borderColorCode[state.moveCount];
+};
 const initialState: InitialState = {
   hand: {
     player: [],
@@ -24,11 +37,10 @@ const initialState: InitialState = {
     enemy: [],
   },
   cardBaseCount: {
-    enemy: getCardBaseLenght({player: "enemy"}),
-    player: getCardBaseLenght({player: "player"}),
+    enemy: getCardBaseLenght({ player: "enemy" }),
+    player: getCardBaseLenght({ player: "player" }),
   },
   singleCard: null,
-  selectedCardCache: null,
   profile: {
     player: {
       health: 30,
@@ -40,38 +52,53 @@ const initialState: InitialState = {
     },
   },
 
-
-  borderColor: "",
-  cacheSelectedCard: null,
-  move: [],
+  cardCache: [{ clientCard: null, enemyCard: null }],
+  moveCount: 0,
 };
- 
-const getBorderColor = (state: InitialState) => {
-  return borderColorCode[state.move.length];
-}
+
 export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
-
-    clickBoardCard: (state: InitialState, action: { payload: Card }) => {
-     
+    clickBoardCard: (
+      state: InitialState,
+      action: { payload: { clickedCard: Card } }
+    ) => {
+      const clickedCard = action.payload.clickedCard;
+      console.log("kart kitlendi mi?", isCardCachePlayable(state));
+      if (isCardCachePlayable(state)) {
+        console.log("ilk Defa Mı Tıklandı");
+        if (state.moveCount == clickedCard.move) {
+        }
+      }
     },
     syncCardBaseLenght: (state: InitialState) => {
-      state.cardBaseCount.player = getCardBaseLenght({player: "player"});
-      state.cardBaseCount.enemy = getCardBaseLenght({player: "enemy"});
+      state.cardBaseCount.player = getCardBaseLenght({ player: "player" });
+      state.cardBaseCount.enemy = getCardBaseLenght({ player: "enemy" });
     },
-    addHealth: (state: InitialState, action: { payload: { value: number, player: "player" | "enemy" }}) => {
+    addHealth: (
+      state: InitialState,
+      action: { payload: { value: number; player: "player" | "enemy" } }
+    ) => {
       console.log("action.payload", action.payload);
-      const profile = action.payload.player === "player" ? state.profile.player : state.profile.enemy;
+      const profile =
+        action.payload.player === "player"
+          ? state.profile.player
+          : state.profile.enemy;
       profile.health += action.payload.value;
       if (profile.health <= 0) {
         //TODO: game over screen
         profile.health = 0;
       }
     },
-    addArmor: (state: InitialState, action: { payload: { value: number, player: "player" | "enemy" }}) => {
-      const profile = action.payload.player === "player" ? state.profile.player : state.profile.enemy;
+    addArmor: (
+      state: InitialState,
+      action: { payload: { value: number; player: "player" | "enemy" } }
+    ) => {
+      const profile =
+        action.payload.player === "player"
+          ? state.profile.player
+          : state.profile.enemy;
       profile.armor += action.payload.value;
     },
     drawCard: (
@@ -144,9 +171,7 @@ export const handSlice = createSlice({
       action: { payload: { isEnemy: boolean } }
     ) => {
       if (action.payload.isEnemy && state.hand.enemy.length > 0) {
-        const randomCard = Math.floor(
-          Math.random() * state.hand.enemy.length
-        );
+        const randomCard = Math.floor(Math.random() * state.hand.enemy.length);
         state.board.enemy.push(state.hand.enemy[randomCard]);
         state.hand.enemy.splice(randomCard, 1);
         y(state, state.hand.enemy.length);
@@ -230,9 +255,9 @@ export const {
   playCardToBoard,
   closeCard,
   addHealth,
-  addArmor, 
+  addArmor,
   syncCardBaseLenght,
   closeSingleCard,
-  clickBoardCard
+  clickBoardCard,
 } = handSlice.actions;
 export default handSlice.reducer;
