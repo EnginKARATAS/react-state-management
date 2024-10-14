@@ -42,25 +42,42 @@ const decideCardDestiny = (
   enemyCard: Card,
   playerCard: Card
 ) => {
-  if (enemyCard.cardId === playerCard.cardId) {
+  console.log("decideCardDestiny", enemyCard, playerCard);
+
+  if (enemyCard.borderColor === playerCard.borderColor) {
     //Defender(Health)-Attacker(Attack)<=0 destroy defender card
     //Attacker(Health)-Defender(Attack)<=0 destroy attacker card
     //else both loose health
+    enemyCard.cardHealth -= playerCard.cardAttack;
+    playerCard.cardHealth -= enemyCard.cardAttack;
     if (enemyCard.cardHealth - playerCard.cardAttack <= 0) {
       const cardIndex = state.board.enemy.findIndex(
         (card) => card.cardId === enemyCard.cardId
       );
       state.board.enemy.splice(cardIndex, 1);
-    } else if (playerCard.cardHealth - enemyCard.cardAttack <= 0) {
+    }
+    if (playerCard.cardHealth - enemyCard.cardAttack <= 0) {
       const cardIndex = state.board.player.findIndex(
         (card) => card.cardId === playerCard.cardId
       );
       state.board.player.splice(cardIndex, 1);
-    } else {
-      enemyCard.cardHealth -= playerCard.cardAttack;
-      playerCard.cardHealth -= enemyCard.cardAttack;
     }
   }
+};
+
+const clearMove = (state: InitialState) => {
+  state.moveCount = 0;
+  state.cardCache = [{ clientCard: null, enemyCard: null }];
+  state.board.player.forEach((card) => {
+    card.borderColor = "";
+    card.isSelected = false;
+    card.boardPairId = null;
+  });
+  state.board.enemy.forEach((card) => {
+    card.borderColor = "";
+    card.isSelected = false;
+    card.boardPairId = null;
+  });
 };
 
 const getBorderColor = (state: InitialState) => {
@@ -100,24 +117,27 @@ export const handSlice = createSlice({
   initialState,
   reducers: {
     advanceScenarioMove: (state: InitialState) => {
-
       //get enemy board cards
-      const enemyCards = state.board.enemy 
+      const enemyCards = state.board.enemy.filter((card) => card.boardPairId);
       //get player board cards
-      const playerCards = state.board.player 
-      console.log("obs", playerCards)
-      console.log("Player Cards:", JSON.stringify(playerCards, null, 2));
-      if (enemyCards.length === playerCards.length) {
+      const playerCards = state.board.player.filter((card) => card.boardPairId);
+      console.log("enemyCards", enemyCards.length);
+      console.log("playerCards", playerCards.length);
 
+      if (enemyCards.length === playerCards.length) {
         enemyCards.forEach((enemyCard) => {
           playerCards.forEach((playerCard) => {
             if (enemyCard.boardPairId === playerCard.boardPairId) {
+              console.log("enemyCard", enemyCard);
+              console.log("playerCard", playerCard);
               decideCardDestiny(state, enemyCard, playerCard);
             }
           });
         });
       }
+      clearMove(state)
     },
+   
     clickBoardCard: (
       state: InitialState,
       action: { payload: { clickedCard: Card | any } }
@@ -154,12 +174,19 @@ export const handSlice = createSlice({
           }
         } else if (clickedCard && clickedCard.cardOwner === "enemy") {
           if (isPlayerPendingPair(state, clickedCard)) {
-            clickedCard.borderColor = getBorderColor(state);
-            clickedCard.isSelected = true;
             //set pairing id
             const pairingId = clickedCard.cardId;
+            console.log(pairingId);
             state.cardCache[state.moveCount].clientCard!.boardPairId =
               pairingId;
+            const playerCard = state.board.player.find(
+              (card) => card.borderColor === getBorderColor(state)
+            );
+            if (playerCard) {
+              playerCard.boardPairId = pairingId;
+            }
+            clickedCard.borderColor = getBorderColor(state);
+            clickedCard.isSelected = true;
             clickedCard.boardPairId = pairingId;
             state.cardCache[state.moveCount].enemyCard = clickedCard;
             state.moveCount++;

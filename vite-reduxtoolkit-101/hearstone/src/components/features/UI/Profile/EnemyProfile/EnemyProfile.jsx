@@ -21,11 +21,11 @@ export default function EnemyProfile() {
     if (isClientTurn === false) {
       const timer = setTimeout(() => {
         dispatch(increment());
+        dispatch(syncCardBaseLenght());
         dispatch(drawCard({ isEnemy: true }));
         dispatch(drawCard({ isEnemy: false }));
         dispatch(playCardToBoard({ isEnemy: true }));
         dispatch(openYourTurn());
-        dispatch(syncCardBaseLenght());
         dispatch(addHealth({ value: -1, player: "enemy" }));
       }, 1);
 
