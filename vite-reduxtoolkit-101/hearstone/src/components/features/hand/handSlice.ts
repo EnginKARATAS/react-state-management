@@ -108,6 +108,10 @@ export const handSlice = createSlice({
           if (isPlayerPendingPair(state, clickedCard)) {
             clickedCard.borderColor = getBorderColor(state);
             clickedCard.isSelected = true
+            //set pairing id
+            const pairingId = clickedCard.cardId
+            state.cardCache[state.moveCount].clientCard!.boardPairId = pairingId
+            clickedCard.boardPairId = pairingId
             state.cardCache[state.moveCount].enemyCard = clickedCard;
             state.moveCount++;
             state.cardCache[state.moveCount] = {clientCard: null, enemyCard: null}
