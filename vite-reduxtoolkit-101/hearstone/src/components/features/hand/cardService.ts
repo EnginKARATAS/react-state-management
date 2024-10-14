@@ -1,8 +1,8 @@
 const clientCardBase: Card[] = [
   {
-        cardOwner: "player",
-        borderColor: null,
-        isSelected: false,
+    cardOwner: "player",
+    borderColor: null,
+    isSelected: false,
     cardId: Math.random(),
     cardPack: "engin-pack",
     cardName: "Diktatör",
@@ -16,7 +16,8 @@ const clientCardBase: Card[] = [
     cardHealth: 2,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
-    move: 0
+    move: 0,
+    boardPairId: null
   },
   {
     cardOwner: "player",
@@ -35,7 +36,8 @@ const clientCardBase: Card[] = [
     cardHealth: 2,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
-    move: 0
+    move: 0,
+    boardPairId: null
   },
   {
     cardOwner: "player",
@@ -54,7 +56,8 @@ const clientCardBase: Card[] = [
     cardHealth: 1,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
-    move: 0
+    move: 0,
+    boardPairId: null
   },
   {
     cardOwner: "player",
@@ -73,7 +76,8 @@ const clientCardBase: Card[] = [
     cardHealth: 9,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
-    move: 0
+    move: 0,
+    boardPairId: null
   },
 ];
 
@@ -94,7 +98,8 @@ const enemyCardBase: Card[] = [
     cardHealth: 2,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
-    move: 0
+    move: 0,
+    boardPairId: null
   },
   {
     cardOwner: "enemy",
@@ -112,7 +117,8 @@ const enemyCardBase: Card[] = [
     cardHealth: 2,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
-    move: 0
+    move: 0,
+    boardPairId: null
   },
   {
     cardOwner: "enemy",
@@ -130,11 +136,16 @@ const enemyCardBase: Card[] = [
     cardHealth: 8,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
-    move: 0
+    move: 0,
+    boardPairId: null
   },
 ];
 
-export const getCardBaseLenght = ({ player }: { player: "player" | "enemy" }): number => {
+export const getCardBaseLenght = ({
+  player,
+}: {
+  player: "player" | "enemy";
+}): number => {
   return player === "player" ? clientCardBase.length : enemyCardBase.length;
 };
 

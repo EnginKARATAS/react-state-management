@@ -54,6 +54,7 @@ interface Card {
   };
   deg: number;
   move: number;
+  boardPairId: number|null;
 }
 
 interface EnemyCard extends Card {}
