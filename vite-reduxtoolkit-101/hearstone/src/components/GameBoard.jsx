@@ -26,10 +26,16 @@ export default function GameBoard() {
   useEffect(() => {
     console.log("health", clientHealth, enemyHealth);
     if (clientHealth <= 0 || enemyHealth <= 0) {
-      setGameOver(true);
+      setLoading(true);
       setTimeout(() => {
+        setLoading(false);
+        setGameOver(true);
+      }, 3000);//5000
+      setTimeout(() => {
+        setGameOver(false);
+        setLoading(false);
         setContactScreen(true);
-      }, 4000);
+      }, 7000);//7000
     }
   }, [clientHealth, enemyHealth]);
 
