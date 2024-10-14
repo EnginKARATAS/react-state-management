@@ -1,11 +1,11 @@
 # hearthstone clone app
-* UI in progress
+* UI Finished
 * state management in progress
 
 ## View Insights
 ### Here is the screenshoot from hearthstone clone(Newest First⬆️)
 
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/703c7924-f72d-4b43-8d07-840a4635e2a9)
 
 ![image](https://github.com/user-attachments/assets/4da084a8-9764-452e-b70e-75193880d235)
 
