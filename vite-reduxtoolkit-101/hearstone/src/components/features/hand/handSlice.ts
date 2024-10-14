@@ -37,6 +37,32 @@ const isPlayerCacheBlank = (state: InitialState) => {
   return state.cardCache[state.moveCount]?.clientCard === null;
 };
 
+const decideCardDestiny = (
+  state: InitialState,
+  enemyCard: Card,
+  playerCard: Card
+) => {
+  if (enemyCard.cardId === playerCard.cardId) {
+    //Defender(Health)-Attacker(Attack)<=0 destroy defender card
+    //Attacker(Health)-Defender(Attack)<=0 destroy attacker card
+    //else both loose health
+    if (enemyCard.cardHealth - playerCard.cardAttack <= 0) {
+      const cardIndex = state.board.enemy.findIndex(
+        (card) => card.cardId === enemyCard.cardId
+      );
+      state.board.enemy.splice(cardIndex, 1);
+    } else if (playerCard.cardHealth - enemyCard.cardAttack <= 0) {
+      const cardIndex = state.board.player.findIndex(
+        (card) => card.cardId === playerCard.cardId
+      );
+      state.board.player.splice(cardIndex, 1);
+    } else {
+      enemyCard.cardHealth -= playerCard.cardAttack;
+      playerCard.cardHealth -= enemyCard.cardAttack;
+    }
+  }
+};
+
 const getBorderColor = (state: InitialState) => {
   return borderColorCode[state.moveCount];
 };
@@ -65,7 +91,7 @@ const initialState: InitialState = {
     },
   },
 
-  cardCache: [{clientCard: null, enemyCard: null}],
+  cardCache: [{ clientCard: null, enemyCard: null }],
   moveCount: 0,
 };
 
@@ -73,6 +99,25 @@ export const handSlice = createSlice({
   name: "hand",
   initialState,
   reducers: {
+    advanceScenarioMove: (state: InitialState) => {
+
+      //get enemy board cards
+      const enemyCards = state.board.enemy 
+      //get player board cards
+      const playerCards = state.board.player 
+      console.log("obs", playerCards)
+      console.log("Player Cards:", JSON.stringify(playerCards, null, 2));
+      if (enemyCards.length === playerCards.length) {
+
+        enemyCards.forEach((enemyCard) => {
+          playerCards.forEach((playerCard) => {
+            if (enemyCard.boardPairId === playerCard.boardPairId) {
+              decideCardDestiny(state, enemyCard, playerCard);
+            }
+          });
+        });
+      }
+    },
     clickBoardCard: (
       state: InitialState,
       action: { payload: { clickedCard: Card | any } }
@@ -82,19 +127,22 @@ export const handSlice = createSlice({
       const clickedCard = state.board[cardOwner].find(
         (card) => card.cardId === action.payload.clickedCard.cardId
       );
-       if (isCard_CachePlayable(state, clickedCard)) {
+      if (isCard_CachePlayable(state, clickedCard)) {
         if (clickedCard && clickedCard.cardOwner === "player") {
           //clear cache
-          if(isPlayerCacheBlank(state)) {
+          if (isPlayerCacheBlank(state)) {
             clickedCard.borderColor = getBorderColor(state);
             clickedCard.isSelected = true;
             state.cardCache[state.moveCount].clientCard = clickedCard;
-          }
-          else{
+          } else {
             state.cardCache[state.moveCount].clientCard!.borderColor = "";
             state.cardCache[state.moveCount].clientCard!.isSelected = false;
-            const boardCard = state.board.player.find(card => card.cardId === state.cardCache[state.moveCount].clientCard?.cardId)
-            if(boardCard){
+            const boardCard = state.board.player.find(
+              (card) =>
+                card.cardId ===
+                state.cardCache[state.moveCount].clientCard?.cardId
+            );
+            if (boardCard) {
               boardCard.borderColor = "";
               boardCard.isSelected = false;
             }
@@ -107,14 +155,18 @@ export const handSlice = createSlice({
         } else if (clickedCard && clickedCard.cardOwner === "enemy") {
           if (isPlayerPendingPair(state, clickedCard)) {
             clickedCard.borderColor = getBorderColor(state);
-            clickedCard.isSelected = true
+            clickedCard.isSelected = true;
             //set pairing id
-            const pairingId = clickedCard.cardId
-            state.cardCache[state.moveCount].clientCard!.boardPairId = pairingId
-            clickedCard.boardPairId = pairingId
+            const pairingId = clickedCard.cardId;
+            state.cardCache[state.moveCount].clientCard!.boardPairId =
+              pairingId;
+            clickedCard.boardPairId = pairingId;
             state.cardCache[state.moveCount].enemyCard = clickedCard;
             state.moveCount++;
-            state.cardCache[state.moveCount] = {clientCard: null, enemyCard: null}
+            state.cardCache[state.moveCount] = {
+              clientCard: null,
+              enemyCard: null,
+            };
           }
         }
       }
@@ -305,5 +357,6 @@ export const {
   syncCardBaseLenght,
   closeSingleCard,
   clickBoardCard,
+  advanceScenarioMove,
 } = handSlice.actions;
 export default handSlice.reducer;

@@ -11,7 +11,7 @@ export default function GameBoard() {
 
   useEffect(() => {
     const loadCards = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       setLoading(false);
     };
 
