@@ -4,37 +4,13 @@ import ManaBox from "../../ManaBox/ManaBox";
 import Hand from "../../../Card/Hand/Hand";
 import Board from "../../../Card/Board/Board";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { increment, openYourTurn } from "../../../counter/counterSlice";
-import {
-  drawCard,
-  playCardToBoard,
-  clickBoardCard,
-  addHealth,
-  syncCardBaseLenght,
-} from "../../../hand/handSlice";
+ 
+
+ 
 
 export default function EnemyProfile() {
   const enemyBoardCards = useSelector((state) => state.hand.board.enemy);
-  const isClientTurn = useSelector((state) => state.counter.isClientTurn);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (isClientTurn === false) {
-      const timer = setTimeout(() => {
-        dispatch(increment());
-        dispatch(syncCardBaseLenght());
-        dispatch(drawCard({ isEnemy: true }));
-        dispatch(drawCard({ isEnemy: false }));
-        setTimeout(() => {
-          dispatch(playCardToBoard({ isEnemy: true }));
-          dispatch(clickBoardCard({ clickedCard: null, actionMaker: "enemy" }));
-          dispatch(openYourTurn());
-        }, 2000);
-      }, 1);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isClientTurn, dispatch]);
+ 
   return (
     <div className="absolute enemy-profile">
       <Profile
