@@ -26,7 +26,7 @@ interface InitialState {
   };
 
 
-  cardCache: [{clientCard: Card | null, enemyCard: Card | null}];
+  cardCache: [{player: Card | null, enemy: Card | null}];
   moveCount: number
 
 }
