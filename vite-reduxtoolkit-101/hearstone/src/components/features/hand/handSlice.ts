@@ -176,14 +176,14 @@ export const handSlice = createSlice({
             clickedCard.isSelected = true;
             state.cardCache[state.moveCount][actionMaker] = clickedCard;
           }
-        } else if (clickedCard && clickedCard.cardOwner === (actionMaker as "enemy" | "player" === "enemy"?"player":"enemy")) {
+        } else if (clickedCard && clickedCard.cardOwner === (actionMaker === "enemy"?"player":"enemy")) {
           if (isPlayerPendingPair(state, clickedCard, actionMaker)) {
             //set pairing id
             const pairingId = clickedCard.cardId;
             console.log(pairingId);
             state.cardCache[state.moveCount][actionMaker as "enemy" | "player"]!.boardPairId =
               pairingId;
-            const actionerCard = state.board[actionMaker as "player" | "enemy" === "enemy"?"player":"enemy"].find(
+            const actionerCard = state.board[actionMaker === "enemy"?"player":"enemy"].find(
               (card) => card.borderColor === getBorderColor(state)
             );
             if (actionerCard) {
