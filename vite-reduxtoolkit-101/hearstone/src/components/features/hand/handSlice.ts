@@ -30,11 +30,11 @@ const isCard_CachePlayable = (state: InitialState, clickedCard: Card | any) => {
 };
 
 const isPlayerPendingPair = (state: InitialState, clickedCard: Card, actionMaker: "enemy" | "player") => {
-  return state.cardCache[state.moveCount]?.[actionMaker === "enemy" ? "enemy" : "player"];
+  return state.cardCache[state.moveCount]?.[actionMaker];
 };
 
 const isActionerCacheBlank = (state: InitialState, actionMaker: "enemy" | "player") => {
-    return state.cardCache[state.moveCount]?.[actionMaker === "enemy" ? "enemy" : "player"] === null;
+    return state.cardCache[state.moveCount]?.[actionMaker] === null;
 };
 
 const decideCardDestiny = (
@@ -155,15 +155,15 @@ export const handSlice = createSlice({
             console.log("enemy card bos degildi")
             clickedCard.borderColor = getBorderColor(state);
             clickedCard.isSelected = true;
-            state.cardCache[state.moveCount][actionMaker === "enemy" ? "enemy" : "player"] = clickedCard;
+            state.cardCache[state.moveCount][actionMaker] = clickedCard;
           } else {
             console.log("enemy card bostu")
-            state.cardCache[state.moveCount][actionMaker === "enemy" ? "enemy" : "player"]!.borderColor = "";
-            state.cardCache[state.moveCount][actionMaker === "enemy" ? "enemy" : "player"]!.isSelected = false;
+            state.cardCache[state.moveCount][actionMaker]!.borderColor = "";
+            state.cardCache[state.moveCount][actionMaker]!.isSelected = false;
             const boardCard = state.board[actionMaker].find(
               (card) =>
                 card.cardId ===
-                state.cardCache[state.moveCount][actionMaker === "enemy" ? "enemy" : "player"]?.cardId
+                state.cardCache[state.moveCount][actionMaker]?.cardId
             );
             debugger
             if (boardCard) {
@@ -174,14 +174,14 @@ export const handSlice = createSlice({
             state.cardCache[state.moveCount].enemy = null;
             clickedCard.borderColor = getBorderColor(state);
             clickedCard.isSelected = true;
-            state.cardCache[state.moveCount][actionMaker === "enemy" ? "enemy" : "player"] = clickedCard;
+            state.cardCache[state.moveCount][actionMaker] = clickedCard;
           }
         } else if (clickedCard && clickedCard.cardOwner === (actionMaker as "enemy" | "player" === "enemy"?"player":"enemy")) {
           if (isPlayerPendingPair(state, clickedCard, actionMaker)) {
             //set pairing id
             const pairingId = clickedCard.cardId;
             console.log(pairingId);
-            state.cardCache[state.moveCount][actionMaker as "enemy" | "player" === "enemy" ? "enemy" : "player"]!.boardPairId =
+            state.cardCache[state.moveCount][actionMaker as "enemy" | "player"]!.boardPairId =
               pairingId;
             const actionerCard = state.board[actionMaker as "player" | "enemy" === "enemy"?"player":"enemy"].find(
               (card) => card.borderColor === getBorderColor(state)
