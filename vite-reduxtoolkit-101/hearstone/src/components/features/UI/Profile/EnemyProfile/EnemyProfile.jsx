@@ -9,12 +9,13 @@ import { increment, openYourTurn } from "../../../counter/counterSlice";
 import {
   drawCard,
   playCardToBoard,
+  clickBoardCard,
   addHealth,
   syncCardBaseLenght,
 } from "../../../hand/handSlice";
 
 export default function EnemyProfile() {
-  const boardCards = useSelector((state) => state.hand.board.enemyCards);
+  const enemyBoardCards = useSelector((state) => state.hand.board.enemy);
   const isClientTurn = useSelector((state) => state.counter.isClientTurn);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -24,9 +25,11 @@ export default function EnemyProfile() {
         dispatch(syncCardBaseLenght());
         dispatch(drawCard({ isEnemy: true }));
         dispatch(drawCard({ isEnemy: false }));
-        dispatch(playCardToBoard({ isEnemy: true }));
-        dispatch(openYourTurn());
-        dispatch(addHealth({ value: -1, player: "enemy" }));
+        setTimeout(() => {
+          dispatch(playCardToBoard({ isEnemy: true }));
+          dispatch(clickBoardCard({ clickedCard: null, actionMaker: "enemy" }));
+          dispatch(openYourTurn());
+        }, 2000);
       }, 1);
 
       return () => clearTimeout(timer);
@@ -44,7 +47,7 @@ export default function EnemyProfile() {
       <Board
         player="enemy"
         position={{ top: 300, left: -150 }}
-        boardCards={boardCards}
+        boardCards={enemyBoardCards}
       />
     </div>
   );
