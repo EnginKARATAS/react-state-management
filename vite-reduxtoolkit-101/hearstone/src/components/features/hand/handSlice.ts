@@ -48,10 +48,14 @@ const decideDuelDestiny = (
   cacheEnemyCard: Card,
   cachePlayerCard: Card
 ) => {
-  cacheEnemyCard.cardHealth = 999
-  cachePlayerCard.cardHealth = 999
-  const playerCard = state.board.player.find(card => card.cardId === cachePlayerCard.cardId)
-  const enemyCard = state.board.enemy.find(card => card.cardId === cacheEnemyCard.cardId)
+  cacheEnemyCard.cardHealth = 999;
+  cachePlayerCard.cardHealth = 999;
+  const playerCard = state.board.player.find(
+    (card) => card.cardId === cachePlayerCard.cardId
+  );
+  const enemyCard = state.board.enemy.find(
+    (card) => card.cardId === cacheEnemyCard.cardId
+  );
   if (cacheEnemyCard.borderColor === cachePlayerCard.borderColor) {
     //Defender(Health)-Attacker(Attack)<=0 destroy defender card
     //Attacker(Health)-Defender(Attack)<=0 destroy attacker card
@@ -132,7 +136,7 @@ export const handSlice = createSlice({
           }
         }
       });
- 
+
       clearMove(state);
     },
 
@@ -142,7 +146,7 @@ export const handSlice = createSlice({
         payload: { clickedCard: Card | any; actionMaker: "enemy" | "player" };
       }
     ) => {
-      const actionMaker = (action.payload.actionMaker = "enemy");
+      const actionMaker = (action.payload.actionMaker);
       const cardOwner =
         action.payload.clickedCard.cardOwner === "player" ? "player" : "enemy";
       const clickedCard = state.board[cardOwner].find(
