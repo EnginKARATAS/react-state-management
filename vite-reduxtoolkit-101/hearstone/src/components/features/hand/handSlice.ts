@@ -95,6 +95,14 @@ const clearMove = (state: InitialState) => {
 const getBorderColor = (state: InitialState) => {
   return borderColorCode[state.moveCount];
 };
+
+const isCard_BelongsToActionMaker = (
+  clickedCard: Card,
+  actionMaker: "enemy" | "player"
+) => {
+  return clickedCard.cardOwner === actionMaker;
+};
+
 const initialState: InitialState = {
   hand: {
     player: [],
@@ -139,7 +147,7 @@ export const handSlice = createSlice({
 
       clearMove(state);
     },
-
+    
     clickBoardCard: (
       state: InitialState,
       action: {
@@ -156,8 +164,9 @@ export const handSlice = createSlice({
       const clickedCard = state.board[cardOwner].find(
         (card) => card.cardId === action.payload.clickedCard.cardId
       );
+      if(!clickedCard) return
       if (isCard_CachePlayable(state, clickedCard)) {
-        if (clickedCard && clickedCard.cardOwner === actionMaker) {
+        if (isCard_BelongsToActionMaker(clickedCard, actionMaker)) {
           //clear cache
           if (isActionerCacheBlank(state, actionMaker)) {
             clickedCard.borderColor = getBorderColor(state);
