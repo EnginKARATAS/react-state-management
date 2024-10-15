@@ -137,7 +137,7 @@ export const handSlice = createSlice({
       state: InitialState,
       action: { payload: { clickedCard: Card | any, actionMaker: "enemy" | "player"  } }
     ) => {
-      const actionMaker = action.payload.actionMaker = "player"
+      const actionMaker = action.payload.actionMaker
       const cardOwner =
         action.payload.clickedCard.cardOwner === "player" ? "player" : "enemy";
       const clickedCard = state.board[cardOwner].find(

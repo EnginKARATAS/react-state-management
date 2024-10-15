@@ -18,7 +18,7 @@ export default function BoardCard({ position, boardCard }) {
 
   const onClickBoardCard = (card) => {
     dispatch(closeSingleCard());
-    dispatch(clickBoardCard({clickedCard: card}));
+    dispatch(clickBoardCard({clickedCard: card, actionMaker: "player"}));
   };
 
   return (
