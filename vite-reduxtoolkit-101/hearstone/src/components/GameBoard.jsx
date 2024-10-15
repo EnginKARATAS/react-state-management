@@ -16,7 +16,7 @@ export default function GameBoard() {
   const enemyHealth = useSelector((state) => state.hand.profile.enemy.health);
   useEffect(() => {
     const loadCards = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2222));
+      await new Promise((resolve) => setTimeout(resolve, 200));
       setLoading(false);
     };
 

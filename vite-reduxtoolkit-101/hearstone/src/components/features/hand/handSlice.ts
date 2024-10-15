@@ -29,12 +29,12 @@ const isCard_CachePlayable = (state: InitialState, clickedCard: Card | any) => {
   return isPlayable;
 };
 
-const isPlayerPendingPair = (state: InitialState, clickedCard: Card) => {
-  return state.cardCache[state.moveCount]?.clientCard;
+const isPlayerPendingPair = (state: InitialState, clickedCard: Card, actionMaker: "enemy" | "player") => {
+  return state.cardCache[state.moveCount]?.[actionMaker === "enemy" ? "enemyCard" : "clientCard"];
 };
 
 const isPlayerCacheBlank = (state: InitialState) => {
-  return state.cardCache[state.moveCount]?.clientCard === null;
+    return state.cardCache[state.moveCount]?.enemyCard === null;
 };
 
 const decideCardDestiny = (
@@ -140,7 +140,7 @@ export const handSlice = createSlice({
    
     clickBoardCard: (
       state: InitialState,
-      action: { payload: { clickedCard: Card | any } }
+      action: { payload: { clickedCard: Card | any, actionMaker: "enemy" | "player"  } }
     ) => {
       const cardOwner =
         action.payload.clickedCard.cardOwner === "player" ? "player" : "enemy";
@@ -148,19 +148,21 @@ export const handSlice = createSlice({
         (card) => card.cardId === action.payload.clickedCard.cardId
       );
       if (isCard_CachePlayable(state, clickedCard)) {
-        if (clickedCard && clickedCard.cardOwner === "player") {
+        if (clickedCard && clickedCard.cardOwner === "enemy") {
           //clear cache
           if (isPlayerCacheBlank(state)) {
+            console.log("enemy card bos degildi")
             clickedCard.borderColor = getBorderColor(state);
             clickedCard.isSelected = true;
-            state.cardCache[state.moveCount].clientCard = clickedCard;
+            state.cardCache[state.moveCount].enemyCard = clickedCard;
           } else {
-            state.cardCache[state.moveCount].clientCard!.borderColor = "";
-            state.cardCache[state.moveCount].clientCard!.isSelected = false;
-            const boardCard = state.board.player.find(
+            console.log("enemy card bostu")
+            state.cardCache[state.moveCount].enemyCard!.borderColor = "";
+            state.cardCache[state.moveCount].enemyCard!.isSelected = false;
+            const boardCard = state.board.enemy.find(
               (card) =>
                 card.cardId ===
-                state.cardCache[state.moveCount].clientCard?.cardId
+                state.cardCache[state.moveCount].enemyCard?.cardId
             );
             if (boardCard) {
               boardCard.borderColor = "";
@@ -170,16 +172,16 @@ export const handSlice = createSlice({
             state.cardCache[state.moveCount].enemyCard = null;
             clickedCard.borderColor = getBorderColor(state);
             clickedCard.isSelected = true;
-            state.cardCache[state.moveCount].clientCard = clickedCard;
+            state.cardCache[state.moveCount].enemyCard = clickedCard;
           }
-        } else if (clickedCard && clickedCard.cardOwner === "enemy") {
-          if (isPlayerPendingPair(state, clickedCard)) {
+        } else if (clickedCard && clickedCard.cardOwner === "player") {
+          if (isPlayerPendingPair(state, clickedCard, action.payload.actionMaker = "enemy")) {//TODO: remove = enemy
             //set pairing id
             const pairingId = clickedCard.cardId;
             console.log(pairingId);
-            state.cardCache[state.moveCount].clientCard!.boardPairId =
+            state.cardCache[state.moveCount].enemyCard!.boardPairId =
               pairingId;
-            const playerCard = state.board.player.find(
+            const playerCard = state.board.enemy.find(
               (card) => card.borderColor === getBorderColor(state)
             );
             if (playerCard) {
@@ -188,7 +190,7 @@ export const handSlice = createSlice({
             clickedCard.borderColor = getBorderColor(state);
             clickedCard.isSelected = true;
             clickedCard.boardPairId = pairingId;
-            state.cardCache[state.moveCount].enemyCard = clickedCard;
+            state.cardCache[state.moveCount].clientCard = clickedCard;
             state.moveCount++;
             state.cardCache[state.moveCount] = {
               clientCard: null,
