@@ -24,7 +24,6 @@ export default function GameBoard() {
   }, []);
 
   useEffect(() => {
-    console.log("health", clientHealth, enemyHealth);
     if (clientHealth <= 0 || enemyHealth <= 0) {
       setLoading(true);
       setTimeout(() => {

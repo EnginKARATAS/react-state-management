@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { pos, getTop } from "./cardPositioningUtils.js";
 import { pullRandomCard, getCardBaseLenght } from "./cardService.ts";
-import { scenarioSlice } from "../scenario/scenarioSlice.ts";
 const borderColorCode: string[] = [
   "blue",
   "red",
@@ -29,35 +28,45 @@ const isCard_CachePlayable = (state: InitialState, clickedCard: Card | any) => {
   return isPlayable;
 };
 
-const isPlayerPendingPair = (state: InitialState, clickedCard: Card, actionMaker: "enemy" | "player") => {
+const isPlayerPendingPair = (
+  state: InitialState,
+  clickedCard: Card,
+  actionMaker: "enemy" | "player"
+) => {
   return state.cardCache[state.moveCount]?.[actionMaker];
 };
 
-const isActionerCacheBlank = (state: InitialState, actionMaker: "enemy" | "player") => {
-    return state.cardCache[state.moveCount]?.[actionMaker] === null;
+const isActionerCacheBlank = (
+  state: InitialState,
+  actionMaker: "enemy" | "player"
+) => {
+  return state.cardCache[state.moveCount]?.[actionMaker] === null;
 };
 
-const decideCardDestiny = (
+const decideDuelDestiny = (
   state: InitialState,
-  enemy: Card,
-  playerCard: Card
+  cacheEnemyCard: Card,
+  cachePlayerCard: Card
 ) => {
-
-  if (enemy.borderColor === playerCard.borderColor) {
+  cacheEnemyCard.cardHealth = 999
+  cachePlayerCard.cardHealth = 999
+  const playerCard = state.board.player.find(card => card.cardId === cachePlayerCard.cardId)
+  const enemyCard = state.board.enemy.find(card => card.cardId === cacheEnemyCard.cardId)
+  if (cacheEnemyCard.borderColor === cachePlayerCard.borderColor) {
     //Defender(Health)-Attacker(Attack)<=0 destroy defender card
     //Attacker(Health)-Defender(Attack)<=0 destroy attacker card
     //else both loose health
-    enemy.cardHealth -= playerCard.cardAttack;
-    playerCard.cardHealth -= enemy.cardAttack;
-    if (enemy.cardHealth - playerCard.cardAttack <= 0) {
+    playerCard!.cardHealth -= enemyCard!.cardAttack;
+    enemyCard!.cardHealth -= playerCard!.cardAttack;
+    if (enemyCard!.cardHealth - playerCard!.cardAttack <= 0) {
       const cardIndex = state.board.enemy.findIndex(
-        (card) => card.cardId === enemy.cardId
+        (card) => card.cardId === enemyCard!.cardId
       );
       state.board.enemy.splice(cardIndex, 1);
     }
-    if (playerCard.cardHealth - enemy.cardAttack <= 0) {
+    if (playerCard!.cardHealth - enemyCard!.cardAttack <= 0) {
       const cardIndex = state.board.player.findIndex(
-        (card) => card.cardId === playerCard.cardId
+        (card) => card.cardId === playerCard!.cardId
       );
       state.board.player.splice(cardIndex, 1);
     }
@@ -116,39 +125,33 @@ export const handSlice = createSlice({
   initialState,
   reducers: {
     advanceScenarioMove: (state: InitialState) => {
-      //get enemy board cards
-      const enemys = state.board.enemy.filter((card) => card.boardPairId);
-      //get player board cards
-      const playerCards = state.board.player.filter((card) => card.boardPairId);
-
-      if (enemys.length === playerCards.length) {
-        enemys.forEach((enemy) => {
-          playerCards.forEach((playerCard) => {
-            if (enemy.boardPairId === playerCard.boardPairId) {
-              decideCardDestiny(state, enemy, playerCard);
-            }
-          });
-        });
-      }
-      clearMove(state)
+      state.cardCache.forEach((move) => {
+        if (move.enemy && move.player) {
+          if (move.enemy.boardPairId === move.player.boardPairId) {
+            decideDuelDestiny(state, move.enemy, move.player);
+          }
+        }
+      });
+ 
+      clearMove(state);
     },
-   
+
     clickBoardCard: (
       state: InitialState,
-      action: { payload: { clickedCard: Card | any, actionMaker: "enemy" | "player"  } }
+      action: {
+        payload: { clickedCard: Card | any; actionMaker: "enemy" | "player" };
+      }
     ) => {
-      const actionMaker = action.payload.actionMaker
+      const actionMaker = (action.payload.actionMaker = "enemy");
       const cardOwner =
         action.payload.clickedCard.cardOwner === "player" ? "player" : "enemy";
       const clickedCard = state.board[cardOwner].find(
         (card) => card.cardId === action.payload.clickedCard.cardId
       );
       if (isCard_CachePlayable(state, clickedCard)) {
-        
-        if (clickedCard && clickedCard.cardOwner === (actionMaker)) { 
+        if (clickedCard && clickedCard.cardOwner === actionMaker) {
           //clear cache
           if (isActionerCacheBlank(state, actionMaker)) {
-
             clickedCard.borderColor = getBorderColor(state);
             clickedCard.isSelected = true;
             state.cardCache[state.moveCount][actionMaker] = clickedCard;
@@ -170,22 +173,28 @@ export const handSlice = createSlice({
             clickedCard.isSelected = true;
             state.cardCache[state.moveCount][actionMaker] = clickedCard;
           }
-        } else if (clickedCard && clickedCard.cardOwner === (actionMaker === "enemy"?"player":"enemy")) {
+        } else if (
+          clickedCard &&
+          clickedCard.cardOwner ===
+            (actionMaker === "enemy" ? "player" : "enemy")
+        ) {
           if (isPlayerPendingPair(state, clickedCard, actionMaker)) {
             //set pairing id
             const pairingId = clickedCard.cardId;
             state.cardCache[state.moveCount][actionMaker]!.boardPairId =
               pairingId;
-            const actionerCard = state.board[actionMaker === "enemy"?"player":"enemy"].find(
-              (card) => card.borderColor === getBorderColor(state)
-            );
+            const actionerCard = state.board[
+              actionMaker === "enemy" ? "enemy" : "player"
+            ].find((card) => card.borderColor === getBorderColor(state));
             if (actionerCard) {
               actionerCard.boardPairId = pairingId;
             }
             clickedCard.borderColor = getBorderColor(state);
             clickedCard.isSelected = true;
             clickedCard.boardPairId = pairingId;
-            state.cardCache[state.moveCount][actionMaker === "enemy"?"player":"enemy"] = clickedCard;
+            state.cardCache[state.moveCount][
+              actionMaker === "enemy" ? "player" : "enemy"
+            ] = clickedCard;
             state.moveCount++;
             state.cardCache[state.moveCount] = {
               player: null,
