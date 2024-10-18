@@ -151,7 +151,7 @@ const enemyCardBase: Card[] = [
     cardType: "minion",
     cardCost: 1,
     cardImageName: "atil_kedi",
-    cardAttack: 1,
+    cardAttack: 2,
     cardHealth: 1,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
@@ -159,7 +159,7 @@ const enemyCardBase: Card[] = [
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -170,7 +170,7 @@ const enemyCardBase: Card[] = [
     cardType: "minion",
     cardCost: 2,
     cardImageName: "asker",
-    cardAttack: 2,
+    cardAttack: 5,
     cardHealth: 3,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
@@ -178,7 +178,7 @@ const enemyCardBase: Card[] = [
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -189,15 +189,15 @@ const enemyCardBase: Card[] = [
     cardType: "spell",
     cardCost: 1,
     cardImageName: "cay",
-    cardAttack: 0,
-    cardHealth: 0,
+    cardAttack: 4,
+    cardHealth: 2,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
     move: 0,
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -208,15 +208,15 @@ const enemyCardBase: Card[] = [
     cardType: "spell",
     cardCost: 1,
     cardImageName: "cix",
-    cardAttack: 0,
-    cardHealth: 0,
+    cardAttack: 3,
+    cardHealth: 4,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
     move: 0,
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -227,15 +227,15 @@ const enemyCardBase: Card[] = [
     cardType: "spell",
     cardCost: 2,
     cardImageName: "deadline",
-    cardAttack: 0,
-    cardHealth: 0,
+    cardAttack: 2,
+    cardHealth: 1,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
     move: 0,
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -254,7 +254,7 @@ const enemyCardBase: Card[] = [
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -273,7 +273,7 @@ const enemyCardBase: Card[] = [
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -292,7 +292,7 @@ const enemyCardBase: Card[] = [
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -303,7 +303,7 @@ const enemyCardBase: Card[] = [
     cardType: "spell",
     cardCost: 1,
     cardImageName: "lahmacun",
-    cardAttack: 0,
+    cardAttack: 2,
     cardHealth: 0,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
@@ -311,7 +311,7 @@ const enemyCardBase: Card[] = [
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -322,7 +322,7 @@ const enemyCardBase: Card[] = [
     cardType: "spell",
     cardCost: 1,
     cardImageName: "missing",
-    cardAttack: 0,
+    cardAttack: 2,
     cardHealth: 0,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
@@ -330,7 +330,7 @@ const enemyCardBase: Card[] = [
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -349,7 +349,7 @@ const enemyCardBase: Card[] = [
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -360,7 +360,7 @@ const enemyCardBase: Card[] = [
     cardType: "spell",
     cardCost: 2,
     cardImageName: "radyasyon",
-    cardAttack: 0,
+    cardAttack: 2,
     cardHealth: 0,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
@@ -368,7 +368,7 @@ const enemyCardBase: Card[] = [
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -379,7 +379,7 @@ const enemyCardBase: Card[] = [
     cardType: "spell",
     cardCost: 3,
     cardImageName: "rocket",
-    cardAttack: 0,
+    cardAttack: 2,
     cardHealth: 0,
     cardPosition: { x: 0, y: 0, top: 0, size: 150, offset: 0 },
     deg: 0,
@@ -387,7 +387,7 @@ const enemyCardBase: Card[] = [
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
@@ -406,7 +406,7 @@ const enemyCardBase: Card[] = [
     boardPairId: null
   },
   {
-    cardOwner: "player",
+    cardOwner: "enemy",
     borderColor: null,
     isSelected: false,
     cardId: Math.random(),
