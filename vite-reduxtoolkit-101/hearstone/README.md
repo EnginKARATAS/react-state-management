@@ -1,4 +1,6 @@
 # hearthstone clone app
+##project development moved to the private repo for definite time!
+here is click and play link: https://hearthstone-clone-game.vercel.app/
 * UI Finished
 * state management in progress
 
