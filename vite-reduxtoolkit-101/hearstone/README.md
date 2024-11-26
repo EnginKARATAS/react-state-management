@@ -1,5 +1,8 @@
 ## Welcome my CV observer! This repo is only a transition point. Reach game resources below:
 
+A fan-made card game inspired by Blizzard Entertainment's Hearthstone, featuring turn-based gameplay with character selection, resource management, and card combat mechanics.
+![image](https://github.com/user-attachments/assets/d808f5fa-9d36-427c-8b73-a0458aef7477)
+
 ### click and [play](https://hearthstone-clone-game.vercel.app/)
 
 ### click to go [original repo](https://github.com/EnginKARATAS/hearthstone-clone-game)
