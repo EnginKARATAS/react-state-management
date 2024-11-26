@@ -1,28 +1,4 @@
-# hearthstone clone app
-## project development moved to the private repo for definite time!
 click and play : https://hearthstone-clone-game.vercel.app/ 
 click to go [moved repo](https://github.com/EnginKARATAS/hearthstone-clone-game)
-* UI Finished
-* state management in progress
-
-## View Insights
-### Here is the screenshoot from hearthstone clone(Newest First⬆️)
-
-![image](https://github.com/user-attachments/assets/703c7924-f72d-4b43-8d07-840a4635e2a9)
-
-![image](https://github.com/user-attachments/assets/4da084a8-9764-452e-b70e-75193880d235)
-
-![image](https://github.com/user-attachments/assets/b1f04ea6-98a2-4310-81e4-781b7cf663e6)
-
-![image](https://github.com/user-attachments/assets/324de574-ea6b-4edc-8b10-c2615e11adec)
-
-![image](https://github.com/user-attachments/assets/c40bde19-eef7-4b50-ac69-bf39bdccca22)
-
-![image](https://github.com/user-attachments/assets/233019da-0465-40cc-a258-a95f663e6179)
-
-![image](https://github.com/user-attachments/assets/b7e1b784-960a-4ebd-bacf-f0984343176f)
-
-![image](https://github.com/user-attachments/assets/2df4917d-38f9-4d7b-a06f-49d550b1c917)
-
-## How It Works?
-![blizzardafslorerhearthstone_736361b](https://github.com/user-attachments/assets/05b067f4-22dc-4381-9e59-ac747c73e256)
+click to go linkedin post [linkedin post](https://www.linkedin.com/feed/update/urn:li:activity:7262299165567696896/)
+click to go hearthstone game React, JS, TS, Tailwind education: [youtube]([https://www.linkedin.com/feed/update/urn:li:activity:7262299165567696896/](https://www.youtube.com/watch?v=12qs_s56sd4&list=PL2-v8trxz86ABAiUjyR3rjL8f1ZnLyflb)) 
