@@ -1,8 +1,8 @@
-## Welcome my CV observer! This repo is only a transitional point. Reach game resources below:
+## Welcome CV observer! This repo is only a transitional point. Reach the game resources from below:
 
 ### click and [play](https://hearthstone-clone-game.vercel.app/)
 
-### click to go [my original repo](https://github.com/EnginKARATAS/hearthstone-clone-game)
+### click to go [original project repo](https://github.com/EnginKARATAS/hearthstone-clone-game)
 
 ### click to go [linkedin promotional post](https://www.linkedin.com/feed/update/urn:li:activity:7262299165567696896/)
 
